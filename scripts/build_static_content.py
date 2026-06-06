@@ -236,6 +236,18 @@ def clean_wordpress_blocks(content):
     return text
 
 
+def clean_empty_legacy_wrappers(content):
+    text = content or ""
+    empty_wrapper = re.compile(r'<div class="(?:wp-row|wp-column|wp-column-text|shortcode-panel|tab-section|toggle)">\s*</div>', re.I)
+    empty_section = re.compile(r'<section class="(?:tab-section|toggle)">\s*</section>', re.I)
+    previous = None
+    while previous != text:
+        previous = text
+        text = empty_wrapper.sub("", text)
+        text = empty_section.sub("", text)
+    return text.strip()
+
+
 def slug_segments(url):
     path = url.strip("/")
     return None if path == "" else path.split("/")
@@ -332,6 +344,7 @@ def main():
         converted, notes = convert_shortcodes(post.get("post_content") or "")
         converted = normalize_internal_urls(converted)
         converted = clean_wordpress_blocks(converted)
+        converted = clean_empty_legacy_wrappers(converted)
         title = normalize_title(post)
         page = {
             "id": str(post.get("ID")),
