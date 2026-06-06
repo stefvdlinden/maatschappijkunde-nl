@@ -185,6 +185,21 @@ def sorted_pages(items):
     return sorted(items, key=lambda p: (p["title"].lower(), p["url"]))
 
 
+def write_redirect_files(redirects):
+    netlify_lines = [f'{r["source"]} {r["target"]} {r["status"]}' for r in redirects]
+    apache_lines = [
+        "# Generated from data/site/redirects.json. Do not edit by hand.",
+        "RewriteEngine On",
+        *[f'Redirect {r["status"]} {r["source"]} {r["target"]}' for r in redirects],
+        ""
+    ]
+    (SITE / "_redirects").write_text("\n".join(netlify_lines) + "\n", encoding="utf-8")
+    (SITE / ".htaccess").write_text("\n".join(apache_lines), encoding="utf-8")
+    PUBLIC.mkdir(parents=True, exist_ok=True)
+    (PUBLIC / "_redirects").write_text("\n".join(netlify_lines) + "\n", encoding="utf-8")
+    (PUBLIC / ".htaccess").write_text("\n".join(apache_lines), encoding="utf-8")
+
+
 def main():
     SITE.mkdir(parents=True, exist_ok=True)
     if not SQL.exists():
@@ -197,6 +212,11 @@ def main():
             redirects_file = SITE / "_redirects"
             if redirects_file.exists():
                 (PUBLIC / "_redirects").write_text(redirects_file.read_text(encoding="utf-8"), encoding="utf-8")
+            htaccess_file = SITE / ".htaccess"
+            if htaccess_file.exists():
+                (PUBLIC / ".htaccess").write_text(htaccess_file.read_text(encoding="utf-8"), encoding="utf-8")
+            else:
+                write_redirect_files(redirects)
             print(json.dumps({
                 "pages": len(pages),
                 "redirects": len(redirects),
@@ -335,10 +355,7 @@ def main():
     (SITE / "pages.json").write_text(json.dumps(pages, ensure_ascii=False, indent=2), encoding="utf-8")
     (SITE / "redirects.json").write_text(json.dumps(redirects, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    netlify_lines = [f'{r["source"]} {r["target"]} {r["status"]}' for r in redirects]
-    (SITE / "_redirects").write_text("\n".join(netlify_lines) + "\n", encoding="utf-8")
-    PUBLIC.mkdir(parents=True, exist_ok=True)
-    (PUBLIC / "_redirects").write_text("\n".join(netlify_lines) + "\n", encoding="utf-8")
+    write_redirect_files(redirects)
     print(json.dumps({"pages": len(pages), "redirects": len(redirects)}, ensure_ascii=False))
 
 
