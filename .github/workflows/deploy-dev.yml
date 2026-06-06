@@ -6,6 +6,10 @@ on:
       - main
   workflow_dispatch:
 
+concurrency:
+  group: deploy-dev-maatschappijkunde
+  cancel-in-progress: true
+
 jobs:
   deploy:
     name: Build and deploy to dev.maatschappijkunde.nl
