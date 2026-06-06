@@ -17,6 +17,6 @@ const description = page.description || undefined;
   <article class="legacy-content">
     <p class="meta">{page.typeLabel}</p>
     <h1>{page.title}</h1>
-    <div set:html={page.html} />
+    {page.html && <div set:html={page.html} />}
   </article>
 </BaseLayout>
