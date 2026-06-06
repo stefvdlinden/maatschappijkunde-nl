@@ -14,7 +14,7 @@ Laatste GitHub Actions run:
 - Deploy via SFTP: success
 - Duur: 15m 6s
 
-`https://dev.maatschappijkunde.nl/` reageert met `401` en Basic Auth realm `omzetten hosting`. Daardoor is publieke visuele controle op de dev-URL zonder credentials niet mogelijk. De deploy zelf is wel succesvol afgerond.
+`https://dev.maatschappijkunde.nl/` reageert met Basic Auth realm `omzetten hosting`. Met credentials is de live dev-site bereikbaar.
 
 Recente runs na de concurrency-wijziging:
 
@@ -26,7 +26,7 @@ Recente runs na de concurrency-wijziging:
 
 ## 2. Kernpagina QA
 
-Gecontroleerd op basis van de gegenereerde statische build en `data/site/pages.json`.
+Gecontroleerd op basis van de gegenereerde statische build, `data/site/pages.json` en live dev met Basic Auth.
 
 | URL | Bevinding |
 |---|---|
@@ -39,6 +39,26 @@ Gecontroleerd op basis van de gegenereerde statische build en `data/site/pages.j
 | `/planning/leerjaar3/` | 4 tabellen aanwezig en gevuld. |
 | `/planning/leerjaar4/` | 1 tabel aanwezig en gevuld. |
 | `/begrippen/` | Overzichtspagina aanwezig; individuele begrippen blijven redirects. |
+
+Live dev statuschecks:
+
+| URL | Status |
+|---|---:|
+| `/` | 200 |
+| `/examenstof/` | 200 |
+| `/examenstof/amv-kerndoel1/` | 200 |
+| `/examenstof/criminaliteitenrechtsstaat-kerndoel1/` | 200 |
+| `/kerndoelen/politiekenbeleid/` | 200 |
+| `/planning/` | 200 |
+| `/planning/leerjaar3/` | 200 |
+| `/planning/leerjaar4/` | 200 |
+| `/begrippen/` | 200 |
+
+Belangrijke live bevinding:
+
+- `/begrippen/tweede-kamer/` geeft op dev `404`, terwijl dit volgens `data/site/_redirects` een redirect naar `https://schoolwoorden.nl/begrip/tweede-kamer/` moet zijn.
+- `https://dev.maatschappijkunde.nl/_redirects` is live bereikbaar met status `200`.
+- Conclusie: het `_redirects`-bestand wordt wel gedeployed, maar de huidige TransIP/nginx hosting past Netlify-style `_redirects` niet toe.
 
 Automatische audits blijven groen:
 
@@ -61,3 +81,7 @@ Er zijn drie oude `uhe_style1` oefenmodules gevonden. Deze zijn veilig als legac
 | `/examenstof/politiekenbeleid/` | `politiek` | Later vervangen door statische oefenlinks of archiefmelding. |
 
 Aanbevolen vervolg: bepaal per legacy oefenmodule of er nog bruikbare oefenvragen/formulieren zijn. Zo ja: statisch opnemen als gewone links/content. Zo nee: markeren als verouderd of verwijderen na expliciete contentkeuze.
+
+## Eerstvolgende technische blokkade
+
+Redirects moeten server-side werkend worden gemaakt voor TransIP. Zolang `_redirects` niet door de hosting wordt toegepast, zijn de 239 begrippenredirects alleen in de repository correct, maar niet live actief op dev.
