@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import base64
 import csv
 import html
 import json
@@ -69,6 +70,29 @@ def strip_wrapping_shortcode(name, css_class, text):
     return text
 
 
+def convert_fusion_code(match, notes):
+    raw = html.unescape(match.group(1)).strip()
+    decoded = ""
+    try:
+        decoded = base64.b64decode(raw, validate=True).decode("utf-8", errors="replace").strip()
+    except Exception:
+        pass
+
+    shortcode = decoded or raw
+    notes.append(f"fusion_code gedecodeerd: {shortcode}")
+
+    if re.fullmatch(r"\[wpdreams_ajaxsearchpro\s+id=['\"]?\d+['\"]?\s*\]", shortcode, flags=re.I):
+        return ""
+
+    uhe_match = re.fullmatch(r"\[uhe_style1\s+category=['\"]?([a-z0-9_-]+)['\"]?\s*\]", shortcode, flags=re.I)
+    if uhe_match:
+        category = html.escape(uhe_match.group(1))
+        return f'<div class="shortcode-panel" data-legacy-module="uhe_style1" data-category="{category}">Oude oefenmodule: {category}</div>'
+
+    notes.append("Onbekende fusion_code moet handmatig worden beoordeeld.")
+    return '<div class="notice">Ingesloten code moet handmatig worden beoordeeld.</div>'
+
+
 def convert_shortcodes(content):
     notes = []
     text = content or ""
@@ -97,10 +121,12 @@ def convert_shortcodes(content):
     text = re.sub(r"\[vc_tta_section([^\]]*)\](.*?)\[/vc_tta_section\]", r'<section class="tab-section">\2</section>', text, flags=re.S | re.I)
     text = re.sub(r"\[gt_tab([^\]]*)\](.*?)\[/gt_tab\]", r'<section class="tab-section">\2</section>', text, flags=re.S | re.I)
 
-    fusion_count = len(re.findall(r"\[fusion_code[^\]]*\].*?\[/fusion_code\]", text, flags=re.S | re.I))
-    if fusion_count:
-        notes.append(f"{fusion_count} fusion_code shortcode(s) niet blind gerenderd.")
-        text = re.sub(r"\[fusion_code[^\]]*\].*?\[/fusion_code\]", '<div class="notice">Ingesloten code moet handmatig worden beoordeeld.</div>', text, flags=re.S | re.I)
+    text = re.sub(
+        r"\[fusion_code[^\]]*\](.*?)\[/fusion_code\]",
+        lambda match: convert_fusion_code(match, notes),
+        text,
+        flags=re.S | re.I
+    )
 
     text = re.sub(r"\[/?(?:gt_table_heading|gt_table_body|gt_table_data|button|separator|glossary_exclude|glossary|usquare|ht_message)[^\]]*\]", "", text, flags=re.I)
     unresolved = sorted(set(re.findall(r"\[/?([a-zA-Z0-9_:-]+)(?:\s|\]|/)", text)))

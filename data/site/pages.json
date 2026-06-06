@@ -11,10 +11,10 @@
     "modified": "2016-06-22 20:38:33",
     "seoTitle": "Maatschappijkunde.nl",
     "description": "Alle examenstof van het VMBO examenvak maatschappijleer 2: Geschreven uitleg, Video’s, Oefenvragen, Slides, Downloads en meer - Voor leerlingen en docenten!",
-    "html": "<div class=\"wp-column\"></div><div class=\"wp-column\"><div class=\"wp-column-text\">\r\n<p style=\"text-align: left;\"><span style=\"color: #000000;\">Welkom! Op deze site staat alle examenstof van VMBO maatschappijleer 2, met per onderwerp geschreven uitleg, video’s, slides en downloads. Vragen kun je stellen via de Q&amp;A pagina. Succes!</span></p>\r\n</div></div><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\"><div class=\"notice\">Ingesloten code moet handmatig worden beoordeeld.</div></div><div class=\"wp-column\"></div><div class=\"wp-row\"></div><div class=\"wp-column\"></div><div class=\"wp-column\">Mens en Werk</div><div class=\"wp-column\">Multiculturele Samenleving</div><div class=\"wp-column\">Massamedia</div><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\">Politiek en Beleid</div><div class=\"wp-column\">Criminaliteit en Rechtsstaat</div><div class=\"wp-column\">AMV</div><div class=\"wp-column\"></div>",
-    "plainText": "Welkom! Op deze site staat alle examenstof van VMBO maatschappijleer 2, met per onderwerp geschreven uitleg, video’s, slides en downloads. Vragen kun je stellen via de Q&A pagina. Succes! Ingesloten code moet handmatig worden beoordeeld. Mens en Werk Multiculturele Samenleving Massamedia Politiek en Beleid Criminaliteit en Rechtsstaat AMV",
+    "html": "<div class=\"wp-column\"></div><div class=\"wp-column\"><div class=\"wp-column-text\">\r\n<p style=\"text-align: left;\"><span style=\"color: #000000;\">Welkom! Op deze site staat alle examenstof van VMBO maatschappijleer 2, met per onderwerp geschreven uitleg, video’s, slides en downloads. Vragen kun je stellen via de Q&amp;A pagina. Succes!</span></p>\r\n</div></div><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-row\"></div><div class=\"wp-column\"></div><div class=\"wp-column\">Mens en Werk</div><div class=\"wp-column\">Multiculturele Samenleving</div><div class=\"wp-column\">Massamedia</div><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\">Politiek en Beleid</div><div class=\"wp-column\">Criminaliteit en Rechtsstaat</div><div class=\"wp-column\">AMV</div><div class=\"wp-column\"></div>",
+    "plainText": "Welkom! Op deze site staat alle examenstof van VMBO maatschappijleer 2, met per onderwerp geschreven uitleg, video’s, slides en downloads. Vragen kun je stellen via de Q&A pagina. Succes! Mens en Werk Multiculturele Samenleving Massamedia Politiek en Beleid Criminaliteit en Rechtsstaat AMV",
     "conversionNotes": [
-      "1 fusion_code shortcode(s) niet blind gerenderd."
+      "fusion_code gedecodeerd: [wpdreams_ajaxsearchpro id=3]"
     ]
   },
   {
@@ -255,10 +255,10 @@
     "modified": "2016-04-24 12:42:30",
     "seoTitle": "Examenstof",
     "description": "Alle examenstof van het VMBO examenvak maatschappijleer 2: Geschreven uitleg, Video’s, Oefenvragen, Slides, Downloads en meer - Voor leerlingen en docenten!",
-    "html": "<div class=\"wp-column\"></div><div class=\"wp-column\"><div class=\"notice\">Ingesloten code moet handmatig worden beoordeeld.</div></div><div class=\"wp-column\"></div><div class=\"wp-row\"></div><div class=\"wp-row\"><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\"></div></div><div class=\"wp-row\"><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\"></div></div>",
-    "plainText": "Ingesloten code moet handmatig worden beoordeeld.",
+    "html": "<div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-row\"></div><div class=\"wp-row\"><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\"></div></div><div class=\"wp-row\"><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\"></div></div>",
+    "plainText": "",
     "conversionNotes": [
-      "1 fusion_code shortcode(s) niet blind gerenderd."
+      "fusion_code gedecodeerd: [wpdreams_ajaxsearchpro id=1]"
     ]
   },
   {
@@ -333,10 +333,11 @@
     "modified": "2018-04-12 20:09:05",
     "seoTitle": "???? Analyse Maatschappelijk Vraagstuk",
     "description": "Alle Geschreven uitleg, Video's, Slides en Downloads van het onderwerp Analyse Maatschappelijk Vraagstuk (AMV) van het examenvak maatschappijleer 2.",
-    "html": "<div class=\"wp-column\"></div><div class=\"wp-column\"><div class=\"notice\">Ingesloten code moet handmatig worden beoordeeld.</div></div><div class=\"wp-column\"></div><div class=\"notice\">Ingesloten code moet handmatig worden beoordeeld.</div>",
-    "plainText": "Ingesloten code moet handmatig worden beoordeeld. Ingesloten code moet handmatig worden beoordeeld.",
+    "html": "<div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"shortcode-panel\" data-legacy-module=\"uhe_style1\" data-category=\"amv\">Oude oefenmodule: amv</div>",
+    "plainText": "Oude oefenmodule: amv",
     "conversionNotes": [
-      "2 fusion_code shortcode(s) niet blind gerenderd."
+      "fusion_code gedecodeerd: [wpdreams_ajaxsearchpro id=3]",
+      "fusion_code gedecodeerd: [uhe_style1 category=\"amv\" ]"
     ]
   },
   {
@@ -411,10 +412,11 @@
     "modified": "2016-06-18 19:17:07",
     "seoTitle": "Criminaliteit en Rechtsstaat",
     "description": "Alle Geschreven uitleg, Video's, Slides en Downloads van het onderwerp Criminaliteit en Rechtsstaat van het examenvak maatschappijleer 2.",
-    "html": "<div class=\"wp-column\"></div><div class=\"wp-column\"><div class=\"notice\">Ingesloten code moet handmatig worden beoordeeld.</div></div><div class=\"wp-column\"></div><div class=\"notice\">Ingesloten code moet handmatig worden beoordeeld.</div>",
-    "plainText": "Ingesloten code moet handmatig worden beoordeeld. Ingesloten code moet handmatig worden beoordeeld.",
+    "html": "<div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"shortcode-panel\" data-legacy-module=\"uhe_style1\" data-category=\"criminaliteit\">Oude oefenmodule: criminaliteit</div>",
+    "plainText": "Oude oefenmodule: criminaliteit",
     "conversionNotes": [
-      "2 fusion_code shortcode(s) niet blind gerenderd."
+      "fusion_code gedecodeerd: [wpdreams_ajaxsearchpro id=3]",
+      "fusion_code gedecodeerd: [uhe_style1 category=\"criminaliteit\" ]"
     ]
   },
   {
@@ -1192,10 +1194,11 @@
     "modified": "2016-06-18 19:16:48",
     "seoTitle": "Politiek en Beleid",
     "description": "Alle Geschreven uitleg, Video's, Slides en Downloads van het onderwerp Politiek en Beleid van het examenvak maatschappijleer 2.",
-    "html": "<div class=\"wp-column\"></div><div class=\"wp-column\"><div class=\"notice\">Ingesloten code moet handmatig worden beoordeeld.</div></div><div class=\"wp-column\"></div><div class=\"notice\">Ingesloten code moet handmatig worden beoordeeld.</div>",
-    "plainText": "Ingesloten code moet handmatig worden beoordeeld. Ingesloten code moet handmatig worden beoordeeld.",
+    "html": "<div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"shortcode-panel\" data-legacy-module=\"uhe_style1\" data-category=\"politiek\">Oude oefenmodule: politiek</div>",
+    "plainText": "Oude oefenmodule: politiek",
     "conversionNotes": [
-      "2 fusion_code shortcode(s) niet blind gerenderd."
+      "fusion_code gedecodeerd: [wpdreams_ajaxsearchpro id=3]",
+      "fusion_code gedecodeerd: [uhe_style1 category=\"politiek\" ]"
     ]
   },
   {
@@ -1402,10 +1405,10 @@
     "modified": "2016-06-22 20:38:33",
     "seoTitle": "Maatschappijkunde.nl",
     "description": "Alle examenstof van het VMBO examenvak maatschappijleer 2: Geschreven uitleg, Video’s, Oefenvragen, Slides, Downloads en meer - Voor leerlingen en docenten!",
-    "html": "<div class=\"wp-column\"></div><div class=\"wp-column\"><div class=\"wp-column-text\">\r\n<p style=\"text-align: left;\"><span style=\"color: #000000;\">Welkom! Op deze site staat alle examenstof van VMBO maatschappijleer 2, met per onderwerp geschreven uitleg, video’s, slides en downloads. Vragen kun je stellen via de Q&amp;A pagina. Succes!</span></p>\r\n</div></div><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\"><div class=\"notice\">Ingesloten code moet handmatig worden beoordeeld.</div></div><div class=\"wp-column\"></div><div class=\"wp-row\"></div><div class=\"wp-column\"></div><div class=\"wp-column\">Mens en Werk</div><div class=\"wp-column\">Multiculturele Samenleving</div><div class=\"wp-column\">Massamedia</div><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\">Politiek en Beleid</div><div class=\"wp-column\">Criminaliteit en Rechtsstaat</div><div class=\"wp-column\">AMV</div><div class=\"wp-column\"></div>",
-    "plainText": "Welkom! Op deze site staat alle examenstof van VMBO maatschappijleer 2, met per onderwerp geschreven uitleg, video’s, slides en downloads. Vragen kun je stellen via de Q&A pagina. Succes! Ingesloten code moet handmatig worden beoordeeld. Mens en Werk Multiculturele Samenleving Massamedia Politiek en Beleid Criminaliteit en Rechtsstaat AMV",
+    "html": "<div class=\"wp-column\"></div><div class=\"wp-column\"><div class=\"wp-column-text\">\r\n<p style=\"text-align: left;\"><span style=\"color: #000000;\">Welkom! Op deze site staat alle examenstof van VMBO maatschappijleer 2, met per onderwerp geschreven uitleg, video’s, slides en downloads. Vragen kun je stellen via de Q&amp;A pagina. Succes!</span></p>\r\n</div></div><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-row\"></div><div class=\"wp-column\"></div><div class=\"wp-column\">Mens en Werk</div><div class=\"wp-column\">Multiculturele Samenleving</div><div class=\"wp-column\">Massamedia</div><div class=\"wp-column\"></div><div class=\"wp-column\"></div><div class=\"wp-column\">Politiek en Beleid</div><div class=\"wp-column\">Criminaliteit en Rechtsstaat</div><div class=\"wp-column\">AMV</div><div class=\"wp-column\"></div>",
+    "plainText": "Welkom! Op deze site staat alle examenstof van VMBO maatschappijleer 2, met per onderwerp geschreven uitleg, video’s, slides en downloads. Vragen kun je stellen via de Q&A pagina. Succes! Mens en Werk Multiculturele Samenleving Massamedia Politiek en Beleid Criminaliteit en Rechtsstaat AMV",
     "conversionNotes": [
-      "1 fusion_code shortcode(s) niet blind gerenderd."
+      "fusion_code gedecodeerd: [wpdreams_ajaxsearchpro id=3]"
     ]
   },
   {
