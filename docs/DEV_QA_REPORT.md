@@ -54,11 +54,14 @@ Live dev statuschecks:
 | `/planning/leerjaar4/` | 200 |
 | `/begrippen/` | 200 |
 
-Belangrijke live bevinding:
+Live redirectbevinding:
 
-- `/begrippen/tweede-kamer/` geeft op dev `404`, terwijl dit volgens `data/site/_redirects` een redirect naar `https://schoolwoorden.nl/begrip/tweede-kamer/` moet zijn.
-- `https://dev.maatschappijkunde.nl/_redirects` is live bereikbaar met status `200`.
-- Conclusie: het `_redirects`-bestand wordt wel gedeployed, maar de huidige TransIP/nginx hosting past Netlify-style `_redirects` niet toe.
+- `https://dev.maatschappijkunde.nl/_redirects` is live bereikbaar met status `200`, maar Netlify-style `_redirects` wordt niet door TransIP/nginx toegepast.
+- Er wordt daarom ook een Apache `.htaccess` gegenereerd en gedeployed.
+- `/begrippen/tweede-kamer/` geeft nu `301` naar `https://schoolwoorden.nl/begrip/tweede-kamer/`.
+- `/begrippen/parlement/` volgt door naar `https://schoolwoorden.nl/begrip/parlement`.
+- `/begrippen/reageerakkoord/` geeft `301` naar `https://schoolwoorden.nl/begrip/regeerakkoord/`.
+- `https://dev.maatschappijkunde.nl/.htaccess` geeft `403`, dus het bestand wordt niet publiek als tekst geserveerd.
 
 Automatische audits blijven groen:
 
@@ -82,6 +85,6 @@ Er zijn drie oude `uhe_style1` oefenmodules gevonden. Deze zijn veilig als legac
 
 Aanbevolen vervolg: bepaal per legacy oefenmodule of er nog bruikbare oefenvragen/formulieren zijn. Zo ja: statisch opnemen als gewone links/content. Zo nee: markeren als verouderd of verwijderen na expliciete contentkeuze.
 
-## Eerstvolgende technische blokkade
+## Redirectoplossing
 
-Redirects moeten server-side werkend worden gemaakt voor TransIP. Zolang `_redirects` niet door de hosting wordt toegepast, zijn de 239 begrippenredirects alleen in de repository correct, maar niet live actief op dev.
+Redirects zijn server-side werkend gemaakt voor TransIP door naast `_redirects` ook `.htaccess` te genereren uit `data/site/redirects.json`.
