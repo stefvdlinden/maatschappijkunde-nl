@@ -51,12 +51,15 @@ def attrs_to_dict(raw):
 def convert_table(match):
     inner = match.group(1)
     rows = []
-    for section_name, tag in (("gt_table_heading", "th"), ("gt_table_body", "td")):
-        for section in re.findall(rf"\[{section_name}[^\]]*\](.*?)\[/{section_name}\]", inner, flags=re.S | re.I):
-            cells = []
-            for raw_attrs in re.findall(r"\[gt_table_data([^\]]*)\]", section, flags=re.I):
-                attrs = attrs_to_dict(raw_attrs)
-                cells.append(f"<{tag}>{html.escape(attrs.get('data', '').strip())}</{tag}>")
+    for heading in re.findall(r"\[gt_table_heading[^\]]*\](.*?)\[/gt_table_heading\]", inner, flags=re.S | re.I):
+        cells = [f"<th>{cell.strip()}</th>" for cell in heading.split("||")]
+        if cells:
+            rows.append(f"<tr>{''.join(cells)}</tr>")
+    for body in re.findall(r"\[gt_table_body[^\]]*\](.*?)\[/gt_table_body\]", inner, flags=re.S | re.I):
+        for raw_attrs, body_content in re.findall(r"\[gt_table_data([^\]]*)\](.*?)\[/gt_table_data\]", body, flags=re.S | re.I):
+            attrs = attrs_to_dict(raw_attrs)
+            content = attrs.get("data", "").strip() or body_content.strip()
+            cells = [f"<td>{cell.strip()}</td>" for cell in content.split("||")]
             if cells:
                 rows.append(f"<tr>{''.join(cells)}</tr>")
     return f"<table><tbody>{''.join(rows)}</tbody></table>" if rows else ""
