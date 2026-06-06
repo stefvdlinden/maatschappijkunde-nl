@@ -27,13 +27,29 @@ TYPE_LABELS = {
 }
 INTERNAL_URL_REWRITES = {
     "/examenstof/kerndoel-1-2/": "/examenstof/politiekenbeleid-kerndoel1-2/",
-    "/politiekenbeleid-kerndoel1-2/": "/examenstof/politiekenbeleid-kerndoel1-2/"
+    "/politiekenbeleid-kerndoel1-1/": "/examenstof/politiekenbeleid-kerndoel1-1/",
+    "/politiekenbeleid-kerndoel1-2/": "/examenstof/politiekenbeleid-kerndoel1-2/",
+    "/politiekenbeleid-kerndoel1-3/": "/examenstof/politiekenbeleid-kerndoel1-3/",
+    "/politiekenbeleid-kerndoel1-4/": "/examenstof/politiekenbeleid-kerndoel1-4/",
+    "/politiekenbeleid-kerndoel2/": "/examenstof/politiekenbeleid-kerndoel2/",
+    "/politiekenbeleid-kerndoel3/": "/examenstof/politiekenbeleid-kerndoel3/",
+    "/politiekenbeleid-kerndoel4/": "/examenstof/politiekenbeleid-kerndoel4/",
+    "/politiekenbeleid-kerndoel5/": "/examenstof/politiekenbeleid-kerndoel5/",
+    "/amv-kerndoel1/": "/examenstof/amv-kerndoel1/",
+    "/amv-kerndoel2/": "/examenstof/amv-kerndoel2/",
+    "/amv-kerndoel3/": "/examenstof/amv-kerndoel3/",
+    "/ciminaliteitenrechtsstaat-kerndoel1/": "/examenstof/criminaliteitenrechtsstaat-kerndoel1/",
+    "/ciminaliteitenrechtsstaat-kerndoel2/": "/examenstof/criminaliteitenrechtsstaat-kerndoel2/",
+    "/ciminaliteitenrechtsstaat-kerndoel3/": "/examenstof/criminaliteitenrechtsstat-kerndoel3/",
+    "/criminaliteitenrechtsstaat-kerndoel4/": "/examenstof/criminaliteitenrechtsstaat-kerndoel4/",
+    "/criminaliteitenrechtsstaat-kerndoel5/": "/examenstof/criminaliteitenrechtsstaat-kerndoel5/"
 }
 TAXONOMY_PREFIXES = {
     "ht_kb_category": "/kerndoelen/",
     "ht_kb_tag": "/kerndoel-tags/",
     "category": "/category/"
 }
+LEGACY_MODULES = {}
 
 
 def read_csv(path):
@@ -46,6 +62,57 @@ def attrs_to_dict(raw):
     for key, _, value1, value2, value3 in re.findall(r'([a-zA-Z0-9_:-]+)\s*=\s*("([^"]*)"|\'([^\']*)\'|([^\s\]]+))', raw or ""):
         attrs[key] = html.unescape(value1.strip("\"'") if value1 else value2 or value3)
     return attrs
+
+
+def normalize_legacy_url(url):
+    text = normalize_internal_urls(url.strip())
+    try:
+        path = re.sub(r"^https?://(?:www\.)?maatschappijkunde\.nl", "", text, flags=re.I)
+    except Exception:
+        path = text
+    for source, target in INTERNAL_URL_REWRITES.items():
+        if path == source:
+            return target
+    return path
+
+
+def extract_serialized_value(raw, key):
+    match = re.search(rf's:\d+:"{re.escape(key)}";s:\d+:"(.*?)";', raw, flags=re.S)
+    return html.unescape(match.group(1)) if match else ""
+
+
+def extract_legacy_modules(meta_by_post):
+    modules = {}
+    for values in meta_by_post.values():
+        side = values.get("sidemeta", "")
+        info = values.get("infosmeta", "")
+        category = extract_serialized_value(side, "category")
+        if not category or not info:
+            continue
+        items = []
+        for item_match in re.finditer(r"i:\d+;a:\d+:\{(.*?)\}", info, flags=re.S):
+            raw_item = item_match.group(1)
+            image = normalize_internal_urls(extract_serialized_value(raw_item, "style1_image"))
+            description = clean_text(extract_serialized_value(raw_item, "style1_description"))
+            link = normalize_legacy_url(extract_serialized_value(raw_item, "style1_link"))
+            if image or description or link:
+                items.append({"image": image, "description": description, "link": link})
+        if items:
+            modules[category] = items
+    return modules
+
+
+def render_legacy_module(category):
+    items = LEGACY_MODULES.get(category, [])
+    if not items:
+        return f'<div class="shortcode-panel" data-legacy-module="uhe_style1" data-category="{html.escape(category)}">Oude oefenmodule: {html.escape(category)}</div>'
+    links = []
+    for item in items:
+        image = f'<img src="{html.escape(item["image"])}" alt="" loading="lazy">' if item.get("image") else ""
+        description = f'<span>{html.escape(item.get("description", ""))}</span>' if item.get("description") else ""
+        href = html.escape(item.get("link") or "#")
+        links.append(f'<li><a href="{href}">{image}{description}</a></li>')
+    return f'<ul class="legacy-module-list" data-legacy-module="uhe_style1" data-category="{html.escape(category)}">{"".join(links)}</ul>'
 
 
 def convert_table(match):
@@ -89,8 +156,7 @@ def convert_fusion_code(match, notes):
 
     uhe_match = re.fullmatch(r"\[uhe_style1\s+category=['\"]?([a-z0-9_-]+)['\"]?\s*\]", shortcode, flags=re.I)
     if uhe_match:
-        category = html.escape(uhe_match.group(1))
-        return f'<div class="shortcode-panel" data-legacy-module="uhe_style1" data-category="{category}">Oude oefenmodule: {category}</div>'
+        return render_legacy_module(uhe_match.group(1))
 
     notes.append("Onbekende fusion_code moet handmatig worden beoordeeld.")
     return '<div class="notice">Ingesloten code moet handmatig worden beoordeeld.</div>'
@@ -201,6 +267,7 @@ def write_redirect_files(redirects):
 
 
 def main():
+    global LEGACY_MODULES
     SITE.mkdir(parents=True, exist_ok=True)
     if not SQL.exists():
         existing_pages = SITE / "pages.json"
@@ -235,11 +302,12 @@ def main():
     posts = list(iter_insert_rows(SQL, "wp_posts", post_cols))
     posts_by_id = {str(p["ID"]): p for p in posts}
 
-    meta_keys = {"_yoast_wpseo_title", "_yoast_wpseo_metadesc"}
+    meta_keys = {"_yoast_wpseo_title", "_yoast_wpseo_metadesc", "infosmeta", "sidemeta"}
     meta_by_post = {}
     for row in iter_insert_rows(SQL, "wp_postmeta", meta_cols):
         if row.get("meta_key") in meta_keys:
             meta_by_post.setdefault(str(row.get("post_id")), {})[row.get("meta_key")] = row.get("meta_value") or ""
+    LEGACY_MODULES = extract_legacy_modules(meta_by_post)
 
     redirects = read_csv(GENERATED / "redirects.csv")
     redirect_sources = {r["source"] for r in redirects}

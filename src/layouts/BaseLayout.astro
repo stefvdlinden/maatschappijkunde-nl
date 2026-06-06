@@ -130,6 +130,26 @@ const {
     display: flow-root;
   }
 
+  .legacy-module-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .legacy-module-list a {
+    display: grid;
+    gap: 10px;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .legacy-module-list img {
+    width: 100%;
+    border: 1px solid var(--line);
+  }
+
   .toggle,
   .tab-section {
     margin: 18px 0;
