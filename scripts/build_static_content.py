@@ -50,6 +50,9 @@ TAXONOMY_PREFIXES = {
     "category": "/category/"
 }
 LEGACY_MODULES = {}
+TITLE_REWRITES = {
+    ("1029", "???? Analyse Maatschappelijk Vraagstuk"): "Analyse Maatschappelijk Vraagstuk"
+}
 
 
 def read_csv(path):
@@ -113,6 +116,11 @@ def render_legacy_module(category):
         href = html.escape(item.get("link") or "#")
         links.append(f'<li><a href="{href}">{image}{description}</a></li>')
     return f'<ul class="legacy-module-list" data-legacy-module="uhe_style1" data-category="{html.escape(category)}">{"".join(links)}</ul>'
+
+
+def normalize_title(post):
+    title = clean_text(post.get("post_title") or "")
+    return TITLE_REWRITES.get((str(post.get("ID")), title), title) or "Zonder titel"
 
 
 def convert_table(match):
@@ -324,7 +332,7 @@ def main():
         converted, notes = convert_shortcodes(post.get("post_content") or "")
         converted = normalize_internal_urls(converted)
         converted = clean_wordpress_blocks(converted)
-        title = clean_text(post.get("post_title") or "") or "Zonder titel"
+        title = normalize_title(post)
         page = {
             "id": str(post.get("ID")),
             "type": post.get("post_type"),
