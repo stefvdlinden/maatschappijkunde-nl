@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "build": "mkdir -p dist && echo '<h1>Dev deploy werkt</h1>' > dist/index.html"
+  },
+  "dependencies": {}
+}
