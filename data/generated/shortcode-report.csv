@@ -1,0 +1,71 @@
+id,type,title,url,shortcodes
+2,page,Examenstof,/examenstof/,content_box;content_boxes;fullwidth;fusion_code;one_fifth;three_fifth
+8,page,Websites,/websites/,usquare
+34,page,Home,/home/,button;fullwidth;fusion_code;fusion_text;one_fifth;separator;three_fifth
+205,page,Politiek en Beleid,/examenstof/politiekenbeleid/,fusion_code;one_fifth;separator;three_fifth
+232,page,Planning,/planning/,gt_table;gt_table_body;gt_table_data;gt_table_heading;vc_column;vc_column_text;vc_message;vc_row;vc_tta_section;vc_tta_tabs
+694,page,Criminaliteit en Rechtsstaat,/examenstof/criminaliteit-en-rechtsstaat/,fusion_code;one_fifth;separator;three_fifth
+1029,page,???? Analyse Maatschappelijk Vraagstuk,/examenstof/analyse-maatschappelijk-vraagstuk/,fusion_code;one_fifth;separator;three_fifth
+1501,page,Begrippenlijst,/begrippen/,glossary;ht_message
+2120,ht_kb,Kerndoel 1.1 - Democratie en Dictatuur,/examenstof/politiekenbeleid-kerndoel1-1/,icon;ultimate_modal
+2131,ht_kb,Kerndoel 1.2 - Nederland als parlementaire democratie,/examenstof/politiekenbeleid-kerndoel1-2/,icon;ultimate_modal
+2153,ht_kb,Kerndoel 1.3 - De 3 bestuurslagen,/examenstof/politiekenbeleid-kerndoel1-3/,icon;ultimate_modal
+2165,ht_kb,Kerndoel 1.4 - Constitutionele Monarchie,/examenstof/politiekenbeleid-kerndoel1-4/,icon;ultimate_modal
+2175,ht_kb,Kerndoel 2 - De Europese Unie,/examenstof/politiekenbeleid-kerndoel2/,icon;ultimate_modal;vc_column;vc_row
+2182,ht_kb,Kerndoel 3 - Politieke Besluitvorming,/examenstof/politiekenbeleid-kerndoel3/,icon;ultimate_modal
+2188,ht_kb,Kerndoel 4 - Knelpunten politieke besluitvorming,/examenstof/politiekenbeleid-kerndoel4/,icon
+2190,ht_kb,Kerndoel 5 - Politieke Stromingen,/examenstof/politiekenbeleid-kerndoel5/,icon
+2206,ht_kb,Kerndoel 2 - Invalshoeken Maatschappelijk Vraagstuk,/examenstof/amv-kerndoel2/,icon
+2211,ht_kb,Kerndoel 3 - De rol van de media,/examenstof/amv-kerndoel3/,icon
+2295,ht_kb,Kerndoel 1 - Criminaliteit in de maatschappij,/examenstof/criminaliteitenrechtsstaat-kerndoel1/,icon
+2331,ht_kb,Kerndoel 2 - Het straf- en procesrecht,/examenstof/criminaliteitenrechtsstaat-kerndoel2/,glossary_exclude;icon
+2335,ht_kb,Kerndoel 3 - Oorzaken criminaliteit,/examenstof/criminaliteitenrechtsstat-kerndoel3/,icon
+2339,ht_kb,Kerndoel 4 - De rol van de overheid,/examenstof/criminaliteitenrechtsstaat-kerndoel4/,icon
+2343,ht_kb,Kerndoel 5 - Straffen en maatregelen,/examenstof/criminaliteitenrechtsstaat-kerndoel5/,icon
+2348,ht_kb,Kerndoel 1 - Functies en waardering arbeid,/examenstof/mensenwerk-kerndoel1/,icon
+4138,post,(ML2/K/6) 2. Het overheidsbeleid,/ml2-k-6-2-het-overheidsbeleid/,icon
+2355,ht_kb,Kerndoel 2 - Beïnvloedingsfactoren bedrijfscultuur,/examenstof/mensenwerk-kerndoel2/,icon
+2359,ht_kb,Kerndoel 3 - Rol overheid op het gebied van arbeid en de verzorgingsstaat,/examenstof/mensenwerk-kerndoel3/,icon
+2366,ht_kb,Kerndoel 4 - De gevolgen van arbeidsdeling,/examenstof/mensenwerk-kerndoel4/,icon
+2368,ht_kb,Kerndoel 5 - Arbeidsverhoudingen,/examenstof/mensenwerk-kerndoel5/,icon
+2410,ht_kb,Kerndoel 6 - Veranderingen op de arbeidsmarkt,/examenstof/mensenwerk-kerndoel6/,icon
+2416,ht_kb,Kerndoel 2 - De inhoud en programmering van massamedia,/examenstof/massamedia-kerndoel2/,icon
+2420,ht_kb,Kerndoel 3 - Nieuwsvoorzieningen kritisch beoordelen,/examenstof/massamedia-kerndoel3/,icon
+2424,ht_kb,Kerndoel 4 - De beïnvloeding door Massamedia,/examenstof/massamedia-kerndoel4/,icon
+2484,glossary,Bedrijfscultuur,/begrippen/bedrijfscultuur/,icon
+2583,ht_kb,Kerndoel 1 - Nederland als multiculturele samenleving,/examenstof/multiculturelemsamenleving-kerndoel-1/,icon
+2586,ht_kb,Kerndoel 2 - Het overheidsbeleid,/examenstof/multiculturelesamenleving-kerndoel2/,icon
+2589,ht_kb,Kerndoel 3 - Sociaaleconomische positie allochtonen,/examenstof/multiculturelesamenleving-kerndoel3/,icon
+2591,ht_kb,Kerndoel 4 - Culturele differentiatie,/examenstof/multiculturelesamenleving-kerndoel4/,glossary_exclude;icon
+2593,ht_kb,"Kerndoel 5 - Vooroordelen, stereotypen en discriminatie",/examenstof/multiculturelesamenleving-kerndoel5/,icon
+3071,page,Leerjaar 3 (normaal),/planning/leerjaar3/,gt_table;gt_table_body;gt_table_data;gt_table_heading;vc_column;vc_column_text;vc_message;vc_row;vc_tta_section;vc_tta_tabs
+3079,page,leerjaar 4,/planning/leerjaar4/,gt_table;gt_table_body;gt_table_data;gt_table_heading;vc_column;vc_column_text;vc_message;vc_row;vc_tta_section;vc_tta_tabs
+3547,ht_kb,Kerndoel 1 - Vrijheidsrechten en plichten; het beginsel rechtsstaat,/examenstof/rechtsstaat-kerndoel1/,icon
+3549,ht_kb,Kerndoel 2 - De praktijk van de rechtsstaat,/examenstof/rechtsstaat-kerndoel2/,icon
+3561,ht_kb,Kerndoel 3 - Internationale vergelijking en internationale organisaties,/examenstof/rechtsstaat-kerndoel3/,icon
+3587,ht_kb,Kerndoel 2 - Sociale rechten en plichten; kenmerken van een verzorgingsstaat,/examenstof/verzorgingsstaat-kerndoel2/,icon
+3593,ht_kb,Kerndoel 4 - Internationale vergelijking en internationale organisaties,/examenstof/verzorgingsstaat-kerndoel4/,icon
+3598,ht_kb,Kerndoel 1 - Geschiedenis van de pluriforme samenleving,/examenstof/pluriformesamenleving-kerndoel1/,icon
+3600,ht_kb,Kerndoel 2 - Grondrechten die horen bij de pluriforme samenleving,/examenstof/pluriformesamenleving-kerndoel2/,icon
+3603,ht_kb,Kerndoel 3 - De praktijk van de pluriforme samenleving,/examenstof/pluriformesamenleving-kerndoel3/,icon
+3605,ht_kb,Kerndoel 4 - Internationale vergelijking en internationale organisaties,/examenstof/pluriformesamenleving-kerndoel4/,icon
+3629,ht_kb,Kerndoel 1 - Socialisatieprocessen,/examenstof/cultuurensocialisatie-kerndoel1/,icon
+3631,ht_kb,Kerndoel 2 - Subculturen,/examenstof/cultuurensocialisatie-kerndoel2/,icon
+3634,ht_kb,Kerndoel 3 - Rol onderwijs,/examenstof/cultuurensocialisatie-kerndoel3/,icon
+3640,ht_kb,Kerndoel 1 - Sociale verschillen en sociale mobiliteit,/examenstof/socialeverschillen-kerndoel1/,icon
+3642,ht_kb,Kerndoel 2 - Belangen en conflicten,/examenstof/socialeverschillen-kerndoel2/,icon
+3644,ht_kb,Kerndoel 3 - Overheidsbeleid,/examenstof/socialeverschillen-kerndoel3/,icon
+3659,ht_kb,Kerndoel 1 - Machtsvormen,/examenstof/machtenzeggenschap-kerndoel1/,icon
+3661,ht_kb,Kerndoel 2 - Regels,/examenstof/machtenzeggenschap-kerndoel2/,icon
+3662,ht_kb,Kerndoel 3 - Invloed burgers,/examenstof/machtenzeggenschap-kerndoel3/,icon
+3663,ht_kb,Kerndoel 4 - Kenmerken parlementaire democratie,/examenstof/machtenzeggenschap-kerndoel4/,icon
+3676,ht_kb,Kerndoel 1 - Selectieve waarneming,/examenstof/beeldvormingenstereotypering-kerndoel1/,icon
+3678,ht_kb,Kerndoel 2 - Vooroordelen en beeldvorming,/examenstof/beeldvormingenstereotypering-kerndoel2/,icon
+3685,ht_kb,Kerndoel 4 - Beeldvorming sociaal probleem,/examenstof/beeldvormingenstereotypring-kerndoel4/,icon
+3772,page,Leerjaar 3 (versneld),/leerjaar-3-versneld/,gt_table;gt_table_body;gt_table_data;gt_table_heading;vc_column;vc_column_text;vc_message;vc_row;vc_tta_section;vc_tta_tabs
+3790,ht_kb,Kerndoel 1 - Geschiedenis van de verzorgingsstaat,/examenstof/verzorgingsstaat-kerndoel1/,icon
+3833,ht_kb,Kerndoel 3 - De praktijk van de verzorgingsstaat,/examenstof/verzorgingsstaat-kerndoel3-2/,icon
+3954,page,Downloads,/downloads/,vc_column;vc_column_text;vc_row
+4140,post,(ML2/K/6) 3. Sociaaleconomische positie allochtonen,/ml2-k-6-3-sociaaleconomische-positie-allochtonen/,icon
+4142,post,(ML2/K/6) 4. Culturele differentiatie,/ml2-k-6-4-culturele-differentiatie/,glossary_exclude;icon
+4148,post,"(ML2/K/6) 5. Vooroordelen, stereotypen en discriminatie",/ml2-k-6-5-vooroordelen-stereotypen-en-discriminatie/,icon

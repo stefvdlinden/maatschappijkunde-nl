@@ -1,0 +1,98 @@
+{
+  "tables": 87,
+  "public_content_items": 317,
+  "public_by_type": {
+    "glossary": 239,
+    "ht_kb": 55,
+    "page": 18,
+    "post": 5
+  },
+  "attachments_in_db": 121,
+  "media_files_in_uploads_zip": 3084,
+  "redirects_in_htaccess": 239,
+  "sitemap_urls": 100,
+  "analytics_rows_parsed": 84,
+  "shortcode_rows": 70,
+  "top_shortcodes": [
+    [
+      "gt_table_data",
+      356
+    ],
+    [
+      "icon",
+      240
+    ],
+    [
+      "one_fifth",
+      44
+    ],
+    [
+      "ultimate_modal",
+      36
+    ],
+    [
+      "vc_column_text",
+      32
+    ],
+    [
+      "vc_column",
+      26
+    ],
+    [
+      "vc_row",
+      24
+    ],
+    [
+      "vc_tta_section",
+      22
+    ],
+    [
+      "gt_table",
+      22
+    ],
+    [
+      "gt_table_heading",
+      22
+    ],
+    [
+      "gt_table_body",
+      22
+    ],
+    [
+      "fusion_code",
+      16
+    ],
+    [
+      "three_fifth",
+      12
+    ],
+    [
+      "content_box",
+      12
+    ],
+    [
+      "button",
+      12
+    ],
+    [
+      "vc_message",
+      8
+    ],
+    [
+      "vc_tta_tabs",
+      8
+    ],
+    [
+      "separator",
+      6
+    ],
+    [
+      "glossary_exclude",
+      6
+    ],
+    [
+      "fullwidth",
+      4
+    ]
+  ]
+}

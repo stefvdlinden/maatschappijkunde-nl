@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Astro/build output
+.astro/
+dist/
+
+# Python/cache output
+__pycache__/
+*.py[cod]
+
+# Raw migration sources can contain WordPress internals and are kept local.
+data/source/*.sql
+data/source/*.zip
+
+# OS/editor noise
+.DS_Store

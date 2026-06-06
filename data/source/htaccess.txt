@@ -1,0 +1,339 @@
+# BEGIN Webhosting WordPress
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END Webhosting WordPress
+
+# START DEFLATE COMPRESSION
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE "application/atom+xml" \
+"application/javascript" \
+"application/json" \
+"application/ld+json" \
+"application/manifest+json" \
+"application/rdf+xml" \
+"application/rss+xml" \
+"application/schema+json" \
+"application/vnd.geo+json" \
+"application/vnd.ms-fontobject" \
+"application/x-font" \
+"application/x-font-opentype" \
+"application/x-font-otf" \
+"application/x-font-truetype" \
+"application/x-font-ttf" \
+"application/x-javascript" \
+"application/x-web-app-manifest+json" \
+"application/xhtml+xml" \
+"application/xml" \
+"font/eot" \
+"font/otf" \
+"font/ttf" \
+"font/opentype" \
+"image/bmp" \
+"image/svg+xml" \
+"image/vnd.microsoft.icon" \
+"image/x-icon" \
+"text/cache-manifest" \
+"text/css" \
+"text/html" \
+"text/javascript" \
+"text/plain" \
+"text/vcard" \
+"text/vnd.rim.location.xloc" \
+"text/vtt" \
+"text/x-component" \
+"text/x-cross-domain-policy" \
+"text/xml"
+</IfModule>
+# DEFLATE COMPRESSION
+
+# BEGIN Expire headers
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Images
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+
+  # Video
+  ExpiresByType video/mp4 "access plus 1 year"
+  ExpiresByType video/mpeg "access plus 1 year"
+
+  # CSS, JavaScript
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+
+  # Others
+  ExpiresByType application/pdf "access plus 1 month"
+  ExpiresByType application/x-shockwave-flash "access plus 1 month"
+</IfModule>
+# END Expire headers
+# BEGIN WordPress
+# De richtlijnen (regels) tussen "BEGIN WordPress" en "END WordPress" worden
+# dynamisch gegenereerd en zouden alleen aangepast mogen worden via WordPress filters.
+# Alle wijzigingen aan de richtlijnen tussen deze markeringen worden overschreven.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+
+
+Redirect 301 /begrippen/tweede-kamer/ https://schoolwoorden.nl/begrip/tweede-kamer/
+Redirect 301 /begrippen/eerste-kamer/ https://schoolwoorden.nl/begrip/eerste-kamer/
+Redirect 301 /begrippen/parlement/ https://schoolwoorden.nl/begrip/parlement/
+Redirect 301 /begrippen/begroting/ https://schoolwoorden.nl/begrip/begroting/
+Redirect 301 /begrippen/algemene-beschouwingen/ https://schoolwoorden.nl/begrip/algemene-beschouwingen/
+Redirect 301 /begrippen/burgemeester/ https://schoolwoorden.nl/begrip/burgemeester/
+Redirect 301 /begrippen/college-burgemeester-en-wethouders/ https://schoolwoorden.nl/begrip/college-van-burgemeester-en-wethouders
+Redirect 301 /begrippen/coalitiepartijen/ https://schoolwoorden.nl/begrip/coalitiepartijen/
+Redirect 301 /begrippen/commissaris-van-de-koning/ https://schoolwoorden.nl/begrip/commissaris-van-de-koning/
+Redirect 301 /begrippen/dictatuur/ https://schoolwoorden.nl/begrip/dictatuur/
+Redirect 301 /begrippen/gemeenteraad/ https://schoolwoorden.nl/begrip/gemeenteraad/
+Redirect 301 /begrippen/directe-verkiezingen/ https://schoolwoorden.nl/begrip/directe-verkiezingen/
+Redirect 301 /begrippen/fractievoorzitter/ https://schoolwoorden.nl/begrip/fractievoorzitter/
+Redirect 301 /begrippen/gedeputeerde-staten/ https://schoolwoorden.nl/begrip/gedeputeerde-staten/
+Redirect 301 /begrippen/grondrechten/ https://schoolwoorden.nl/begrip/grondrechten/
+Redirect 301 /begrippen/indirecte-verkiezingen/ https://schoolwoorden.nl/begrip/indirecte-verkiezingen/
+Redirect 301 /begrippen/kabinet/ https://schoolwoorden.nl/begrip/kabinet/
+Redirect 301 /begrippen/kabinetscrisis/ https://schoolwoorden.nl/begrip/kabinetscrisis/
+Redirect 301 /begrippen/kabinetsformatie/ https://schoolwoorden.nl/begrip/kabinetsformatie/
+Redirect 301 /begrippen/kiesdeler/ https://schoolwoorden.nl/begrip/kiesdeler/
+Redirect 301 /begrippen/machtenscheiding/ https://schoolwoorden.nl/begrip/machtenscheiding/
+Redirect 301 /begrippen/miljoenennota/ https://schoolwoorden.nl/begrip/miljoenennota/
+Redirect 301 /begrippen/christelijke-stroming/ https://schoolwoorden.nl/begrip/christelijke-stroming/
+Redirect 301 /begrippen/ministeriele-verantwoordelijkheid/ https://schoolwoorden.nl/begrip/ministeriele-verantwoordelijkheid/
+Redirect 301 /begrippen/minister-president/ https://schoolwoorden.nl/begrip/minister-president/
+Redirect 301 /begrippen/parlementaire-democratie/ https://schoolwoorden.nl/begrip/parlementaire-democratie/
+Redirect 301 /begrippen/parlementair-jaar/ https://schoolwoorden.nl/begrip/parlementair-jaar/
+Redirect 301 /begrippen/provinciale-staten/ https://schoolwoorden.nl/begrip/provinciale-staten/
+Redirect 301 /begrippen/rechterlijke-macht/ https://schoolwoorden.nl/begrip/rechterlijke-macht/
+Redirect 301 /begrippen/rechtsstaat/ https://schoolwoorden.nl/begrip/rechtsstaat/
+Redirect 301 /begrippen/recht-van-initiatief/ https://schoolwoorden.nl/begrip/recht-van-initiatief/
+Redirect 301 /begrippen/recht-van-amendement/ https://schoolwoorden.nl/begrip/recht-van-amendement/
+Redirect 301 /begrippen/recht-van-motie/ https://schoolwoorden.nl/begrip/recht-van-motie/
+Redirect 301 /begrippen/recht-van-enquete/ https://schoolwoorden.nl/begrip/recht-van-enquete/
+Redirect 301 /begrippen/reageerakkoord/ https://schoolwoorden.nl/begrip/regeerakkoord/
+Redirect 301 /begrippen/collegeakkoord/ https://schoolwoorden.nl/begrip/collegeakkoord/
+Redirect 301 /begrippen/regering/ https://schoolwoorden.nl/begrip/regering/
+Redirect 301 /begrippen/staatshoofd/ https://schoolwoorden.nl/begrip/staatshoofd/
+Redirect 301 /begrippen/staatssecretaris/ https://schoolwoorden.nl/begrip/staatssecretaris/
+Redirect 301 /begrippen/troonrede/ https://schoolwoorden.nl/begrip/troonrede/
+Redirect 301 /begrippen/trias-politica/ https://schoolwoorden.nl/begrip/trias-politica/
+Redirect 301 /begrippen/uitvoerende-macht/ https://schoolwoorden.nl/begrip/uitvoerende-macht/
+Redirect 301 /begrippen/verordening/ https://schoolwoorden.nl/begrip/verordening/
+Redirect 301 /begrippen/volksvertegenwoordigers/ https://schoolwoorden.nl/begrip/volksvertegenwoordigers/
+Redirect 301 /begrippen/wetgevende-macht/ https://schoolwoorden.nl/begrip/wetgevende-macht/
+Redirect 301 /begrippen/vrije-verkiezingen/ https://schoolwoorden.nl/begrip/vrije-verkiezingen/
+Redirect 301 /begrippen/recht-van-budget/ https://schoolwoorden.nl/begrip/recht-van-budget/
+Redirect 301 /begrippen/constitutionele-monarchie/ https://schoolwoorden.nl/begrip/constitutionele-monarchie/
+Redirect 301 /begrippen/geheim-van-het-paleid/ https://schoolwoorden.nl/begrip/geheim-van-het-paleis/
+Redirect 301 /begrippen/europese-gemeenschap-kolen-en-staal/ https://schoolwoorden.nl/begrip/europese-gemeenschap-voor-kolen-en-staal
+Redirect 301 /begrippen/europese-gemeenschap/ https://schoolwoorden.nl/begrip/europese-gemeenschap/
+Redirect 301 /begrippen/europese-unie/ https://schoolwoorden.nl/begrip/europese-unie/
+Redirect 301 /begrippen/europese-parlement/ https://schoolwoorden.nl/begrip/europese-parlement/
+Redirect 301 /begrippen/europese-commissie/ https://schoolwoorden.nl/begrip/europese-commissie/
+Redirect 301 /begrippen/raad-europese-unie/ https://schoolwoorden.nl/begrip/raad-van-de-europese-unie
+Redirect 301 /begrippen/europese-raad/ https://schoolwoorden.nl/begrip/europese-raad/
+Redirect 301 /begrippen/politiek-probleem/ https://schoolwoorden.nl/begrip/politiek-probleem/
+Redirect 301 /begrippen/politieke-agenda/ https://schoolwoorden.nl/begrip/politieke-agenda/
+Redirect 301 /begrippen/beleidsvoorbereiding/ https://schoolwoorden.nl/begrip/beleidsvoorbereiding/
+Redirect 301 /begrippen/lobbyen/ https://schoolwoorden.nl/begrip/lobbyen/
+Redirect 301 /begrippen/referendum/ https://schoolwoorden.nl/begrip/referendum/
+Redirect 301 /begrippen/dereguleren/ https://schoolwoorden.nl/begrip/dereguleren/
+Redirect 301 /begrippen/rentmeesterschap/ https://schoolwoorden.nl/begrip/rentmeesterschap/
+Redirect 301 /begrippen/waarden/ https://schoolwoorden.nl/begrip/waarden/
+Redirect 301 /begrippen/normen/ https://schoolwoorden.nl/begrip/normen/
+Redirect 301 /begrippen/wet/ https://schoolwoorden.nl/begrip/wet/
+Redirect 301 /begrippen/criminaliteit/ https://schoolwoorden.nl/begrip/criminaliteit/
+Redirect 301 /begrippen/wetboek-van-strafrecht/ https://schoolwoorden.nl/begrip/wetboek-van-strafrecht/
+Redirect 301 /begrippen/overtredingen/ https://schoolwoorden.nl/begrip/overtredingen/
+Redirect 301 /begrippen/misdrijven/ https://schoolwoorden.nl/begrip/misdrijven/
+Redirect 301 /begrippen/delicten/ https://schoolwoorden.nl/begrip/delicten/
+Redirect 301 /begrippen/materiele-schade/ https://schoolwoorden.nl/begrip/materiele-schade/
+Redirect 301 /begrippen/immateriele-schade/ https://schoolwoorden.nl/begrip/immateriele-schade/
+Redirect 301 /begrippen/sector-kanton/ https://schoolwoorden.nl/begrip/sector-kanton/
+Redirect 301 /begrippen/sector-strafrecht/ https://schoolwoorden.nl/begrip/sector-strafrecht/
+Redirect 301 /begrippen/sector-civiel/ https://schoolwoorden.nl/begrip/sector-civiel/
+Redirect 301 /begrippen/sector-bestuursrecht/ https://schoolwoorden.nl/begrip/sector-bestuursrecht/
+Redirect 301 /begrippen/requisitoir/ https://schoolwoorden.nl/begrip/requisitoir/
+Redirect 301 /begrippen/pleidooi/ https://schoolwoorden.nl/begrip/pleidooi/
+Redirect 301 /begrippen/bureau-reclassering/ https://schoolwoorden.nl/begrip/bureau-reclassering/
+Redirect 301 /begrippen/officier-van-justitie/ https://schoolwoorden.nl/begrip/officier-van-justitie/
+Redirect 301 /begrippen/recidiveren/ https://schoolwoorden.nl/begrip/recidiveren/
+Redirect 301 /begrippen/etikettering/ https://schoolwoorden.nl/begrip/etikettering/
+Redirect 301 /begrippen/normvervaging/ https://schoolwoorden.nl/begrip/normvervaging/
+Redirect 301 /begrippen/klassenjustitie/ https://schoolwoorden.nl/begrip/klassenjustitie/
+Redirect 301 /begrippen/witteboordencriminaliteit/ https://schoolwoorden.nl/begrip/witteboordencriminaliteit/
+Redirect 301 /begrippen/indoctrinatie/ https://schoolwoorden.nl/begrip/indoctrinatie/
+Redirect 301 /begrippen/manipulatie/ https://schoolwoorden.nl/begrip/manipulatie/
+Redirect 301 /begrippen/referentiekader/ https://schoolwoorden.nl/begrip/referentiekader/
+Redirect 301 /begrippen/regeerakkoord/ https://schoolwoorden.nl/begrip/regeerakkoord/
+Redirect 301 /begrippen/rechtbank/ https://schoolwoorden.nl/begrip/rechtbank/
+Redirect 301 /begrippen/gerechtshof/ https://schoolwoorden.nl/begrip/gerechtshof/
+Redirect 301 /begrippen/hoge-raad/ https://schoolwoorden.nl/begrip/hoge-raad/
+Redirect 301 /begrippen/voorzitter-tweede-kamer/ https://schoolwoorden.nl/begrip/voorzitter-van-de-tweede-kamer
+Redirect 301 /begrippen/wegenverkeerswet/ https://schoolwoorden.nl/begrip/wegenverkeerswet/
+Redirect 301 /begrippen/wet-economische-delicten/ https://schoolwoorden.nl/begrip/wet-economische-delicten/
+Redirect 301 /begrippen/opiuwet/ https://schoolwoorden.nl/begrip/opiumwet/
+Redirect 301 /begrippen/multi-step-flow-theorie/ https://schoolwoorden.nl/begrip/multi-step-flow-theorie/
+Redirect 301 /begrippen/injectienaaldtheorie/ https://schoolwoorden.nl/begrip/injectienaaldtheorie/
+Redirect 301 /begrippen/agendatheorie/ https://schoolwoorden.nl/begrip/agendatheorie/
+Redirect 301 /begrippen/maatschappelijke-positie/ https://schoolwoorden.nl/begrip/maatschappelijke-positie/
+Redirect 301 /begrippen/maatschappelijke-ladder/ https://schoolwoorden.nl/begrip/maatschappelijke-ladder/
+Redirect 301 /begrippen/sociale-klasse/ https://schoolwoorden.nl/begrip/sociale-klasse/
+Redirect 301 /begrippen/sociale-mobiliteit/ https://schoolwoorden.nl/begrip/sociale-mobiliteit/
+Redirect 301 /begrippen/bedrijfscultuur/ https://schoolwoorden.nl/begrip/bedrijfscultuur/
+Redirect 301 /begrippen/werkverhoudingen/ https://schoolwoorden.nl/begrip/werkverhoudingen/
+Redirect 301 /begrippen/arbeidsvoorwaarden/ https://schoolwoorden.nl/begrip/arbeidsvoorwaarden/
+Redirect 301 /begrippen/medezeggenschap/ https://schoolwoorden.nl/begrip/medezeggenschap/
+Redirect 301 /begrippen/sociale-rol/ https://schoolwoorden.nl/begrip/sociale-rol/
+Redirect 301 /begrippen/rechtse-partijen/ https://schoolwoorden.nl/begrip/rechtse-partijen/
+Redirect 301 /begrippen/linkse-partijen/ https://schoolwoorden.nl/begrip/linkse-partijen/
+Redirect 301 /begrippen/betaald-werk/ https://schoolwoorden.nl/begrip/betaald-werk/
+Redirect 301 /begrippen/onbetaald-werk/ https://schoolwoorden.nl/begrip/onbetaald-werk/
+Redirect 301 /begrippen/vrijwilligers-werk/ https://schoolwoorden.nl/begrip/vrijwilligerswerk/
+Redirect 301 /begrippen/autoritair-leiderschap/ https://schoolwoorden.nl/begrip/autoritair-leiderschap/
+Redirect 301 /begrippen/consulterend-leiderschap/ https://schoolwoorden.nl/begrip/consulterend-leiderschap/
+Redirect 301 /begrippen/democratisch-leiderschap/ https://schoolwoorden.nl/begrip/democratisch-leiderschap/
+Redirect 301 /begrippen/laissez-faire-leiderschap/ https://schoolwoorden.nl/begrip/laissez-faire-leiderschap/
+Redirect 301 /begrippen/verzorgingsstaat/ https://schoolwoorden.nl/begrip/verzorgingsstaat/
+Redirect 301 /begrippen/vergrijzing/ https://schoolwoorden.nl/begrip/vergrijzing/
+Redirect 301 /begrippen/nachtwakersstaat/ https://schoolwoorden.nl/begrip/nachtwakersstaat/
+Redirect 301 /begrippen/participatiesamenleving/ https://schoolwoorden.nl/begrip/participatiesamenleving/
+Redirect 301 /begrippen/arbeidsomstandigheden/ https://schoolwoorden.nl/begrip/arbeidsomstandigheden/
+Redirect 301 /begrippen/arboregels/ https://schoolwoorden.nl/begrip/arboregels/
+Redirect 301 /begrippen/arbeidsinspectie/ https://schoolwoorden.nl/begrip/arbeidsinspectie/
+Redirect 301 /begrippen/medezeggenschapsraad/ https://schoolwoorden.nl/begrip/medezeggenschapsraad/
+Redirect 301 /begrippen/ondernemingsraad/ https://schoolwoorden.nl/begrip/ondernemingsraad/
+Redirect 301 /begrippen/werknemersverzekeringen/ https://schoolwoorden.nl/begrip/werknemersverzekeringen/
+Redirect 301 /begrippen/volksverzekeringen/ https://schoolwoorden.nl/begrip/volksverzekeringen/
+Redirect 301 /begrippen/sociale-verzekeringen/ https://schoolwoorden.nl/begrip/sociale-verzekeringen/
+Redirect 301 /begrippen/sociale-voorzieningen/ https://schoolwoorden.nl/begrip/sociale-voorzieningen/
+Redirect 301 /begrippen/arbeidsverdeling/ https://schoolwoorden.nl/begrip/arbeidsverdeling/
+Redirect 301 /begrippen/werkgeversorganisatie/ https://schoolwoorden.nl/begrip/werkgeversorganisatie/
+Redirect 301 /begrippen/collectieve-arbeidsovereenkomst/ https://schoolwoorden.nl/begrip/collectieve-arbeidsovereenkomst/
+Redirect 301 /begrippen/sociale-partners/ https://schoolwoorden.nl/begrip/sociale-partners/
+Redirect 301 /begrippen/pressiemiddelen/ https://schoolwoorden.nl/begrip/pressiemiddelen/
+Redirect 301 /begrippen/beroepsbevolking/ https://schoolwoorden.nl/begrip/beroepsbevolking/
+Redirect 301 /begrippen/conjuncturele-werkloosheid/ https://schoolwoorden.nl/begrip/conjuncturele-werkloosheid/
+Redirect 301 /begrippen/structurele-werkloosheid/ https://schoolwoorden.nl/begrip/structurele-werkloosheid/
+Redirect 301 /begrippen/frictiewerkloosheid/ https://schoolwoorden.nl/begrip/frictiewerkloosheid/
+Redirect 301 /begrippen/mechanisering/ https://schoolwoorden.nl/begrip/mechanisering/
+Redirect 301 /begrippen/automatisering/ https://schoolwoorden.nl/begrip/automatisering/
+Redirect 301 /begrippen/informatisering/ https://schoolwoorden.nl/begrip/informatisering/
+Redirect 301 /begrippen/positieve-discriminatie/ https://schoolwoorden.nl/begrip/positieve-discriminatie/
+Redirect 301 /begrippen/gedrukte-media/ https://schoolwoorden.nl/begrip/gedrukte-media/
+Redirect 301 /begrippen/audiovisuele-media/ https://schoolwoorden.nl/begrip/audiovisuele-media/
+Redirect 301 /begrippen/interactieve-media/ https://schoolwoorden.nl/begrip/interactieve-media/
+Redirect 301 /begrippen/bindende-functie/ https://schoolwoorden.nl/begrip/bindende-functie/
+Redirect 301 /begrippen/educatieve-functie/ https://schoolwoorden.nl/begrip/educatieve-functie/
+Redirect 301 /begrippen/informerende-functie/ https://schoolwoorden.nl/begrip/informerende-functie/
+Redirect 301 /begrippen/socialiserende-functie/ https://schoolwoorden.nl/begrip/socialiserende-functie/
+Redirect 301 /begrippen/agenda-functie/ https://schoolwoorden.nl/begrip/agenda-functie/
+Redirect 301 /begrippen/commentaar-functie/ https://schoolwoorden.nl/begrip/commentaar-functie/
+Redirect 301 /begrippen/opinierende-functie/ https://schoolwoorden.nl/begrip/opinierende-functie/
+Redirect 301 /begrippen/spreekbuisfunctie/ https://schoolwoorden.nl/begrip/spreekbuisfunctie/
+Redirect 301 /begrippen/publieke-opinie/ https://schoolwoorden.nl/begrip/publieke-opinie/
+Redirect 301 /begrippen/democratische-besluitvorming/ https://schoolwoorden.nl/begrip/democratische-besluitvorming/
+Redirect 301 /begrippen/cultuuroverdracht/ https://schoolwoorden.nl/begrip/cultuuroverdracht/
+Redirect 301 /begrippen/pluriformiteit/ https://schoolwoorden.nl/begrip/pluriformiteit/
+Redirect 301 /begrippen/theorie-selectieve-perceptie/ https://schoolwoorden.nl/begrip/theorie-van-selectieve-perceptie
+Redirect 301 /begrippen/selectieve-perceptie/ https://schoolwoorden.nl/begrip/selectieve-perceptie/
+Redirect 301 /begrippen/media-als-betekenisverlener/ https://schoolwoorden.nl/begrip/media-als-betekenisverlener/
+Redirect 301 /begrippen/inburgeren/ https://schoolwoorden.nl/begrip/inburgeren/
+Redirect 301 /begrippen/cultuur/ https://schoolwoorden.nl/begrip/cultuur/
+Redirect 301 /begrippen/ik-cultuur/ https://schoolwoorden.nl/begrip/ik-cultuur/
+Redirect 301 /begrippen/wij-cultuur/ https://schoolwoorden.nl/begrip/wij-cultuur/
+Redirect 301 /begrippen/kapitalisme/ https://schoolwoorden.nl/begrip/kapitalisme/
+Redirect 301 /begrippen/secularisatie/ https://schoolwoorden.nl/begrip/secularisatie/
+Redirect 301 /begrippen/toelatingsbeleid/ https://schoolwoorden.nl/begrip/toelatingsbeleid/
+Redirect 301 /begrippen/immigratiebeleid/ https://schoolwoorden.nl/begrip/immigratiebeleid/
+Redirect 301 /begrippen/visum/ https://schoolwoorden.nl/begrip/visum/
+Redirect 301 /begrippen/verblijfsvergunning/ https://schoolwoorden.nl/begrip/verblijfsvergunning/
+Redirect 301 /begrippen/integratiebeleid/ https://schoolwoorden.nl/begrip/integratiebeleid/
+Redirect 301 /begrippen/integratie/ https://schoolwoorden.nl/begrip/integreren/
+Redirect 301 /begrippen/gezinshereniging/ https://schoolwoorden.nl/begrip/gezinshereniging/
+Redirect 301 /begrippen/repatrieren/ https://schoolwoorden.nl/begrip/repatrieren/
+Redirect 301 /begrippen/kolonie/ https://schoolwoorden.nl/begrip/kolonien/
+Redirect 301 /begrippen/moederland/ https://schoolwoorden.nl/begrip/moederland/
+Redirect 301 /begrippen/vaderland/ https://schoolwoorden.nl/begrip/vaderland/
+Redirect 301 /begrippen/machtiging-tot-voorlopig-verblijf/ https://schoolwoorden.nl/begrip/machtiging-tot-voorlopig-verblijf/
+Redirect 301 /begrippen/asielzoeker/ https://schoolwoorden.nl/begrip/asielzoeker/
+Redirect 301 /begrippen/verenigde-naties/ https://schoolwoorden.nl/begrip/verenigde-naties/
+Redirect 301 /begrippen/vluchtelingenverdrag-van-geneve/ https://schoolwoorden.nl/begrip/vluchtelingenverdrag-van-geneve/
+Redirect 301 /begrippen/verdrag-van-maastricht/ https://schoolwoorden.nl/begrip/verdrag-van-maastricht/
+Redirect 301 /begrippen/multicultureel-drama/ https://schoolwoorden.nl/begrip/multicultureel-drama/
+Redirect 301 /begrippen/autochtoon/ https://schoolwoorden.nl/begrip/autochtoon/
+Redirect 301 /begrippen/allochtoon/ https://schoolwoorden.nl/begrip/allochtoon/
+Redirect 301 /begrippen/discriminatie/ https://schoolwoorden.nl/begrip/discriminatie/
+Redirect 301 /begrippen/racisme/ https://schoolwoorden.nl/begrip/racisme/
+Redirect 301 /begrippen/niet-westerse-cultuur/ https://schoolwoorden.nl/begrip/niet-westerse-cultuur/
+Redirect 301 /begrippen/westerse-cultuur/ https://schoolwoorden.nl/begrip/westerse-cultuur/
+Redirect 301 /begrippen/vooroordeel/ https://schoolwoorden.nl/begrip/vooroordeel/
+Redirect 301 /begrippen/migrant/ https://schoolwoorden.nl/begrip/migranten/
+Redirect 301 /begrippen/universele-verklaring-rechten-mens/ https://schoolwoorden.nl/begrip/universele-verklaring-van-de-rechten-van-de-mens/
+Redirect 301 /begrippen/recht-van-vragen/ https://schoolwoorden.nl/begrip/recht-van-vragen/
+Redirect 301 /begrippen/recht-van-interpellatie/ https://schoolwoorden.nl/begrip/recht-van-interpellatie/
+Redirect 301 /begrippen/vreemdelingenidentiteisbewijs/ https://schoolwoorden.nl/begrip/vreemdelingenidentiteitsbewijs
+Redirect 301 /begrippen/sociale-ongelijkheid/ https://schoolwoorden.nl/begrip/sociale-ongelijkheid/
+Redirect 301 /begrippen/eigenrichting/ https://schoolwoorden.nl/begrip/eigenrichting/
+Redirect 301 /begrippen/vermogenscriminaliteit/ https://schoolwoorden.nl/begrip/vermogenscriminaliteit/
+Redirect 301 /begrippen/stereotypen/ https://schoolwoorden.nl/begrip/stereotypen/
+Redirect 301 /begrippen/minderheidskabinet/ https://schoolwoorden.nl/begrip/minderheidskabinet/
+Redirect 301 /begrippen/amusementsfunctie/ https://schoolwoorden.nl/begrip/amusementsfunctie/
+Redirect 301 /begrippen/burgerinitiatief/ https://schoolwoorden.nl/begrip/burgerinitiatief/
+Redirect 301 /begrippen/portefeuille/ https://schoolwoorden.nl/begrip/portefeuille/
+Redirect 301 /begrippen/vakbond/ https://schoolwoorden.nl/begrip/vakbond/
+Redirect 301 /begrippen/xenofobie/ https://schoolwoorden.nl/begrip/xenofobie/
+Redirect 301 /begrippen/hechentnis/ https://schoolwoorden.nl/begrip/hechtenis/
+Redirect 301 /begrippen/vonnis/ https://schoolwoorden.nl/begrip/vonnis/
+Redirect 301 /begrippen/fouilleren/ https://schoolwoorden.nl/begrip/fouilleren/
+Redirect 301 /begrippen/advocaat/ https://schoolwoorden.nl/begrip/advocaat/
+Redirect 301 /begrippen/vandalisme/ https://schoolwoorden.nl/begrip/vandalisme/
+Redirect 301 /begrippen/bureaucratie/ https://schoolwoorden.nl/begrip/bureaucratie/
+Redirect 301 /begrippen/socialisatie/ https://schoolwoorden.nl/begrip/socialisatie/
+Redirect 301 /begrippen/vergelding/ https://schoolwoorden.nl/begrip/vergelding/
+Redirect 301 /begrippen/terbeschikkingstelling-tbs/ https://schoolwoorden.nl/begrip/terbeschikkingstelling-tbs/
+Redirect 301 /begrippen/seizoenwerkloosheid/ https://schoolwoorden.nl/begrip/seizoenswerkloosheid/
+Redirect 301 /begrippen/grondwet/ https://schoolwoorden.nl/begrip/grondwet/
+Redirect 301 /begrippen/oppositiepartijen/ https://schoolwoorden.nl/begrip/oppositiepartijen/
+Redirect 301 /begrippen/controlerende-functie/ https://schoolwoorden.nl/begrip/controlerende-functie/
+Redirect 301 /begrippen/jurisprudentie/ https://schoolwoorden.nl/begrip/jurisprudentie/
+Redirect 301 /begrippen/fracties/ https://schoolwoorden.nl/begrip/fractie/
+Redirect 301 /begrippen/jeugdstrafrecht/ https://schoolwoorden.nl/begrip/jeugdstrafrecht/
+Redirect 301 /begrippen/preventie/ https://schoolwoorden.nl/begrip/preventie/
+Redirect 301 /begrippen/propaganda/ https://schoolwoorden.nl/begrip/propaganda/
+Redirect 301 /begrippen/zwevende-kiezer/ https://schoolwoorden.nl/begrip/zwevende-kiezer/
+Redirect 301 /begrippen/repressie/ https://schoolwoorden.nl/begrip/repressie/
+Redirect 301 /begrippen/kiesrecht/ https://schoolwoorden.nl/begrip/kiesrecht/
+Redirect 301 /begrippen/emancipatiebeleid/ https://schoolwoorden.nl/begrip/emancipatiebeleid/
+Redirect 301 /begrippen/liberale-stroming/ https://schoolwoorden.nl/begrip/liberale-stroming/
+Redirect 301 /begrippen/socialistische-stroming/ https://schoolwoorden.nl/begrip/socialistische-stroming/
+Redirect 301 /begrippen/hoger-beroep/ https://schoolwoorden.nl/begrip/hoger-beroep/
+Redirect 301 /begrippen/cassatie/ https://schoolwoorden.nl/begrip/cassatie/
+Redirect 301 /begrippen/ecologische-stroming/ https://schoolwoorden.nl/begrip/ecologische-stroming/
+Redirect 301 /begrippen/politieke-functie/ https://schoolwoorden.nl/begrip/politieke-functie/
+Redirect 301 /begrippen/symbolische-functie/ https://schoolwoorden.nl/begrip/symbolische-functie/
+Redirect 301 /begrippen/ceremoniele-functie/ https://schoolwoorden.nl/begrip/ceremoniele-functie/
+Redirect 301 /begrippen/representatieve-functie/ https://schoolwoorden.nl/begrip/representatieve-functie/
+Redirect 301 /begrippen/minister/ https://schoolwoorden.nl/begrip/minister/
