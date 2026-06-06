@@ -147,9 +147,13 @@ def html_link_list(items):
     if not items:
         return "<p>Voor dit overzicht zijn nog geen gekoppelde artikelen gevonden.</p>"
     links = []
-    for item in sorted(items, key=lambda p: p["title"].lower()):
+    for item in sorted_pages(items):
         links.append(f'<li><a href="{html.escape(item["url"])}">{html.escape(item["title"])}</a></li>')
     return f"<ul>{''.join(links)}</ul>"
+
+
+def sorted_pages(items):
+    return sorted(items, key=lambda p: (p["title"].lower(), p["url"]))
 
 
 def main():
@@ -252,7 +256,7 @@ def main():
         for child in children_by_parent.get(taxonomy_id, []):
             related.extend(collect_related_pages(child["term_taxonomy_id"], seen))
         by_url = {page["url"]: page for page in related}
-        return list(by_url.values())
+        return sorted_pages(by_url.values())
 
     existing_urls = {page["url"] for page in pages}
     for taxonomy in taxonomies:
