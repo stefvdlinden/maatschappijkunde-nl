@@ -4,9 +4,22 @@ import { fileURLToPath } from 'node:url';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const origin = process.env.MK_LIVE_ORIGIN || process.env.MK_DEV_ORIGIN || 'https://dev.maatschappijkunde.nl';
-const auth = process.env.MK_DEV_AUTH || '';
+const auth = process.env.MK_DEV_AUTH || process.env.MK_LIVE_AUTH || '';
 
-const checks = [
+const pageChecks = [
+  '/',
+  '/examenstof/',
+  '/kerndoelen/',
+  '/begrippen/',
+  '/planning/',
+  '/examenstof/amv-kerndoel1/',
+  '/examenstof/criminaliteitenrechtsstaat-kerndoel1/',
+  '/category/amv/',
+  '/kerndoel-tags/leerjaar-3/',
+  '/sitemap-index.xml'
+];
+
+const redirectChecks = [
   {
     path: '/begrippen/tweede-kamer/',
     expectedStatus: 301,
@@ -50,33 +63,52 @@ const absolutize = (value) => {
 
 const rows = [];
 
-for (const check of checks) {
-  const url = `${origin}${check.path}`;
+for (const path of pageChecks) {
   try {
-    const response = await fetch(url, { headers, redirect: 'manual' });
-    const location = response.headers.get('location') || '';
+    const response = await fetch(`${origin}${path}`, { headers, redirect: 'manual' });
+    rows.push({
+      path,
+      type: 'page',
+      expectedStatus: 200,
+      actualStatus: response.status,
+      expectedLocation: '',
+      actualLocation: '',
+      issue: response.status === 200 ? '' : `status:${response.status}`
+    });
+  } catch (error) {
+    rows.push({
+      path,
+      type: 'page',
+      expectedStatus: 200,
+      actualStatus: '',
+      expectedLocation: '',
+      actualLocation: '',
+      issue: `request_failed:${error.message}`
+    });
+  }
+}
+
+for (const check of redirectChecks) {
+  try {
+    const response = await fetch(`${origin}${check.path}`, { headers, redirect: 'manual' });
+    const actualLocation = absolutize(response.headers.get('location') || '');
     const expectedLocation = absolutize(check.expectedLocation);
-    const normalizedLocation = absolutize(location);
     const issues = [];
-
-    if (response.status !== check.expectedStatus) {
-      issues.push(`status:${response.status}`);
-    }
-    if (normalizedLocation !== expectedLocation) {
-      issues.push(`location:${location || 'missing'}`);
-    }
-
+    if (response.status !== check.expectedStatus) issues.push(`status:${response.status}`);
+    if (actualLocation !== expectedLocation) issues.push(`location:${actualLocation || 'missing'}`);
     rows.push({
       path: check.path,
+      type: 'redirect',
       expectedStatus: check.expectedStatus,
       actualStatus: response.status,
       expectedLocation,
-      actualLocation: normalizedLocation,
+      actualLocation,
       issue: issues.join(';')
     });
   } catch (error) {
     rows.push({
       path: check.path,
+      type: 'redirect',
       expectedStatus: check.expectedStatus,
       actualStatus: '',
       expectedLocation: absolutize(check.expectedLocation),
@@ -87,9 +119,10 @@ for (const check of checks) {
 }
 
 const csv = [
-  'path,expected_status,actual_status,expected_location,actual_location,issue',
+  'path,type,expected_status,actual_status,expected_location,actual_location,issue',
   ...rows.map((row) => [
     row.path,
+    row.type,
     row.expectedStatus,
     row.actualStatus,
     row.expectedLocation,
@@ -98,8 +131,8 @@ const csv = [
   ].map((value) => `"${String(value).replaceAll('"', '""')}"`).join(','))
 ].join('\n');
 
-writeFileSync(join(root, 'data/site/live-redirect-audit.csv'), `${csv}\n`);
-writeFileSync(join(root, 'data/site/live-redirect-audit-summary.json'), `${JSON.stringify({
+writeFileSync(join(root, 'data/site/live-smoke-audit.csv'), `${csv}\n`);
+writeFileSync(join(root, 'data/site/live-smoke-audit-summary.json'), `${JSON.stringify({
   origin,
   total_checks: rows.length,
   total_issues: rows.filter((row) => row.issue).length,
@@ -108,7 +141,7 @@ writeFileSync(join(root, 'data/site/live-redirect-audit-summary.json'), `${JSON.
 
 const failures = rows.filter((row) => row.issue);
 if (failures.length > 0) {
-  throw new Error(`Live redirect audit found ${failures.length} issue(s). See data/site/live-redirect-audit.csv`);
+  throw new Error(`Live smoke audit found ${failures.length} issue(s). See data/site/live-smoke-audit.csv`);
 }
 
-console.log(`Live redirect audit ok: ${rows.length} checks, 0 issues`);
+console.log(`Live smoke audit ok: ${rows.length} checks, 0 issues`);

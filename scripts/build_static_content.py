@@ -297,6 +297,18 @@ def write_redirect_files(redirects):
         "# Generated from data/site/redirects.json. Do not edit by hand.",
         "RewriteEngine On",
         *[f'Redirect {r["status"]} {r["source"]} {r["target"]}' for r in redirects],
+        "",
+        "<IfModule mod_headers.c>",
+        '  Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"',
+        '  Header set X-Content-Type-Options "nosniff"',
+        '  Header set Referrer-Policy "strict-origin-when-cross-origin"',
+        '  <FilesMatch "\\.(png|jpg|jpeg|gif|webp|svg|css|js|woff2?)$">',
+        '    Header set Cache-Control "public, max-age=31536000, immutable"',
+        "  </FilesMatch>",
+        '  <FilesMatch "\\.(html|xml)$">',
+        '    Header set Cache-Control "public, max-age=300"',
+        "  </FilesMatch>",
+        "</IfModule>",
         ""
     ]
     (SITE / "_redirects").write_text("\n".join(netlify_lines) + "\n", encoding="utf-8")
