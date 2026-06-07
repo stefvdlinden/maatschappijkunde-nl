@@ -16,7 +16,8 @@ De statische conversiepijplijn voor maatschappijkunde.nl staat lokaal, is gekopp
 - Live redirect-audit op dev: 6 checks, 0 issues.
 - Live header-audit op dev: 6 checks, 0 waarschuwingen.
 - Live smoke-audit op dev: 16 checks, 0 issues.
-- Productie-cutover is nog niet uitgevoerd vanuit deze workspace: productiepad, DNS-route en rollbackroute moeten extern bij TransIP bevestigd worden.
+- Productie-cutover is nog niet uitgevoerd vanuit deze workspace: productiepad en rollbackroute moeten extern bij TransIP bevestigd worden.
+- Laatste cutover-uitvoeringspoging: zie `docs/CUTOVER_EXECUTION_REPORT.md`.
 
 ## Harde grenzen
 
@@ -29,16 +30,17 @@ De statische conversiepijplijn voor maatschappijkunde.nl staat lokaal, is gekopp
 
 ## Eerstvolgende activiteiten
 
-1. Bevestig productiepad, DNS-route en rollbackroute bij TransIP.
-2. Voer productie-cutover uit volgens `docs/PRODUCTION_CUTOVER.md`.
-3. Draai direct voor cutover nogmaals:
+1. Bevestig bij TransIP welk SFTP-pad productie is en welk pad/route rollback is.
+2. Voeg een expliciete productie-deployroute toe of bevestig dat de bestaande SFTP-secrets tijdelijk naar productie wijzen.
+3. Voer productie-cutover uit volgens `docs/PRODUCTION_CUTOVER.md`.
+4. Draai direct voor cutover nogmaals:
    - `npm test`
    - `npm run build`
    - `MK_DEV_AUTH='...' npm run audit:live:redirects`
    - `MK_DEV_AUTH='...' npm run audit:live:headers`
    - `MK_DEV_AUTH='...' npm run audit:live:smoke`
-4. Na productie-cutover dezelfde live checks op productie uitvoeren met `MK_LIVE_ORIGIN=https://maatschappijkunde.nl`.
-5. Daarna serverlogs/Search Console/analytics nalopen op 404's of redirectproblemen.
+5. Na productie-cutover dezelfde live checks op productie uitvoeren met `MK_LIVE_ORIGIN=https://maatschappijkunde.nl`.
+6. Daarna serverlogs/Search Console/analytics nalopen op 404's of redirectproblemen.
 
 ## Nuttige commando's
 

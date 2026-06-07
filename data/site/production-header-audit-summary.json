@@ -1,0 +1,91 @@
+{
+  "origin": "https://maatschappijkunde.nl",
+  "total_checks": 6,
+  "total_warnings": 4,
+  "checks": [
+    {
+      "path": "/",
+      "type": "html",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "cacheControl": "",
+      "contentType": "text/html; charset=UTF-8",
+      "contentEncoding": "gzip",
+      "strictTransportSecurity": "",
+      "xContentTypeOptions": "",
+      "xFrameOptions": "",
+      "referrerPolicy": "",
+      "issue": "html_missing_hsts;html_missing_x_content_type_options"
+    },
+    {
+      "path": "/examenstof/",
+      "type": "html",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "cacheControl": "",
+      "contentType": "text/html; charset=UTF-8",
+      "contentEncoding": "gzip",
+      "strictTransportSecurity": "",
+      "xContentTypeOptions": "",
+      "xFrameOptions": "",
+      "referrerPolicy": "",
+      "issue": "html_missing_hsts;html_missing_x_content_type_options"
+    },
+    {
+      "path": "/sitemap-index.xml",
+      "type": "xml",
+      "expectedStatus": 200,
+      "actualStatus": 404,
+      "cacheControl": "no-cache, must-revalidate, max-age=0, no-store, private",
+      "contentType": "text/html; charset=UTF-8",
+      "contentEncoding": "br",
+      "strictTransportSecurity": "",
+      "xContentTypeOptions": "",
+      "xFrameOptions": "",
+      "referrerPolicy": "",
+      "issue": "status:404"
+    },
+    {
+      "path": "/_redirects",
+      "type": "redirect-file",
+      "expectedStatus": 200,
+      "actualStatus": 404,
+      "cacheControl": "no-cache, must-revalidate, max-age=0, no-store, private",
+      "contentType": "text/html; charset=UTF-8",
+      "contentEncoding": "br",
+      "strictTransportSecurity": "",
+      "xContentTypeOptions": "",
+      "xFrameOptions": "",
+      "referrerPolicy": "",
+      "issue": "status:404"
+    },
+    {
+      "path": "/.htaccess",
+      "type": "protected-config",
+      "expectedStatus": 403,
+      "actualStatus": 403,
+      "cacheControl": "",
+      "contentType": "text/html; charset=iso-8859-1",
+      "contentEncoding": "br",
+      "strictTransportSecurity": "",
+      "xContentTypeOptions": "",
+      "xFrameOptions": "",
+      "referrerPolicy": "",
+      "issue": ""
+    },
+    {
+      "path": "/wp-content/uploads/2016/12/Analyse-Maatschappelijk-Vraagstuk-212x300.png",
+      "type": "asset",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "cacheControl": "max-age=31536000",
+      "contentType": "image/png",
+      "contentEncoding": "",
+      "strictTransportSecurity": "",
+      "xContentTypeOptions": "",
+      "xFrameOptions": "",
+      "referrerPolicy": "",
+      "issue": ""
+    }
+  ]
+}
