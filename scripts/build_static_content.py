@@ -49,6 +49,26 @@ TAXONOMY_PREFIXES = {
     "ht_kb_tag": "/kerndoel-tags/",
     "category": "/category/"
 }
+EXTRA_REDIRECTS = [
+    {
+        "line": "extra:legacy-examenstof",
+        "status": "301",
+        "source": "/politiekenbeleid-kerndoel1-1/",
+        "target": "/examenstof/politiekenbeleid-kerndoel1-1/"
+    },
+    {
+        "line": "extra:legacy-examenstof",
+        "status": "301",
+        "source": "/amv-kerndoel1/",
+        "target": "/examenstof/amv-kerndoel1/"
+    },
+    {
+        "line": "extra:legacy-examenstof",
+        "status": "301",
+        "source": "/ciminaliteitenrechtsstaat-kerndoel1/",
+        "target": "/examenstof/criminaliteitenrechtsstaat-kerndoel1/"
+    }
+]
 LEGACY_MODULES = {}
 TITLE_REWRITES = {
     ("1029", "???? Analyse Maatschappelijk Vraagstuk"): "Analyse Maatschappelijk Vraagstuk"
@@ -330,6 +350,11 @@ def main():
     LEGACY_MODULES = extract_legacy_modules(meta_by_post)
 
     redirects = read_csv(GENERATED / "redirects.csv")
+    known_redirect_sources = {redirect["source"] for redirect in redirects}
+    redirects.extend(
+        redirect for redirect in EXTRA_REDIRECTS
+        if redirect["source"] not in known_redirect_sources
+    )
     redirect_sources = {r["source"] for r in redirects}
     pages = []
     pages_by_id = {}

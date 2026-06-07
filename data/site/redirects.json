@@ -1432,5 +1432,23 @@
     "status": "301",
     "source": "/begrippen/minister/",
     "target": "https://schoolwoorden.nl/begrip/minister/"
+  },
+  {
+    "line": "extra:legacy-examenstof",
+    "status": "301",
+    "source": "/politiekenbeleid-kerndoel1-1/",
+    "target": "/examenstof/politiekenbeleid-kerndoel1-1/"
+  },
+  {
+    "line": "extra:legacy-examenstof",
+    "status": "301",
+    "source": "/amv-kerndoel1/",
+    "target": "/examenstof/amv-kerndoel1/"
+  },
+  {
+    "line": "extra:legacy-examenstof",
+    "status": "301",
+    "source": "/ciminaliteitenrechtsstaat-kerndoel1/",
+    "target": "/examenstof/criminaliteitenrechtsstaat-kerndoel1/"
   }
 ]
