@@ -420,7 +420,17 @@ def main():
                 for child in sorted(child_terms, key=lambda t: t["name"].lower())
             ) + "</ul>"
         description = taxonomy.get("description") or ""
-        intro = f"<p>{html.escape(description)}</p>" if description else ""
+        if description:
+            intro_text = description
+        else:
+            intro_text = (
+                f"Dit overzicht bundelt de examenstof en kerndoelen voor {term['name']}. "
+                "De pagina blijft beschikbaar op de oorspronkelijke URL en verwijst naar "
+                "de gekoppelde uitleg, opdrachten, slides, video's en downloads waar die "
+                "in de oude site aan dit onderwerp waren gekoppeld."
+            )
+        intro = f"<p>{html.escape(intro_text)}</p>"
+        plain_text = clean_text(" ".join([intro_text, " ".join(p["title"] for p in related_pages)]))
         page = {
             "id": f'taxonomy:{taxonomy["term_taxonomy_id"]}',
             "type": taxonomy_name,
@@ -434,7 +444,7 @@ def main():
             "seoTitle": term["name"],
             "description": clean_text(description),
             "html": f"{intro}{child_links}<h2>Examenstof</h2>{html_link_list(related_pages)}",
-            "plainText": clean_text(description + " " + " ".join(p["title"] for p in related_pages)),
+            "plainText": plain_text,
             "conversionNotes": []
         }
         pages.append(page)
@@ -449,6 +459,26 @@ def main():
             return
         page["html"] = html_content
         page["plainText"] = plain_text if plain_text is not None else clean_text(html_content)
+
+    def word_count(page):
+        text = (page.get("plainText") or clean_text(page.get("html") or "")).strip()
+        return len(text.split()) if text else 0
+
+    def enhance_short_page(url, html_content, plain_text=None):
+        page = pages_by_url.get(url)
+        if not page or word_count(page) >= 30:
+            return
+        existing_html = (page.get("html") or "").strip()
+        page["html"] = f"{existing_html}{html_content}" if existing_html else html_content
+        page["plainText"] = plain_text if plain_text is not None else clean_text(page["html"])
+
+    def pages_matching(*needles):
+        matched = []
+        for page in pages:
+            haystack = f'{page.get("url", "")} {page.get("title", "")}'.lower()
+            if any(needle in haystack for needle in needles):
+                matched.append(page)
+        return sorted_pages(matched)
 
     overview_links = html_link_list(kb_overviews)
     fill_existing_page(
@@ -471,6 +501,90 @@ def main():
             mens_en_werk.get("html") or "",
             mens_en_werk.get("plainText") or ""
         )
+
+    category_fallbacks = {
+        "/category/amv/": ("/kerndoelen/amv/", "Analyse Maatschappelijk Vraagstuk"),
+        "/category/criminaliteitenrechtsstaat/": ("/kerndoelen/criminaliteit-en-rechtsstaat/", "Criminaliteit en Rechtsstaat"),
+        "/category/massamedia/": ("/kerndoelen/massamedia/", "Massamedia"),
+        "/category/mens-en-werk/": ("/kerndoelen/mensenwerk/", "Mens en Werk"),
+        "/category/politiekenbeleid/": ("/kerndoelen/politiekenbeleid/", "Politiek en Beleid"),
+    }
+    for category_url, (overview_url, title) in category_fallbacks.items():
+        overview = pages_by_url.get(overview_url)
+        if not overview:
+            continue
+        enhance_short_page(
+            category_url,
+            "<p>Dit categorie-overzicht verwijst naar de bijbehorende examenstof en kerndoelen "
+            f"voor {html.escape(title)}. De originele URL blijft behouden voor bezoekers, "
+            "oude links en zoekmachines.</p>"
+            f'<p><a href="{html.escape(overview_url)}">Bekijk het volledige kerndoeloverzicht voor {html.escape(title)}</a>.</p>'
+            f"{overview.get('html') or ''}",
+            clean_text(f"{title} categorie overzicht {overview.get('plainText') or ''}")
+        )
+
+    enhance_short_page(
+        "/category/examenstof/",
+        "<p>Dit archief bundelt berichten en verwijzingen rond examenstof. Voor de statische site "
+        "blijft deze URL beschikbaar en verwijst het overzicht door naar alle gegroepeerde "
+        "kerndoel- en examenstofpagina's.</p>"
+        f"{overview_links}"
+    )
+    enhance_short_page(
+        "/category/multiculti/",
+        "<p>Dit categorie-overzicht verwijst naar de examenstof over multiculturele samenleving. "
+        "De pagina blijft bestaan voor oude categorie-links en verwijst naar de bijbehorende "
+        "kerndoelen en leerstof.</p>"
+        f"{pages_by_url.get('/kerndoelen/multiculturelesamenleving/', {}).get('html') or ''}"
+    )
+    enhance_short_page(
+        "/category/featured/",
+        "<p>Dit archief bevat uitgelichte verwijzingen uit de oude WordPress-site. In de statische "
+        "versie blijft de URL behouden en wordt doorgelinkt naar de belangrijkste overzichten "
+        "voor examenstof, kerndoelen, begrippen en downloads.</p>"
+        f"{html_link_list(pages_matching('/examenstof/', '/kerndoelen/', '/begrippen/', '/downloads/'))}"
+    )
+
+    for tag_url, label in {
+        "/kerndoel-tags/leerjaar-3/": "leerjaar 3",
+        "/kerndoel-tags/leerjaar-4/": "leerjaar 4",
+    }.items():
+        enhance_short_page(
+            tag_url,
+            f"<p>Dit tag-overzicht groepeert examenstof die in de oude site aan {html.escape(label)} "
+            "was gekoppeld. De statische conversie behoudt deze URL en biedt toegang tot de "
+            "relevante kerndoeloverzichten.</p>"
+            f"{overview_links}"
+        )
+
+    enhance_short_page(
+        "/examenstof-2/",
+        "<p>Deze oude kennisbank-archive URL blijft beschikbaar als ingang naar de examenstof. "
+        "Gebruik de onderstaande links om door te gaan naar de geconverteerde kerndoel- en "
+        "onderwerpoverzichten.</p>"
+        f"{overview_links}"
+    )
+    enhance_short_page(
+        "/contact-support/",
+        "<p>Deze supportpagina uit de oude kennisbank blijft behouden voor bestaande links. "
+        "Voor inhoudelijke navigatie op de statische site zijn de examenstof, kerndoelen, "
+        "begrippen en overige informatiepagina's hieronder beschikbaar.</p>"
+        f"{html_link_list(pages_matching('/examenstof/', '/kerndoelen/', '/begrippen/', '/over/'))}"
+    )
+    enhance_short_page(
+        "/leertips/",
+        "<p>Deze pagina verzamelt leertips en verwijzingen naar hulpmiddelen voor maatschappijleer "
+        "en maatschappijkunde. De bestaande downloads en links blijven behouden; aanvullend staan "
+        "hieronder de belangrijkste examenstof- en kerndoeloverzichten.</p>"
+        f"{overview_links}"
+    )
+    enhance_short_page(
+        "/websites/",
+        "<p>Deze pagina bewaart de oude verzameling handige websites en verwijzingen. Voor de "
+        "statische site blijft de URL behouden en wordt de pagina aangevuld met links naar de "
+        "belangrijkste interne overzichten.</p>"
+        f"{html_link_list(pages_matching('/examenstof/', '/kerndoelen/', '/begrippen/'))}"
+    )
 
     pages.sort(key=lambda p: (p["url"] != "/", p["url"]))
     (SITE / "pages.json").write_text(json.dumps(pages, ensure_ascii=False, indent=2), encoding="utf-8")
