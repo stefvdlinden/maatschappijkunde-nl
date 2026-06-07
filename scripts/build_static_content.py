@@ -440,6 +440,38 @@ def main():
         pages.append(page)
         existing_urls.add(url)
 
+    pages_by_url = {page["url"]: page for page in pages}
+    kb_overviews = sorted_pages(page for page in pages if page.get("type") == "ht_kb_category")
+
+    def fill_existing_page(url, html_content, plain_text=None):
+        page = pages_by_url.get(url)
+        if not page or (page.get("html") or "").strip():
+            return
+        page["html"] = html_content
+        page["plainText"] = plain_text if plain_text is not None else clean_text(html_content)
+
+    overview_links = html_link_list(kb_overviews)
+    fill_existing_page(
+        "/examenstof/",
+        "<p>Alle examenstof is hieronder gegroepeerd per onderwerp en kerndoel.</p>"
+        "<h2>Onderwerpen</h2>"
+        f"{overview_links}"
+    )
+    fill_existing_page(
+        "/kerndoelen/",
+        "<p>Alle kerndoelen en examenonderwerpen zijn hieronder als overzicht beschikbaar.</p>"
+        "<h2>Kerndoeloverzichten</h2>"
+        f"{overview_links}"
+    )
+
+    mens_en_werk = pages_by_url.get("/kerndoelen/mensenwerk/")
+    if mens_en_werk:
+        fill_existing_page(
+            "/examenstof/mens-en-werk/",
+            mens_en_werk.get("html") or "",
+            mens_en_werk.get("plainText") or ""
+        )
+
     pages.sort(key=lambda p: (p["url"] != "/", p["url"]))
     (SITE / "pages.json").write_text(json.dumps(pages, ensure_ascii=False, indent=2), encoding="utf-8")
     (SITE / "redirects.json").write_text(json.dumps(redirects, ensure_ascii=False, indent=2), encoding="utf-8")

@@ -1,7 +1,7 @@
 {
-  "total_issues": 23,
+  "total_issues": 20,
   "high_issues": 0,
-  "medium_issues": 3,
+  "medium_issues": 0,
   "low_issues": 20,
   "issues": [
     {
@@ -75,20 +75,6 @@
       "detail": "10 words"
     },
     {
-      "page": "/examenstof/",
-      "title": "Examenstof",
-      "issue": "empty_html",
-      "severity": "medium",
-      "detail": "0 words"
-    },
-    {
-      "page": "/examenstof/mens-en-werk/",
-      "title": "Mens en Werk",
-      "issue": "empty_html",
-      "severity": "medium",
-      "detail": "0 words"
-    },
-    {
       "page": "/kerndoel-tags/leerjaar-3/",
       "title": "leerjaar 3",
       "issue": "short_content",
@@ -100,13 +86,6 @@
       "title": "leerjaar 4",
       "issue": "short_content",
       "severity": "low",
-      "detail": "0 words"
-    },
-    {
-      "page": "/kerndoelen/",
-      "title": "Kerndoelen",
-      "issue": "empty_html",
-      "severity": "medium",
       "detail": "0 words"
     },
     {
