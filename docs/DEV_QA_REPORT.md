@@ -6,13 +6,13 @@ Datum: 2026-06-07
 
 Laatste GitHub Actions run:
 
-- Run: `27089016118`
-- Commit: `54ef20f Prepare production QA checks`
+- Run: `27089769954`
+- Commit: `058fc66 Test production headers on dev`
 - Workflow: `Deploy dev site to TransIP`
 - Status: success
 - Build: success
 - Deploy via SFTP: success
-- Duur: 9m30s
+- Duur: 12m26s
 
 `https://dev.maatschappijkunde.nl/` reageert met Basic Auth realm `omzetten hosting`.
 Met de dev-credentials is de live dev-site bereikbaar.
@@ -21,11 +21,11 @@ Recente succesvolle runs:
 
 | Run | Commit | Status |
 |---|---|---|
+| `27089769954` | `Test production headers on dev` | success |
+| `27089243137` | `Record live QA audit results` | success |
 | `27089016118` | `Prepare production QA checks` | success |
 | `27088147576` | `Update dev QA handoff` | success |
 | `27087535473` | `Link legacy archive overviews` | success |
-| `27087154418` | `Clear content fidelity audit` | success |
-| `27085775546` | `Fill static overview pages` | success |
 
 Workflow-onderhoud:
 
@@ -50,6 +50,7 @@ Automatische audits op de huidige statische conversie:
 | External reference audit | 0 issues |
 | URL gap report | 0 investigate URLs |
 | Unresolved shortcodes | 0 |
+| Live smoke audit op dev | 16 checks, 0 issues |
 
 Veilige media:
 
@@ -100,23 +101,23 @@ Live redirectbevindingen:
   - `/politiekenbeleid-kerndoel1-1/`
   - `/amv-kerndoel1/`
   - `/ciminaliteitenrechtsstaat-kerndoel1/`
-- Live redirect-audit na deploy `27089016118`: 6 checks, 0 issues.
+- Live redirect-audit na deploy `27089769954`: 6 checks, 0 issues.
 - `https://dev.maatschappijkunde.nl/.htaccess` geeft `403`, dus het bestand wordt niet publiek als tekst geserveerd.
 
 ## 5. Headers en cache
 
-Live header-audit op dev na deploy `27089016118`:
+Live header-audit op dev na deploy `27089769954`:
 
 | Pad | Status | Bevinding |
 |---|---:|---|
-| `/` | 200 | HTML mist `Strict-Transport-Security` en `X-Content-Type-Options`. |
-| `/examenstof/` | 200 | HTML mist `Strict-Transport-Security` en `X-Content-Type-Options`. |
-| `/sitemap-index.xml` | 200 | OK. |
+| `/` | 200 | OK: HSTS, `X-Content-Type-Options`, `Referrer-Policy` en korte HTML-cache aanwezig. |
+| `/examenstof/` | 200 | OK: HSTS, `X-Content-Type-Options`, `Referrer-Policy` en korte HTML-cache aanwezig. |
+| `/sitemap-index.xml` | 200 | OK: XML-cache aanwezig. |
 | `/_redirects` | 200 | Bestand is publiek leesbaar; functioneel onschadelijk op TransIP, maar niet nodig voor Apache. |
 | `/.htaccess` | 403 | OK, niet publiek leesbaar. |
-| `/wp-content/uploads/2016/12/Analyse-Maatschappelijk-Vraagstuk-212x300.png` | 200 | Asset mist `Cache-Control`. |
+| `/wp-content/uploads/2016/12/Analyse-Maatschappelijk-Vraagstuk-212x300.png` | 200 | OK: lange immutable asset-cache aanwezig. |
 
-Deze punten zijn opgenomen in `docs/PRODUCTION_CUTOVER.md`.
+De header-audit geeft nu 0 warning rows.
 
 ## 6. Legacy oefenmodules
 
@@ -130,7 +131,7 @@ De oude `uhe_style1` oefenmodules zijn omgezet naar statische linklijsten. Er wo
 
 ## 7. Aanbevolen vervolgstappen
 
-1. Productieheaders met TransIP/Apache testen voordat ze live worden afgedwongen.
-2. Productie-cutover voorbereiden volgens `docs/PRODUCTION_CUTOVER.md`.
-3. Inhoudelijk reviewen of algemene legacy archive-teksten voldoende zijn of per pagina specifieker moeten worden gemaakt.
-4. Na productie-cutover dezelfde live redirect/header-audits opnieuw draaien op productie.
+1. Productiepad, DNS-route en rollbackroute bij TransIP bevestigen.
+2. Productie-cutover uitvoeren volgens `docs/PRODUCTION_CUTOVER.md`.
+3. Na productie-cutover dezelfde live redirect/header/smoke-audits opnieuw draaien op productie.
+4. Inhoudelijk reviewen of algemene legacy archive-teksten voldoende zijn of per pagina specifieker moeten worden gemaakt.

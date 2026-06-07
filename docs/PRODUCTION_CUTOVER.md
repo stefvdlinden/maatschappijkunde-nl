@@ -8,7 +8,8 @@ Deze checklist hoort bij de statische conversie van maatschappijkunde.nl. De sit
 - `npm run build` is groen.
 - Laatste dev-deploy is groen.
 - Live redirect-audit is groen.
-- Live header-audit is uitgevoerd en bekende waarschuwingen zijn beoordeeld.
+- Live header-audit is groen op dev.
+- Live smoke-audit is groen op dev.
 - Dev Basic Auth blijft actief; productie krijgt geen Basic Auth tenzij expliciet gewenst.
 
 ## Hosting en deploy
@@ -55,9 +56,8 @@ Controleer redirects:
 
 Dev-audit heeft deze productie-aandachtspunten gevonden:
 
-- HTML mist `Strict-Transport-Security`.
-- HTML mist `X-Content-Type-Options`.
-- Assets missen `Cache-Control`.
+- Headers/cache zijn op dev getest via `.htaccess` en geven 0 live header-waarschuwingen.
+- Controleer bij productie-cutover dat dezelfde Apache-configuratie actief is op het productiepad.
 
 Aanbevolen productieheaders:
 
@@ -73,7 +73,13 @@ Header set Referrer-Policy "strict-origin-when-cross-origin"
 </FilesMatch>
 ```
 
-Pas headers pas toe als TransIP/Apache-modules dit ondersteunen en test daarna opnieuw.
+Deze regels zijn op dev toegepast. Test na productie-cutover opnieuw met:
+
+```bash
+MK_LIVE_ORIGIN='https://maatschappijkunde.nl' npm run audit:live:headers
+MK_LIVE_ORIGIN='https://maatschappijkunde.nl' npm run audit:live:redirects
+MK_LIVE_ORIGIN='https://maatschappijkunde.nl' npm run audit:live:smoke
+```
 
 ## Rollback
 
@@ -90,3 +96,9 @@ Pas headers pas toe als TransIP/Apache-modules dit ondersteunen en test daarna o
 2. Controleer Search Console zodra beschikbaar.
 3. Controleer analytics op onverwachte daling of redirectproblemen.
 4. Plan pas daarna redesign- of templateverbeteringen.
+
+## Huidige cutoverstatus
+
+- Dev is technisch groen voor cutover.
+- Productie-cutover is nog niet uitgevoerd vanuit deze workspace.
+- Nog extern te bevestigen: productiepad, DNS-route, TTL en rollbackroute bij TransIP.

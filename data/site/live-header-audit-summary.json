@@ -1,48 +1,48 @@
 {
   "origin": "https://dev.maatschappijkunde.nl",
   "total_checks": 6,
-  "total_warnings": 3,
+  "total_warnings": 0,
   "checks": [
     {
       "path": "/",
       "type": "html",
       "expectedStatus": 200,
       "actualStatus": 200,
-      "cacheControl": "",
+      "cacheControl": "public, max-age=300",
       "contentType": "text/html",
       "contentEncoding": "br",
-      "strictTransportSecurity": "",
-      "xContentTypeOptions": "",
+      "strictTransportSecurity": "max-age=31536000; includeSubDomains",
+      "xContentTypeOptions": "nosniff",
       "xFrameOptions": "",
-      "referrerPolicy": "",
-      "issue": "html_missing_hsts;html_missing_x_content_type_options"
+      "referrerPolicy": "strict-origin-when-cross-origin",
+      "issue": ""
     },
     {
       "path": "/examenstof/",
       "type": "html",
       "expectedStatus": 200,
       "actualStatus": 200,
-      "cacheControl": "",
+      "cacheControl": "public, max-age=300",
       "contentType": "text/html",
       "contentEncoding": "br",
-      "strictTransportSecurity": "",
-      "xContentTypeOptions": "",
+      "strictTransportSecurity": "max-age=31536000; includeSubDomains",
+      "xContentTypeOptions": "nosniff",
       "xFrameOptions": "",
-      "referrerPolicy": "",
-      "issue": "html_missing_hsts;html_missing_x_content_type_options"
+      "referrerPolicy": "strict-origin-when-cross-origin",
+      "issue": ""
     },
     {
       "path": "/sitemap-index.xml",
       "type": "xml",
       "expectedStatus": 200,
       "actualStatus": 200,
-      "cacheControl": "",
+      "cacheControl": "public, max-age=300",
       "contentType": "application/xml",
       "contentEncoding": "br",
-      "strictTransportSecurity": "",
-      "xContentTypeOptions": "",
+      "strictTransportSecurity": "max-age=31536000; includeSubDomains",
+      "xContentTypeOptions": "nosniff",
       "xFrameOptions": "",
-      "referrerPolicy": "",
+      "referrerPolicy": "strict-origin-when-cross-origin",
       "issue": ""
     },
     {
@@ -53,10 +53,10 @@
       "cacheControl": "",
       "contentType": "",
       "contentEncoding": "",
-      "strictTransportSecurity": "",
-      "xContentTypeOptions": "",
+      "strictTransportSecurity": "max-age=31536000; includeSubDomains",
+      "xContentTypeOptions": "nosniff",
       "xFrameOptions": "",
-      "referrerPolicy": "",
+      "referrerPolicy": "strict-origin-when-cross-origin",
       "issue": ""
     },
     {
@@ -78,14 +78,14 @@
       "type": "asset",
       "expectedStatus": 200,
       "actualStatus": 200,
-      "cacheControl": "",
+      "cacheControl": "public, max-age=31536000, immutable",
       "contentType": "image/png",
       "contentEncoding": "",
-      "strictTransportSecurity": "",
-      "xContentTypeOptions": "",
+      "strictTransportSecurity": "max-age=31536000; includeSubDomains",
+      "xContentTypeOptions": "nosniff",
       "xFrameOptions": "",
-      "referrerPolicy": "",
-      "issue": "asset_missing_cache_control"
+      "referrerPolicy": "strict-origin-when-cross-origin",
+      "issue": ""
     }
   ]
 }

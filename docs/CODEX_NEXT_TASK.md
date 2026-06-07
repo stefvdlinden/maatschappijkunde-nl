@@ -12,9 +12,11 @@ De statische conversiepijplijn voor maatschappijkunde.nl staat lokaal, is gekopp
 - Unresolved shortcodes: 0.
 - Content fidelity audit: 0 issues.
 - URL gap report: 0 investigate URLs.
-- Laatste afgeronde dev-deploy voor deze notitie: run `27089016118`, commit `54ef20f Prepare production QA checks`.
+- Laatste afgeronde dev-deploy voor deze notitie: run `27089769954`, commit `058fc66 Test production headers on dev`.
 - Live redirect-audit op dev: 6 checks, 0 issues.
-- Live header-audit op dev: 6 checks, 3 bekende waarschuwingen voor productieheaders/cache.
+- Live header-audit op dev: 6 checks, 0 waarschuwingen.
+- Live smoke-audit op dev: 16 checks, 0 issues.
+- Productie-cutover is nog niet uitgevoerd vanuit deze workspace: productiepad, DNS-route en rollbackroute moeten extern bij TransIP bevestigd worden.
 
 ## Harde grenzen
 
@@ -27,15 +29,16 @@ De statische conversiepijplijn voor maatschappijkunde.nl staat lokaal, is gekopp
 
 ## Eerstvolgende activiteiten
 
-1. Beslis of de productieheaders/cache-regels uit `docs/PRODUCTION_CUTOVER.md` op dev getest mogen worden.
-2. Bereid productie-cutover voor volgens `docs/PRODUCTION_CUTOVER.md`.
-3. Bevestig productiepad, DNS-route en rollbackroute bij TransIP.
-4. Draai direct voor cutover nogmaals:
+1. Bevestig productiepad, DNS-route en rollbackroute bij TransIP.
+2. Voer productie-cutover uit volgens `docs/PRODUCTION_CUTOVER.md`.
+3. Draai direct voor cutover nogmaals:
    - `npm test`
    - `npm run build`
    - `MK_DEV_AUTH='...' npm run audit:live:redirects`
    - `MK_DEV_AUTH='...' npm run audit:live:headers`
-5. Na productie-cutover dezelfde redirect/header smoke tests op productie uitvoeren.
+   - `MK_DEV_AUTH='...' npm run audit:live:smoke`
+4. Na productie-cutover dezelfde live checks op productie uitvoeren met `MK_LIVE_ORIGIN=https://maatschappijkunde.nl`.
+5. Daarna serverlogs/Search Console/analytics nalopen op 404's of redirectproblemen.
 
 ## Nuttige commando's
 
@@ -44,6 +47,8 @@ npm test
 npm run build
 MK_DEV_AUTH='user:password' npm run audit:live:redirects
 MK_DEV_AUTH='user:password' npm run audit:live:headers
+MK_DEV_AUTH='user:password' npm run audit:live:smoke
+MK_LIVE_ORIGIN='https://maatschappijkunde.nl' npm run audit:live:smoke
 gh run list --workflow deploy-dev.yml --limit 5
 ```
 

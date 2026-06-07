@@ -1,0 +1,151 @@
+{
+  "origin": "https://dev.maatschappijkunde.nl",
+  "total_checks": 16,
+  "total_issues": 0,
+  "checks": [
+    {
+      "path": "/",
+      "type": "page",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "expectedLocation": "",
+      "actualLocation": "",
+      "issue": ""
+    },
+    {
+      "path": "/examenstof/",
+      "type": "page",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "expectedLocation": "",
+      "actualLocation": "",
+      "issue": ""
+    },
+    {
+      "path": "/kerndoelen/",
+      "type": "page",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "expectedLocation": "",
+      "actualLocation": "",
+      "issue": ""
+    },
+    {
+      "path": "/begrippen/",
+      "type": "page",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "expectedLocation": "",
+      "actualLocation": "",
+      "issue": ""
+    },
+    {
+      "path": "/planning/",
+      "type": "page",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "expectedLocation": "",
+      "actualLocation": "",
+      "issue": ""
+    },
+    {
+      "path": "/examenstof/amv-kerndoel1/",
+      "type": "page",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "expectedLocation": "",
+      "actualLocation": "",
+      "issue": ""
+    },
+    {
+      "path": "/examenstof/criminaliteitenrechtsstaat-kerndoel1/",
+      "type": "page",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "expectedLocation": "",
+      "actualLocation": "",
+      "issue": ""
+    },
+    {
+      "path": "/category/amv/",
+      "type": "page",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "expectedLocation": "",
+      "actualLocation": "",
+      "issue": ""
+    },
+    {
+      "path": "/kerndoel-tags/leerjaar-3/",
+      "type": "page",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "expectedLocation": "",
+      "actualLocation": "",
+      "issue": ""
+    },
+    {
+      "path": "/sitemap-index.xml",
+      "type": "page",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "expectedLocation": "",
+      "actualLocation": "",
+      "issue": ""
+    },
+    {
+      "path": "/begrippen/tweede-kamer/",
+      "type": "redirect",
+      "expectedStatus": 301,
+      "actualStatus": 301,
+      "expectedLocation": "https://schoolwoorden.nl/begrip/tweede-kamer/",
+      "actualLocation": "https://schoolwoorden.nl/begrip/tweede-kamer/",
+      "issue": ""
+    },
+    {
+      "path": "/begrippen/parlement/",
+      "type": "redirect",
+      "expectedStatus": 301,
+      "actualStatus": 301,
+      "expectedLocation": "https://schoolwoorden.nl/begrip/parlement/",
+      "actualLocation": "https://schoolwoorden.nl/begrip/parlement/",
+      "issue": ""
+    },
+    {
+      "path": "/begrippen/reageerakkoord/",
+      "type": "redirect",
+      "expectedStatus": 301,
+      "actualStatus": 301,
+      "expectedLocation": "https://schoolwoorden.nl/begrip/regeerakkoord/",
+      "actualLocation": "https://schoolwoorden.nl/begrip/regeerakkoord/",
+      "issue": ""
+    },
+    {
+      "path": "/politiekenbeleid-kerndoel1-1/",
+      "type": "redirect",
+      "expectedStatus": 301,
+      "actualStatus": 301,
+      "expectedLocation": "https://dev.maatschappijkunde.nl/examenstof/politiekenbeleid-kerndoel1-1/",
+      "actualLocation": "https://dev.maatschappijkunde.nl/examenstof/politiekenbeleid-kerndoel1-1/",
+      "issue": ""
+    },
+    {
+      "path": "/amv-kerndoel1/",
+      "type": "redirect",
+      "expectedStatus": 301,
+      "actualStatus": 301,
+      "expectedLocation": "https://dev.maatschappijkunde.nl/examenstof/amv-kerndoel1/",
+      "actualLocation": "https://dev.maatschappijkunde.nl/examenstof/amv-kerndoel1/",
+      "issue": ""
+    },
+    {
+      "path": "/ciminaliteitenrechtsstaat-kerndoel1/",
+      "type": "redirect",
+      "expectedStatus": 301,
+      "actualStatus": 301,
+      "expectedLocation": "https://dev.maatschappijkunde.nl/examenstof/criminaliteitenrechtsstaat-kerndoel1/",
+      "actualLocation": "https://dev.maatschappijkunde.nl/examenstof/criminaliteitenrechtsstaat-kerndoel1/",
+      "issue": ""
+    }
+  ]
+}
