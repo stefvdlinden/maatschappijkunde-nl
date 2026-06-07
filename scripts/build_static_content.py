@@ -464,11 +464,17 @@ def main():
         text = (page.get("plainText") or clean_text(page.get("html") or "")).strip()
         return len(text.split()) if text else 0
 
-    def enhance_short_page(url, html_content, plain_text=None):
+    def enhance_short_page(url, html_content, plain_text=None, force=False):
         page = pages_by_url.get(url)
-        if not page or word_count(page) >= 30:
+        if not page or (not force and word_count(page) >= 30):
             return
         existing_html = (page.get("html") or "").strip()
+        if force:
+            existing_html = re.sub(
+                r"<h2>Examenstof</h2><p>Voor dit overzicht zijn nog geen gekoppelde artikelen gevonden\.</p>",
+                "",
+                existing_html
+            )
         page["html"] = f"{existing_html}{html_content}" if existing_html else html_content
         page["plainText"] = plain_text if plain_text is not None else clean_text(page["html"])
 
@@ -520,7 +526,8 @@ def main():
             "oude links en zoekmachines.</p>"
             f'<p><a href="{html.escape(overview_url)}">Bekijk het volledige kerndoeloverzicht voor {html.escape(title)}</a>.</p>'
             f"{overview.get('html') or ''}",
-            clean_text(f"{title} categorie overzicht {overview.get('plainText') or ''}")
+            clean_text(f"{title} categorie overzicht {overview.get('plainText') or ''}"),
+            force=True
         )
 
     enhance_short_page(
@@ -528,21 +535,24 @@ def main():
         "<p>Dit archief bundelt berichten en verwijzingen rond examenstof. Voor de statische site "
         "blijft deze URL beschikbaar en verwijst het overzicht door naar alle gegroepeerde "
         "kerndoel- en examenstofpagina's.</p>"
-        f"{overview_links}"
+        f"{overview_links}",
+        force=True
     )
     enhance_short_page(
         "/category/multiculti/",
         "<p>Dit categorie-overzicht verwijst naar de examenstof over multiculturele samenleving. "
         "De pagina blijft bestaan voor oude categorie-links en verwijst naar de bijbehorende "
         "kerndoelen en leerstof.</p>"
-        f"{pages_by_url.get('/kerndoelen/multiculturelesamenleving/', {}).get('html') or ''}"
+        f"{pages_by_url.get('/kerndoelen/multiculturelesamenleving/', {}).get('html') or ''}",
+        force=True
     )
     enhance_short_page(
         "/category/featured/",
         "<p>Dit archief bevat uitgelichte verwijzingen uit de oude WordPress-site. In de statische "
         "versie blijft de URL behouden en wordt doorgelinkt naar de belangrijkste overzichten "
         "voor examenstof, kerndoelen, begrippen en downloads.</p>"
-        f"{html_link_list(pages_matching('/examenstof/', '/kerndoelen/', '/begrippen/', '/downloads/'))}"
+        f"{html_link_list(pages_matching('/examenstof/', '/kerndoelen/', '/begrippen/', '/downloads/'))}",
+        force=True
     )
 
     for tag_url, label in {
@@ -554,7 +564,8 @@ def main():
             f"<p>Dit tag-overzicht groepeert examenstof die in de oude site aan {html.escape(label)} "
             "was gekoppeld. De statische conversie behoudt deze URL en biedt toegang tot de "
             "relevante kerndoeloverzichten.</p>"
-            f"{overview_links}"
+            f"{overview_links}",
+            force=True
         )
 
     enhance_short_page(
