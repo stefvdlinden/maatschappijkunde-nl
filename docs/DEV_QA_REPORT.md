@@ -49,6 +49,7 @@ Automatische audits op de huidige statische conversie:
 | Internal link audit | 704 links, 0 missing |
 | External reference audit | 0 issues |
 | URL gap report | 0 investigate URLs |
+| Sitemap URL coverage | 100 sitemap-URL's, 100 pagina's, 0 redirects, 0 missing |
 | Unresolved shortcodes | 0 |
 | Live smoke audit op dev | 16 checks, 0 issues |
 

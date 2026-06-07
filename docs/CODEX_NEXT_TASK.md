@@ -12,6 +12,7 @@ De statische conversiepijplijn voor maatschappijkunde.nl staat lokaal, is gekopp
 - Unresolved shortcodes: 0.
 - Content fidelity audit: 0 issues.
 - URL gap report: 0 investigate URLs.
+- Sitemap URL coverage: 100 sitemap-URL's, 100 pagina's, 0 missing.
 - Laatste afgeronde dev-deploy voor deze notitie: run `27089769954`, commit `058fc66 Test production headers on dev`.
 - Live redirect-audit op dev: 6 checks, 0 issues.
 - Live header-audit op dev: 6 checks, 0 waarschuwingen.
@@ -50,6 +51,7 @@ npm run build
 MK_DEV_AUTH='user:password' npm run audit:live:redirects
 MK_DEV_AUTH='user:password' npm run audit:live:headers
 MK_DEV_AUTH='user:password' npm run audit:live:smoke
+MK_DEV_AUTH='user:password' npm run audit:sitemap-urls
 MK_LIVE_ORIGIN='https://maatschappijkunde.nl' npm run audit:live:smoke
 gh run list --workflow deploy-dev.yml --limit 5
 ```

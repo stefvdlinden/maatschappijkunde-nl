@@ -1,0 +1,52 @@
+{
+  "total_sitemap_urls": 100,
+  "pages": 100,
+  "redirects": 0,
+  "missing": 0,
+  "by_sitemap": [
+    {
+      "sitemap": "category-sitemap.xml",
+      "total": 2,
+      "pages": 2,
+      "redirects": 0,
+      "missing": 0
+    },
+    {
+      "sitemap": "ht_kb_category-sitemap.xml",
+      "total": 15,
+      "pages": 15,
+      "redirects": 0,
+      "missing": 0
+    },
+    {
+      "sitemap": "ht_kb_tag-sitemap.xml",
+      "total": 5,
+      "pages": 5,
+      "redirects": 0,
+      "missing": 0
+    },
+    {
+      "sitemap": "ht_kb-sitemap.xml",
+      "total": 55,
+      "pages": 55,
+      "redirects": 0,
+      "missing": 0
+    },
+    {
+      "sitemap": "page-sitemap.xml",
+      "total": 17,
+      "pages": 17,
+      "redirects": 0,
+      "missing": 0
+    },
+    {
+      "sitemap": "post-sitemap.xml",
+      "total": 6,
+      "pages": 6,
+      "redirects": 0,
+      "missing": 0
+    }
+  ],
+  "missing_urls": [],
+  "redirected_urls": []
+}
