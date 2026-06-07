@@ -1,0 +1,7 @@
+path,type,expected_status,actual_status,cache_control,content_type,content_encoding,strict_transport_security,x_content_type_options,x_frame_options,referrer_policy,issue
+"/","html","200","200","","text/html","br","","","","","html_missing_hsts;html_missing_x_content_type_options"
+"/examenstof/","html","200","200","","text/html","br","","","","","html_missing_hsts;html_missing_x_content_type_options"
+"/sitemap-index.xml","xml","200","200","","application/xml","br","","","","",""
+"/_redirects","redirect-file","200","200","","","","","","","",""
+"/.htaccess","protected-config","403","403","","text/html; charset=iso-8859-1","br","","","","",""
+"/wp-content/uploads/2016/12/Analyse-Maatschappelijk-Vraagstuk-212x300.png","asset","200","200","","image/png","","","","","","asset_missing_cache_control"

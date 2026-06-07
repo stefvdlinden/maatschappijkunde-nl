@@ -6,13 +6,13 @@ Datum: 2026-06-07
 
 Laatste GitHub Actions run:
 
-- Run: `27087535473`
-- Commit: `d3aee9e Link legacy archive overviews`
+- Run: `27089016118`
+- Commit: `54ef20f Prepare production QA checks`
 - Workflow: `Deploy dev site to TransIP`
 - Status: success
 - Build: success
 - Deploy via SFTP: success
-- Duur: 13m54s
+- Duur: 9m30s
 
 `https://dev.maatschappijkunde.nl/` reageert met Basic Auth realm `omzetten hosting`.
 Met de dev-credentials is de live dev-site bereikbaar.
@@ -21,15 +21,17 @@ Recente succesvolle runs:
 
 | Run | Commit | Status |
 |---|---|---|
+| `27089016118` | `Prepare production QA checks` | success |
+| `27088147576` | `Update dev QA handoff` | success |
 | `27087535473` | `Link legacy archive overviews` | success |
 | `27087154418` | `Clear content fidelity audit` | success |
 | `27085775546` | `Fill static overview pages` | success |
-| `27075312197` | `Skip empty content wrapper` | success |
-| `27074933184` | `Clean public conversion artifacts` | success |
 
-Bekende workflow-waarschuwing:
+Workflow-onderhoud:
 
-- GitHub Actions meldt een Node.js 20 deprecation warning voor `actions/checkout@v4` en `actions/setup-node@v4`.
+- Dev-deploys gebruiken `concurrency` met `cancel-in-progress: true`, zodat deployments naar `dev.maatschappijkunde.nl` niet parallel lopen.
+- De workflow zet `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true`.
+- GitHub toont nog een informatieve annotatie dat `actions/checkout@v4` en `actions/setup-node@v4` Node.js 20 targeten, maar forced op Node.js 24 draaien.
 - Dit is geen deploy-failure. De workflow slaagt en de site wordt gedeployed.
 
 ## 2. Automatische audits
@@ -98,11 +100,12 @@ Live redirectbevindingen:
   - `/politiekenbeleid-kerndoel1-1/`
   - `/amv-kerndoel1/`
   - `/ciminaliteitenrechtsstaat-kerndoel1/`
+- Live redirect-audit na deploy `27089016118`: 6 checks, 0 issues.
 - `https://dev.maatschappijkunde.nl/.htaccess` geeft `403`, dus het bestand wordt niet publiek als tekst geserveerd.
 
 ## 5. Headers en cache
 
-Live header-audit op dev:
+Live header-audit op dev na deploy `27089016118`:
 
 | Pad | Status | Bevinding |
 |---|---:|---|
@@ -127,7 +130,7 @@ De oude `uhe_style1` oefenmodules zijn omgezet naar statische linklijsten. Er wo
 
 ## 7. Aanbevolen vervolgstappen
 
-1. Rerun live redirect-audit na deploy van de extra legacy examenstofredirects.
-2. Productieheaders met TransIP/Apache testen voordat ze live worden afgedwongen.
-3. Productie-cutover voorbereiden volgens `docs/PRODUCTION_CUTOVER.md`.
-4. Inhoudelijk reviewen of algemene legacy archive-teksten voldoende zijn of per pagina specifieker moeten worden gemaakt.
+1. Productieheaders met TransIP/Apache testen voordat ze live worden afgedwongen.
+2. Productie-cutover voorbereiden volgens `docs/PRODUCTION_CUTOVER.md`.
+3. Inhoudelijk reviewen of algemene legacy archive-teksten voldoende zijn of per pagina specifieker moeten worden gemaakt.
+4. Na productie-cutover dezelfde live redirect/header-audits opnieuw draaien op productie.

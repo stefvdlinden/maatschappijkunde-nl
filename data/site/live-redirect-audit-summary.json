@@ -1,0 +1,55 @@
+{
+  "origin": "https://dev.maatschappijkunde.nl",
+  "total_checks": 6,
+  "total_issues": 0,
+  "checks": [
+    {
+      "path": "/begrippen/tweede-kamer/",
+      "expectedStatus": 301,
+      "actualStatus": 301,
+      "expectedLocation": "https://schoolwoorden.nl/begrip/tweede-kamer/",
+      "actualLocation": "https://schoolwoorden.nl/begrip/tweede-kamer/",
+      "issue": ""
+    },
+    {
+      "path": "/begrippen/parlement/",
+      "expectedStatus": 301,
+      "actualStatus": 301,
+      "expectedLocation": "https://schoolwoorden.nl/begrip/parlement/",
+      "actualLocation": "https://schoolwoorden.nl/begrip/parlement/",
+      "issue": ""
+    },
+    {
+      "path": "/begrippen/reageerakkoord/",
+      "expectedStatus": 301,
+      "actualStatus": 301,
+      "expectedLocation": "https://schoolwoorden.nl/begrip/regeerakkoord/",
+      "actualLocation": "https://schoolwoorden.nl/begrip/regeerakkoord/",
+      "issue": ""
+    },
+    {
+      "path": "/politiekenbeleid-kerndoel1-1/",
+      "expectedStatus": 301,
+      "actualStatus": 301,
+      "expectedLocation": "https://dev.maatschappijkunde.nl/examenstof/politiekenbeleid-kerndoel1-1/",
+      "actualLocation": "https://dev.maatschappijkunde.nl/examenstof/politiekenbeleid-kerndoel1-1/",
+      "issue": ""
+    },
+    {
+      "path": "/amv-kerndoel1/",
+      "expectedStatus": 301,
+      "actualStatus": 301,
+      "expectedLocation": "https://dev.maatschappijkunde.nl/examenstof/amv-kerndoel1/",
+      "actualLocation": "https://dev.maatschappijkunde.nl/examenstof/amv-kerndoel1/",
+      "issue": ""
+    },
+    {
+      "path": "/ciminaliteitenrechtsstaat-kerndoel1/",
+      "expectedStatus": 301,
+      "actualStatus": 301,
+      "expectedLocation": "https://dev.maatschappijkunde.nl/examenstof/criminaliteitenrechtsstaat-kerndoel1/",
+      "actualLocation": "https://dev.maatschappijkunde.nl/examenstof/criminaliteitenrechtsstaat-kerndoel1/",
+      "issue": ""
+    }
+  ]
+}

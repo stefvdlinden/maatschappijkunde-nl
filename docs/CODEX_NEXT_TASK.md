@@ -12,7 +12,9 @@ De statische conversiepijplijn voor maatschappijkunde.nl staat lokaal, is gekopp
 - Unresolved shortcodes: 0.
 - Content fidelity audit: 0 issues.
 - URL gap report: 0 investigate URLs.
-- Laatste afgeronde dev-deploy voor deze notitie: zie `docs/DEV_QA_REPORT.md`.
+- Laatste afgeronde dev-deploy voor deze notitie: run `27089016118`, commit `54ef20f Prepare production QA checks`.
+- Live redirect-audit op dev: 6 checks, 0 issues.
+- Live header-audit op dev: 6 checks, 3 bekende waarschuwingen voor productieheaders/cache.
 
 ## Harde grenzen
 
@@ -25,13 +27,15 @@ De statische conversiepijplijn voor maatschappijkunde.nl staat lokaal, is gekopp
 
 ## Eerstvolgende activiteiten
 
-1. Rerun live redirect-audit na deploy:
+1. Beslis of de productieheaders/cache-regels uit `docs/PRODUCTION_CUTOVER.md` op dev getest mogen worden.
+2. Bereid productie-cutover voor volgens `docs/PRODUCTION_CUTOVER.md`.
+3. Bevestig productiepad, DNS-route en rollbackroute bij TransIP.
+4. Draai direct voor cutover nogmaals:
+   - `npm test`
+   - `npm run build`
    - `MK_DEV_AUTH='...' npm run audit:live:redirects`
-2. Rerun live header-audit:
    - `MK_DEV_AUTH='...' npm run audit:live:headers`
-3. Werk `docs/DEV_QA_REPORT.md` bij met de nieuwste run-id en live redirect/header-uitkomst.
-4. Bereid productie-cutover voor volgens `docs/PRODUCTION_CUTOVER.md`.
-5. Test productieheaders eerst op dev of staging voordat ze op productie worden afgedwongen.
+5. Na productie-cutover dezelfde redirect/header smoke tests op productie uitvoeren.
 
 ## Nuttige commando's
 

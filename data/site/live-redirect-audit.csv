@@ -1,0 +1,7 @@
+path,expected_status,actual_status,expected_location,actual_location,issue
+"/begrippen/tweede-kamer/","301","301","https://schoolwoorden.nl/begrip/tweede-kamer/","https://schoolwoorden.nl/begrip/tweede-kamer/",""
+"/begrippen/parlement/","301","301","https://schoolwoorden.nl/begrip/parlement/","https://schoolwoorden.nl/begrip/parlement/",""
+"/begrippen/reageerakkoord/","301","301","https://schoolwoorden.nl/begrip/regeerakkoord/","https://schoolwoorden.nl/begrip/regeerakkoord/",""
+"/politiekenbeleid-kerndoel1-1/","301","301","https://dev.maatschappijkunde.nl/examenstof/politiekenbeleid-kerndoel1-1/","https://dev.maatschappijkunde.nl/examenstof/politiekenbeleid-kerndoel1-1/",""
+"/amv-kerndoel1/","301","301","https://dev.maatschappijkunde.nl/examenstof/amv-kerndoel1/","https://dev.maatschappijkunde.nl/examenstof/amv-kerndoel1/",""
+"/ciminaliteitenrechtsstaat-kerndoel1/","301","301","https://dev.maatschappijkunde.nl/examenstof/criminaliteitenrechtsstaat-kerndoel1/","https://dev.maatschappijkunde.nl/examenstof/criminaliteitenrechtsstaat-kerndoel1/",""
