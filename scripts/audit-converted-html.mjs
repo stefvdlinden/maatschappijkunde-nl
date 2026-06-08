@@ -8,7 +8,7 @@ const pages = JSON.parse(readFileSync(join(root, 'data/site/pages.json'), 'utf8'
 const checks = [
   { name: 'wordpress_block_comment', pattern: /<!--\s*\/?wp:/i, severity: 'high' },
   { name: 'legacy_shortcode', pattern: /\[\/?[a-zA-Z0-9_:-]+(?:\s|\]|\/)/, severity: 'high' },
-  { name: 'bare_youtube_short_url', pattern: /(?<!["'=])https?:\/\/youtu\.be\//i, severity: 'medium' },
+  { name: 'youtube_reference', pattern: /(?:youtube\.com|youtube-nocookie\.com|youtu\.be)/i, severity: 'high' },
   { name: 'empty_embed_container', pattern: /<div class="embed-container embed-responsive embed-responsive-4by3">\s*<\/div>/i, severity: 'medium' },
   { name: 'empty_legacy_wrapper', pattern: /<(?:div|section) class="(?:wp-row|wp-column|wp-column-text|shortcode-panel|tab-section|toggle)">\s*<\/(?:div|section)>/i, severity: 'high' },
   { name: 'manual_code_review_notice', pattern: /Ingesloten code moet handmatig worden beoordeeld/i, severity: 'medium' },

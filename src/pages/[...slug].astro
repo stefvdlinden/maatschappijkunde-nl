@@ -12,11 +12,45 @@ export function getStaticPaths() {
 const { page } = Astro.props;
 const title = page.seoTitle || page.title || 'Maatschappijkunde.nl';
 const description = page.description || undefined;
+const isHome = page.url === '/';
+const pagesByUrl = new Map(pages.map((item) => [item.url, item]));
+
+const labelFromSegment = (segment) => segment
+  .split('-')
+  .filter(Boolean)
+  .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+  .join(' ');
+
+const buildBreadcrumbs = (currentPage) => {
+  const crumbs = [{ href: '/', label: 'Home' }];
+  if (currentPage.url === '/') return crumbs;
+
+  const segments = currentPage.url.replace(/^\/|\/$/g, '').split('/').filter(Boolean);
+  let path = '';
+  for (const segment of segments) {
+    path += `/${segment}`;
+    const href = `${path}/`;
+    const matchedPage = pagesByUrl.get(href);
+    crumbs.push({
+      href,
+      label: matchedPage?.title || labelFromSegment(segment)
+    });
+  }
+  crumbs[crumbs.length - 1] = { label: currentPage.title };
+  return crumbs;
+};
+
+const breadcrumbs = buildBreadcrumbs(page);
 ---
-<BaseLayout title={title} description={description}>
-  <article class="legacy-content">
-    <p class="meta">{page.typeLabel}</p>
-    <h1>{page.title}</h1>
-    {page.html && <div set:html={page.html} />}
-  </article>
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  {isHome ? (
+    <div class="home-page" set:html={page.html} />
+  ) : (
+    <article class="content-page legacy-content">
+      <p class="content-page__type">{page.typeLabel}</p>
+      <h1>{page.title}</h1>
+      {description && <p class="content-page__intro">{description}</p>}
+      {page.html && <div class="content-body" set:html={page.html} />}
+    </article>
+  )}
 </BaseLayout>

@@ -6,8 +6,7 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const pages = JSON.parse(readFileSync(join(root, 'data/site/pages.json'), 'utf8'));
 
 const allowedExternalSrcHosts = new Set([
-  'docs.google.com',
-  'www.youtube.com'
+  'docs.google.com'
 ]);
 
 const attrPattern = /<(?<tag>[a-z0-9-]+)\b(?<attrs>[^>]*?)>/gi;

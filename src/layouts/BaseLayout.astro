@@ -1,8 +1,18 @@
 ---
 const {
   title = 'Maatschappijkunde.nl',
-  description = 'Alle examenstof van het VMBO examenvak maatschappijleer 2.'
+  description = 'Alle examenstof van het VMBO examenvak maatschappijleer 2.',
+  breadcrumbs = []
 } = Astro.props;
+
+const navItems = [
+  { href: '/examenstof/', label: 'Examenstof' },
+  { href: '/kerndoelen/', label: 'Kerndoelen' },
+  { href: '/begrippen/', label: 'Begrippen' },
+  { href: '/planning/', label: 'Planning' },
+  { href: '/downloads/', label: 'Downloads' },
+  { href: '/over/', label: 'Over' }
+];
 ---
 <!doctype html>
 <html lang="nl">
@@ -14,78 +24,212 @@ const {
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="/">Maatschappijkunde.nl</a>
-      <nav aria-label="Hoofdmenu">
-        <a href="/examenstof/">Examenstof</a>
-        <a href="/kerndoelen/">Kerndoelen</a>
-        <a href="/begrippen/">Begrippen</a>
-        <a href="/over/">Over</a>
-      </nav>
+      <div class="site-header__inner">
+        <a class="brand" href="/" aria-label="Maatschappijkunde.nl home">
+          <img src="/wp-content/uploads/2016/06/Maatschappijkunde-Banner-2.png" alt="Maatschappijkunde.nl" width="450" height="81" />
+        </a>
+        <nav class="primary-nav" aria-label="Hoofdmenu">
+          {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+        </nav>
+      </div>
     </header>
-    <main>
+
+    {breadcrumbs.length > 0 && (
+      <nav class="breadcrumbs" aria-label="Broodkruimelpad">
+        <ol>
+          {breadcrumbs.map((crumb, index) => (
+            <li>
+              {crumb.href && index < breadcrumbs.length - 1
+                ? <a href={crumb.href}>{crumb.label}</a>
+                : <span aria-current={index === breadcrumbs.length - 1 ? 'page' : undefined}>{crumb.label}</span>}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
+
+    <main class="page-shell">
       <slot />
     </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div>
+          <a class="footer-brand" href="/">Maatschappijkunde.nl</a>
+          <p>Examenstof, kerndoelen, begrippen en planning overzichtelijk bij elkaar voor leerlingen en docenten.</p>
+        </div>
+        <nav aria-label="Voettekstmenu">
+          {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+        </nav>
+      </div>
+    </footer>
   </body>
 </html>
 
 <style is:global>
   :root {
     color-scheme: light;
-    --text: #202124;
-    --muted: #5f6368;
-    --line: #d8dde3;
-    --accent: #0f766e;
-    --bg-soft: #f6f8fa;
+    --text: #172033;
+    --muted: #617085;
+    --line: #d9e1ea;
+    --accent: #2277c7;
+    --accent-dark: #155fa5;
+    --accent-soft: #eaf4ff;
+    --green: #16806a;
+    --amber: #b76b00;
+    --bg-soft: #f4f7fb;
+    --panel: #ffffff;
+    --shadow: 0 18px 45px rgba(22, 38, 60, 0.08);
   }
 
   body {
     margin: 0;
     color: var(--text);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    line-height: 1.6;
-    background: #fff;
+    line-height: 1.65;
+    background: #fbfcfe;
   }
 
   a {
     color: var(--accent);
+    text-underline-offset: 0.16em;
   }
 
   .site-header {
+    background: #4593e5;
+    border-bottom: 1px solid rgba(21, 95, 165, 0.22);
+  }
+
+  .site-header__inner {
     display: flex;
-    gap: 24px;
+    gap: 28px;
     align-items: center;
     justify-content: space-between;
-    padding: 16px max(20px, calc((100vw - 1040px) / 2));
-    border-bottom: 1px solid var(--line);
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 22px 24px;
   }
 
   .brand {
-    color: var(--text);
-    font-weight: 700;
-    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    min-width: 220px;
+    max-width: min(360px, 58vw);
   }
 
-  nav {
+  .brand img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .primary-nav,
+  .site-footer nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 8px;
   }
 
-  nav a {
-    color: var(--text);
+  .primary-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 650;
+    padding: 9px 12px;
+    border-radius: 8px;
+  }
+
+  .primary-nav a:hover,
+  .primary-nav a:focus-visible {
+    background: rgba(255, 255, 255, 0.16);
+    outline: none;
+  }
+
+  .breadcrumbs {
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    list-style: none;
+  }
+
+  .breadcrumbs li {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    color: var(--muted);
+    font-size: 0.94rem;
+  }
+
+  .breadcrumbs li + li::before {
+    content: "/";
+    color: #9aa8b8;
+  }
+
+  .breadcrumbs a {
+    color: var(--accent-dark);
     text-decoration: none;
   }
 
-  main {
-    max-width: 920px;
+  .page-shell {
+    max-width: 1180px;
     margin: 0 auto;
-    padding: 32px 20px 56px;
+    padding: 42px 24px 72px;
+  }
+
+  .content-page {
+    max-width: 900px;
+  }
+
+  .content-page__type {
+    margin: 0 0 10px;
+    color: var(--green);
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .content-page__intro {
+    max-width: 760px;
+    margin: 10px 0 28px;
+    color: var(--muted);
+    font-size: 1.12rem;
   }
 
   h1,
   h2,
   h3 {
     line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  h1 {
+    max-width: 900px;
+    margin: 0 0 22px;
+    font-size: clamp(2rem, 1.5rem + 1.4vw, 3rem);
+  }
+
+  h2 {
+    margin-top: 42px;
+    font-size: 1.55rem;
+  }
+
+  h3 {
+    margin-top: 30px;
+    font-size: 1.2rem;
+  }
+
+  p,
+  li {
+    max-width: 78ch;
   }
 
   img,
@@ -100,6 +244,8 @@ const {
     overflow-x: auto;
     border-collapse: collapse;
     margin: 24px 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
   }
 
   th,
@@ -110,11 +256,10 @@ const {
   }
 
   th {
-    background: var(--bg-soft);
+    background: #edf5ff;
     text-align: left;
   }
 
-  .meta,
   .notice {
     color: var(--muted);
   }
@@ -123,6 +268,7 @@ const {
     padding: 12px 14px;
     border: 1px solid var(--line);
     background: var(--bg-soft);
+    border-radius: 8px;
   }
 
   .wp-row,
@@ -131,6 +277,14 @@ const {
   .shortcode-panel,
   .legacy-content {
     display: flow-root;
+  }
+
+  .content-body {
+    font-size: 1.03rem;
+  }
+
+  .content-body > * + * {
+    margin-top: 1.05rem;
   }
 
   .legacy-module-list {
@@ -156,7 +310,213 @@ const {
   .toggle,
   .tab-section {
     margin: 18px 0;
-    padding: 14px;
+    padding: 16px;
     border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+  }
+
+  .home-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
+    gap: 28px;
+    align-items: center;
+    margin: -10px 0 38px;
+  }
+
+  .home-hero__copy {
+    max-width: 760px;
+  }
+
+  .home-eyebrow {
+    margin: 0 0 10px;
+    color: var(--green);
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .home-hero p {
+    color: var(--muted);
+    font-size: 1.13rem;
+  }
+
+  .home-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .button-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 8px;
+    background: var(--accent-dark);
+    color: #fff;
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .button-link.secondary {
+    background: #fff;
+    color: var(--accent-dark);
+    border: 1px solid var(--line);
+  }
+
+  .home-hero__panel,
+  .topic-card,
+  .quick-card {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+    box-shadow: var(--shadow);
+  }
+
+  .home-hero__panel {
+    padding: 22px;
+  }
+
+  .home-hero__panel h2 {
+    margin: 0 0 14px;
+    font-size: 1.12rem;
+  }
+
+  .home-hero__panel ul,
+  .link-list,
+  .topic-card ul {
+    padding-left: 1.15rem;
+  }
+
+  .home-section {
+    margin-top: 44px;
+  }
+
+  .section-heading {
+    display: flex;
+    gap: 20px;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+  }
+
+  .section-heading p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .topic-grid,
+  .quick-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+  }
+
+  .topic-card,
+  .quick-card {
+    display: grid;
+    gap: 10px;
+    padding: 18px;
+  }
+
+  .topic-card a,
+  .quick-card a {
+    color: var(--accent-dark);
+    font-weight: 760;
+    text-decoration: none;
+  }
+
+  .topic-card p,
+  .quick-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.96rem;
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--line);
+    background: #172033;
+    color: #dbe6f4;
+  }
+
+  .site-footer__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 28px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  .footer-brand {
+    color: #fff;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .site-footer p {
+    margin: 8px 0 0;
+    color: #b9c7d8;
+  }
+
+  .site-footer nav {
+    justify-content: end;
+  }
+
+  .site-footer a {
+    color: #fff;
+  }
+
+  @media (max-width: 760px) {
+    .site-footer__inner,
+    .home-hero {
+      grid-template-columns: 1fr;
+    }
+
+    .site-header__inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      padding-block: 18px;
+    }
+
+    .brand {
+      max-width: 300px;
+    }
+
+    .primary-nav {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: 100%;
+    }
+
+    .primary-nav a {
+      padding: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 0.95rem;
+    }
+
+    .page-shell {
+      padding: 32px 18px 56px;
+    }
+
+    .breadcrumbs ol {
+      padding-inline: 18px;
+    }
+
+    .section-heading {
+      display: block;
+    }
+
+    .site-footer nav {
+      justify-content: start;
+    }
   }
 </style>

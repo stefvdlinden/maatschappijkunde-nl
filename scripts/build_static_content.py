@@ -246,14 +246,85 @@ def clean_wordpress_blocks(content):
     text = content or ""
     text = re.sub(r"<!--\s*/?wp:[^>]*-->", "", text, flags=re.I)
     text = text.replace("<!--more-->", "").replace("<!--noteaser-->", "")
+    text = re.sub(r'<div class="embed-container embed-responsive embed-responsive-4by3">\s*</div>', "", text)
+    return text
+
+
+def remove_youtube(content):
+    text = content or ""
     text = re.sub(
-        r"(?<![\"'=])https?://youtu\.be/([A-Za-z0-9_-]+)(?:\?[^<\s]*)?",
-        r'<iframe src="https://www.youtube.com/embed/\1" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe>',
+        r"<figure\b[^>]*\b(?:is-provider-youtube|wp-block-embed-youtube|is-type-video)[^>]*>.*?</figure>",
+        "",
+        text,
+        flags=re.I | re.S
+    )
+    text = re.sub(
+        r"<iframe\b[^>]*\bsrc=[\"'][^\"']*(?:youtube\.com|youtube-nocookie\.com|youtu\.be)[^\"']*[\"'][^>]*>\s*</iframe>",
+        "",
         text,
         flags=re.I
     )
-    text = re.sub(r'<div class="embed-container embed-responsive embed-responsive-4by3">\s*</div>', "", text)
+    text = re.sub(
+        r"<a\b[^>]*\bhref=[\"'][^\"']*(?:youtube\.com|youtube-nocookie\.com|youtu\.be)[^\"']*[\"'][^>]*>.*?</a>",
+        "",
+        text,
+        flags=re.I | re.S
+    )
+    text = re.sub(r"(?<![\"'=])https?://(?:www\.)?(?:youtube\.com|youtube-nocookie\.com|youtu\.be)/[^<\s]+", "", text, flags=re.I)
+    text = re.sub(r'<div class="embed-container embed-responsive embed-responsive-4by3">\s*</div>', "", text, flags=re.I)
     return text
+
+
+def apply_text_corrections(content):
+    text = content or ""
+    replacements = [
+        (r"\bPressiemidelen\b", "Pressiemiddelen"),
+        (r"\bpressiemidelen\b", "pressiemiddelen"),
+        (r"\bHerstvakantie\b", "Herfstvakantie"),
+        (r"\bben\.t\b", "bent"),
+        (r"\bwerkelozen\b", "werklozen"),
+        (r"\bwerkeloze\b", "werkloze"),
+        (r"\bverlichtingen\b", "verplichtingen"),
+        (r"\bde vasten lasten\b", "de vaste lasten"),
+        (r"\bvasten lasten\b", "vaste lasten"),
+        (r"\bslechter Nederlandse spreken\b", "slechter Nederlands spreken"),
+        (r"\bhun goed aan een baan\b", "hen goed aan een baan"),
+        (r"\bOudere werknemer zijn\b", "Oudere werknemers zijn"),
+        (r"\bVrouwen werkte\b", "Vrouwen werkten"),
+        (r"\bAl hoewel\b", "Alhoewel"),
+        (r"\bal hoewel\b", "alhoewel"),
+        (r"\btegen over\b", "tegenover"),
+        (r"\ber voor kiezen\b", "ervoor kiezen"),
+        (r"\ber voor zorgen\b", "ervoor zorgen"),
+        (r"\bhet zelfde\b", "hetzelfde"),
+        (r"\beindexamen onderwerp\b", "eindexamenonderwerp"),
+        (r"\bexamen onderwerp\b", "examenonderwerp"),
+        (r"\bMaatschappelijk vraagstuk\b", "Maatschappelijk Vraagstuk"),
+        (r"\b/Beinvloedingstheorieen\b", "/ Beinvloedingstheorieen"),
+        (r"Geschreven uitleg,\s*video(?:'|&#x27;|’)?s,\s*slides", "Geschreven uitleg, slides"),
+        (r"geschreven uitleg,\s*video(?:'|&#x27;|’)?s,\s*slides", "geschreven uitleg, slides"),
+        (r"uitleg,\s*video(?:'|&#x27;|’)?s,\s*slides", "uitleg, slides"),
+        (r"Uitleg,\s*Video(?:'|&#x27;|’)?s,\s*Slides", "Uitleg, slides"),
+        (r"Geschreven uitleg,\s*Video(?:'|&#x27;|’)?s,\s*Slides", "Geschreven uitleg, slides"),
+        (r"Alle Geschreven uitleg,\s*Video(?:'|&#x27;|’)?s,\s*Slides", "Alle geschreven uitleg, slides"),
+        (r"met per onderwerp geschreven uitleg,\s*video(?:'|&#x27;|’)?s,\s*slides", "met per onderwerp geschreven uitleg, slides"),
+        (r"met per kerndoel\s*uitleg,\s*video(?:'|&#x27;|’)?s,\s*slides", "met per kerndoel uitleg, slides"),
+        (r":\s*Geschreven uitleg,\s*Video(?:'|&#x27;|’)?s,\s*Oefenvragen,\s*Slides", ": Geschreven uitleg, oefenvragen, slides")
+    ]
+    for pattern, replacement in replacements:
+        text = re.sub(pattern, replacement, text)
+    return text
+
+
+def improve_readability(content):
+    text = content or ""
+    text = re.sub(r"<p([^>]*)>\s*(?:&nbsp;|\s)*</p>", "", text, flags=re.I)
+    text = re.sub(r"<span[^>]*>(.*?)</span>", r"\1", text, flags=re.I | re.S)
+    text = re.sub(r'\sstyle="[^"]*"', "", text, flags=re.I)
+    text = re.sub(r"\r\n\r\n+", "\n\n", text)
+    text = re.sub(r"(?<!>)\n{2,}(?!<)", "</p><p>", text)
+    text = re.sub(r"<p>\s*</p>", "", text, flags=re.I)
+    return text.strip()
 
 
 def clean_empty_legacy_wrappers(content):
@@ -289,6 +360,96 @@ def html_link_list(items):
 
 def sorted_pages(items):
     return sorted(items, key=lambda p: (p["title"].lower(), p["url"]))
+
+
+def build_homepage(kb_overviews, pages_by_url):
+    featured_urls = [
+        "/kerndoelen/mensenwerk/",
+        "/kerndoelen/multiculturelesamenleving/",
+        "/kerndoelen/massamedia/",
+        "/kerndoelen/politiekenbeleid/",
+        "/kerndoelen/criminaliteit-en-rechtsstaat/",
+        "/kerndoelen/amv/"
+    ]
+    topic_cards = []
+    for url in featured_urls:
+        page = pages_by_url.get(url)
+        if not page:
+            continue
+        children = re.findall(r'<li><a href="([^"]+)">([^<]+)</a></li>', page.get("html") or "")
+        child_links = "".join(
+            f'<li><a href="{html.escape(href)}">{html.escape(clean_text(label))}</a></li>'
+            for href, label in children[:3]
+        )
+        if not child_links:
+            child_links = '<li><a href="/examenstof/">Bekijk de gekoppelde examenstof</a></li>'
+        topic_cards.append(
+            '<section class="topic-card">'
+            f'<a href="{html.escape(url)}">{html.escape(page["title"])}</a>'
+            '<p>Kerndoelen, uitleg en bijbehorende leerstof op een vaste URL.</p>'
+            f'<ul>{child_links}</ul>'
+            '</section>'
+        )
+
+    if len(topic_cards) < 6:
+        for page in kb_overviews:
+            if page["url"] in featured_urls:
+                continue
+            topic_cards.append(
+                '<section class="topic-card">'
+                f'<a href="{html.escape(page["url"])}">{html.escape(page["title"])}</a>'
+                '<p>Overzicht met gekoppelde examenstof en onderwerpen.</p>'
+                '</section>'
+            )
+            if len(topic_cards) >= 6:
+                break
+
+    quick_cards = [
+        ("/examenstof/", "Examenstof", "Start bij de onderwerpen en ga direct naar de juiste kerndoelen."),
+        ("/kerndoelen/", "Kerndoelen", "Alle oude en nieuwe kerndoeloverzichten blijven vindbaar."),
+        ("/begrippen/", "Begrippen", "Gebruik de begrippenlijst om termen snel terug te vinden."),
+        ("/planning/", "Planning", "Bekijk de bewaarde jaarplanningen en gekoppelde lessen."),
+        ("/downloads/", "Downloads", "Vind bestanden en aanvullend lesmateriaal op de oude URL."),
+        ("/leertips/", "Leertips", "Praktische verwijzingen voor leren, herhalen en voorbereiden.")
+    ]
+    quick_html = "".join(
+        '<section class="quick-card">'
+        f'<a href="{html.escape(url)}">{html.escape(title)}</a>'
+        f'<p>{html.escape(text)}</p>'
+        '</section>'
+        for url, title, text in quick_cards
+    )
+
+    return (
+        '<section class="home-hero">'
+        '<div class="home-hero__copy">'
+        '<p class="home-eyebrow">VMBO maatschappijleer 2</p>'
+        '<h1>Maatschappijkunde.nl</h1>'
+        '<p>Alle geconverteerde examenstof, kerndoelen, begrippen, planningen en downloads staan hier weer overzichtelijk bij elkaar. De oude URL\'s blijven behouden, maar de navigatie is rustiger en sneller te scannen.</p>'
+        '<div class="home-actions">'
+        '<a class="button-link" href="/examenstof/">Naar examenstof</a>'
+        '<a class="button-link secondary" href="/begrippen/">Begrippen zoeken</a>'
+        '</div>'
+        '</div>'
+        '<aside class="home-hero__panel" aria-label="Snel starten">'
+        '<h2>Snel starten</h2>'
+        '<ul>'
+        '<li><a href="/kerndoelen/mensenwerk/">Mens en Werk</a></li>'
+        '<li><a href="/kerndoelen/massamedia/">Massamedia</a></li>'
+        '<li><a href="/kerndoelen/politiekenbeleid/">Politiek en Beleid</a></li>'
+        '<li><a href="/kerndoelen/criminaliteit-en-rechtsstaat/">Criminaliteit en Rechtsstaat</a></li>'
+        '</ul>'
+        '</aside>'
+        '</section>'
+        '<section class="home-section">'
+        '<div class="section-heading"><div><h2>Belangrijkste onderwerpen</h2><p>De meest gebruikte ingangen naar de examenstof.</p></div><a href="/kerndoelen/">Alle kerndoelen</a></div>'
+        f'<div class="topic-grid">{"".join(topic_cards)}</div>'
+        '</section>'
+        '<section class="home-section">'
+        '<div class="section-heading"><div><h2>Verder op de site</h2><p>Vaste onderdelen voor leren, plannen en terugzoeken.</p></div></div>'
+        f'<div class="quick-grid">{quick_html}</div>'
+        '</section>'
+    )
 
 
 def write_redirect_files(redirects):
@@ -381,6 +542,9 @@ def main():
         converted, notes = convert_shortcodes(post.get("post_content") or "")
         converted = normalize_internal_urls(converted)
         converted = clean_wordpress_blocks(converted)
+        converted = remove_youtube(converted)
+        converted = apply_text_corrections(converted)
+        converted = improve_readability(converted)
         converted = clean_empty_legacy_wrappers(converted)
         title = normalize_title(post)
         page = {
@@ -463,7 +627,7 @@ def main():
             intro_text = (
                 f"Dit overzicht bundelt de examenstof en kerndoelen voor {term['name']}. "
                 "De pagina blijft beschikbaar op de oorspronkelijke URL en verwijst naar "
-                "de gekoppelde uitleg, opdrachten, slides, video's en downloads waar die "
+                "de gekoppelde uitleg, opdrachten, slides en downloads waar die "
                 "in de oude site aan dit onderwerp waren gekoppeld."
             )
         intro = f"<p>{html.escape(intro_text)}</p>"
@@ -489,6 +653,14 @@ def main():
 
     pages_by_url = {page["url"]: page for page in pages}
     kb_overviews = sorted_pages(page for page in pages if page.get("type") == "ht_kb_category")
+
+    root_page = pages_by_url.get("/")
+    if root_page:
+        root_page["title"] = "Maatschappijkunde.nl"
+        root_page["seoTitle"] = "Maatschappijkunde.nl"
+        root_page["description"] = "Alle examenstof, kerndoelen, begrippen, planningen en downloads voor maatschappijkunde overzichtelijk bij elkaar."
+        root_page["html"] = build_homepage(kb_overviews, pages_by_url)
+        root_page["plainText"] = clean_text(root_page["html"])
 
     def fill_existing_page(url, html_content, plain_text=None):
         page = pages_by_url.get(url)
@@ -622,7 +794,7 @@ def main():
     enhance_short_page(
         "/leertips/",
         "<p>Deze pagina verzamelt leertips en verwijzingen naar hulpmiddelen voor maatschappijleer "
-        "en maatschappijkunde. De bestaande downloads en links blijven behouden; aanvullend staan "
+        "en maatschappijkunde. De bestaande downloads en links blijven behouden. Aanvullend staan "
         "hieronder de belangrijkste examenstof- en kerndoeloverzichten.</p>"
         f"{overview_links}"
     )
@@ -633,6 +805,11 @@ def main():
         "belangrijkste interne overzichten.</p>"
         f"{html_link_list(pages_matching('/examenstof/', '/kerndoelen/', '/begrippen/'))}"
     )
+
+    for page in pages:
+        page["html"] = clean_empty_legacy_wrappers(improve_readability(apply_text_corrections(remove_youtube(page.get("html") or ""))))
+        page["description"] = clean_text(apply_text_corrections(page.get("description") or ""))
+        page["plainText"] = clean_text(page["html"])
 
     pages.sort(key=lambda p: (p["url"] != "/", p["url"]))
     (SITE / "pages.json").write_text(json.dumps(pages, ensure_ascii=False, indent=2), encoding="utf-8")
