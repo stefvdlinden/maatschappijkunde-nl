@@ -1,23 +1,7 @@
 {
   "glossary_terms": 239,
   "linked_schoolwoorden_urls": 239,
-  "matched_schoolwoorden_sitemap_urls": 236,
+  "matched_schoolwoorden_sitemap_urls": 239,
   "unmatched_terms": [],
-  "linked_from_existing_redirect": [
-    {
-      "title": "Coalitiepartijen",
-      "legacyUrl": "/begrippen/coalitiepartijen/",
-      "schoolwoordenUrl": "https://schoolwoorden.nl/begrip/coalitiepartijen"
-    },
-    {
-      "title": "Delicten",
-      "legacyUrl": "/begrippen/delicten/",
-      "schoolwoordenUrl": "https://schoolwoorden.nl/begrip/delicten"
-    },
-    {
-      "title": "Stereotypen",
-      "legacyUrl": "/begrippen/stereotypen/",
-      "schoolwoordenUrl": "https://schoolwoorden.nl/begrip/stereotypen"
-    }
-  ]
+  "linked_from_existing_redirect": []
 }

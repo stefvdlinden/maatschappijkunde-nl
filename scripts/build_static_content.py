@@ -87,6 +87,12 @@ EXTRA_REDIRECTS = [
         "status": "301",
         "source": "/planning/leerjaar4/",
         "target": "/examenstof/"
+    },
+    {
+        "line": "extra:removed-kerndoelen-index",
+        "status": "301",
+        "source": "/kerndoelen/",
+        "target": "/examenstof/"
     }
 ]
 LEGACY_MODULES = {}
@@ -95,8 +101,10 @@ TITLE_REWRITES = {
 }
 SCHOOLWOORDEN_CANONICAL_SLUGS = {
     "agenda-functie": "agendafunctie",
+    "coalitiepartijen": "coalitie",
     "commentaar-functie": "commentaarfunctie",
     "controlerende-functie": "controle-of-waakhondfunctie",
+    "delicten": "delict",
     "europese-parlement": "europees-parlement",
     "immateriele-schade": "immateriele-gevolgen",
     "informerende-functie": "informatiefunctie",
@@ -104,6 +112,7 @@ SCHOOLWOORDEN_CANONICAL_SLUGS = {
     "misdrijven": "misdrijf",
     "multi-step-flow-theorie": "multistepflowtheorie",
     "overtredingen": "overtreding",
+    "stereotypen": "stereotype",
     "terbeschikkingstelling-tbs": "tbs",
     "theorie-van-selectieve-perceptie": "theorie-van-de-selectieve-perceptie",
     "volksverzekeringen": "volksverzekering",
@@ -119,7 +128,7 @@ DOWNLOAD_ITEMS = [
     ("Analyse Maatschappelijk Vraagstuk - leertekst", "PDF", "/wp-content/uploads/2016/12/Analyse-Maatschappelijk-Vraagstuk-AMV-Kerndoel-1-tm-3.pdf"),
     ("Schema parlementaire democratie", "JPG", "/wp-content/uploads/2016/02/Nederlandse-Parlementaire-Democratie-A3.jpg"),
     ("Checklist CSE Maatschappijkunde 2018", "PDF", "/wp-content/uploads/2019/04/Checklist-CSE-Maatschappijkunde-2018.pdf"),
-    ("Check CSE Maatschappijleer 2 2017", "PDF", "/wp-content/uploads/2017/04/Check-CSE-Maatschappijleer-2-2017.pdf"),
+    ("Check CSE Maatschappijkunde 2017", "PDF", "/wp-content/uploads/2017/04/Check-CSE-Maatschappijleer-2-2017.pdf"),
     ("Massamedia - leertekst 2020", "PDF", "/wp-content/uploads/2020/03/3_Massamedia.pdf"),
     ("Multiculturele Samenleving - leertekst 2018", "PDF", "/wp-content/uploads/2018/12/Multiculturele-Samenleving-Kerndoel-1-tm-5-leertekst.pdf"),
     ("Mens en Werk - leertekst 2018", "PDF", "/wp-content/uploads/2018/12/Mens-en-Werk-Kerndoel-1-tm-6-leertekst.pdf"),
@@ -150,6 +159,15 @@ EXAMENSTOF_GROUPS = [
         "/kerndoelen/sociale-verschillen/",
     ]),
 ]
+
+TOPIC_EMOJIS_BY_URL = {
+    "/kerndoelen/mensenwerk/": "💼",
+    "/kerndoelen/multiculturelesamenleving/": "🌍",
+    "/kerndoelen/massamedia/": "📰",
+    "/kerndoelen/politiekenbeleid/": "🏛️",
+    "/kerndoelen/criminaliteit-en-rechtsstaat/": "⚖️",
+    "/kerndoelen/amv/": "🔎",
+}
 
 
 def read_csv(path):
@@ -372,6 +390,7 @@ def apply_text_corrections(content):
     text = content or ""
     replacements = [
         (r"\bTesktboekjes\b", "Tekstboekjes"),
+        (r"(?i)\bmaatschappijleer\s+2\b", "maatschappijkunde"),
         (r"\bwerplekken\b", "werkplekken"),
         (r"\bopzoek\b", "op zoek"),
         (r"\bVrijwilligers werk\b", "Vrijwilligerswerk"),
@@ -507,6 +526,27 @@ def html_link_list(items):
     return f"<ul>{''.join(links)}</ul>"
 
 
+def topic_title(title, url):
+    emoji = TOPIC_EMOJIS_BY_URL.get(url, "📚")
+    return f"{emoji} {clean_text(title)}"
+
+
+def render_topic_link(href, label):
+    text = clean_text(label)
+    text = re.sub(r"^(Kerndoel\s+\d+(?:\.\d+)?)(?=[A-ZÀ-ÖØ-Þ])", r"\1 - ", text)
+    match = re.match(r"^(Kerndoel\s+\d+(?:\.\d+)?)(?:\s*[-:]\s*(.*))?$", text, flags=re.I)
+    if match:
+        badge = match.group(1)
+        rest = match.group(2) or text
+        return (
+            f'<a class="topic-link" href="{html.escape(href)}">'
+            f'<strong class="topic-link__badge">{html.escape(badge)}</strong>'
+            f'<span>{html.escape(rest)}</span>'
+            '</a>'
+        )
+    return f'<a class="topic-link" href="{html.escape(href)}"><span>{html.escape(text)}</span></a>'
+
+
 def sorted_pages(items):
     return sorted(items, key=lambda p: (p["title"].lower(), p["url"]))
 
@@ -602,23 +642,7 @@ def build_glossary_page(glossary_terms):
             f'<div class="glossary-grid">{"".join(rows)}</div>'
             '</section>'
         )
-    linked = sum(1 for term in glossary_terms if term.get("schoolwoordenUrl"))
-    matched = sum(1 for term in glossary_terms if term.get("matchedSitemap"))
-    fallback_terms = [term for term in glossary_terms if term.get("schoolwoordenUrl") and not term.get("matchedSitemap")]
-    fallback_list = "".join(
-        f'<li>{html.escape(term["title"])} - <a href="{html.escape(term["schoolwoordenUrl"])}">{html.escape(term["schoolwoordenUrl"])}</a></li>'
-        for term in fallback_terms
-    )
-    fallback_details = (
-        '<details class="glossary-fallbacks">'
-        f'<summary>{len(fallback_terms)} koppelingen niet exact in de sitemap bevestigd</summary>'
-        f'<ul>{fallback_list}</ul>'
-        '</details>'
-    ) if fallback_terms else ""
     return (
-        '<p>Hieronder staan de begrippen uit de lesstof. Elk gekoppeld begrip verwijst naar Schoolwoorden.nl.</p>'
-        f'<p class="notice">Begrippen gekoppeld aan Schoolwoorden.nl: {linked} van {len(glossary_terms)}. Daarvan zijn {matched} koppelingen exact bevestigd in de sitemap.</p>'
-        f'{fallback_details}'
         f'<nav class="glossary-index" aria-label="Begrippen op letter">{nav_letters}</nav>'
         f'{"".join(sections)}'
     )
@@ -664,13 +688,10 @@ def build_examenstof_page(kb_overviews, pages_by_url):
                 continue
             used.add(url)
             links = re.findall(r'<li><a href="([^"]+)">([^<]+)</a></li>', page.get("html") or "")
-            child_links = "".join(
-                f'<li><a href="{html.escape(href)}">{html.escape(clean_text(label))}</a></li>'
-                for href, label in links
-            )
+            child_links = "".join(f'<li>{render_topic_link(href, label)}</li>' for href, label in links)
             cards.append(
                 '<article class="subject-card">'
-                f'<h2><a href="{html.escape(url)}">{html.escape(page["title"])}</a></h2>'
+                f'<h2><a href="{html.escape(url)}">{html.escape(topic_title(page["title"], url))}</a></h2>'
                 f'<ul>{child_links}</ul>'
                 '</article>'
             )
@@ -703,15 +724,12 @@ def build_homepage(kb_overviews, pages_by_url):
         if not page:
             continue
         children = re.findall(r'<li><a href="([^"]+)">([^<]+)</a></li>', page.get("html") or "")
-        child_links = "".join(
-            f'<li><a href="{html.escape(href)}">{html.escape(clean_text(label))}</a></li>'
-            for href, label in children[:3]
-        )
+        child_links = "".join(f'<li>{render_topic_link(href, label)}</li>' for href, label in children)
         if not child_links:
-            child_links = '<li><a href="/examenstof/">Bekijk de gekoppelde examenstof</a></li>'
+            child_links = '<li><a class="topic-link" href="/examenstof/"><span>Bekijk de gekoppelde examenstof</span></a></li>'
         topic_cards.append(
             '<section class="topic-card">'
-            f'<a href="{html.escape(url)}">{html.escape(page["title"])}</a>'
+            f'<a class="topic-card__title" href="{html.escape(url)}">{html.escape(topic_title(page["title"], url))}</a>'
             f'<ul>{child_links}</ul>'
             '</section>'
         )
@@ -722,7 +740,7 @@ def build_homepage(kb_overviews, pages_by_url):
                 continue
             topic_cards.append(
                 '<section class="topic-card">'
-                f'<a href="{html.escape(page["url"])}">{html.escape(page["title"])}</a>'
+                f'<a class="topic-card__title" href="{html.escape(page["url"])}">{html.escape(topic_title(page["title"], page["url"]))}</a>'
                 '</section>'
             )
             if len(topic_cards) >= 6:
@@ -730,7 +748,6 @@ def build_homepage(kb_overviews, pages_by_url):
 
     quick_cards = [
         ("/examenstof/", "Examenstof"),
-        ("/kerndoelen/", "Kerndoelen"),
         ("/begrippen/", "Begrippen"),
         ("/downloads/", "Downloads")
     ]
@@ -744,7 +761,7 @@ def build_homepage(kb_overviews, pages_by_url):
     return (
         '<section class="home-hero">'
         '<div class="home-hero__copy">'
-        '<p class="home-eyebrow">VMBO maatschappijleer 2</p>'
+        '<p class="home-eyebrow">VMBO maatschappijkunde</p>'
         '<h1>Maatschappijkunde.nl</h1>'
         '<p>Examenstof, kerndoelen, begrippen en downloads voor maatschappijkunde en maatschappijleer.</p>'
         '<div class="home-actions">'
@@ -764,7 +781,7 @@ def build_homepage(kb_overviews, pages_by_url):
         '</aside>'
         '</section>'
         '<section class="home-section">'
-        '<div class="section-heading"><div><h2>Belangrijkste onderwerpen</h2></div><a href="/kerndoelen/">Alle kerndoelen</a></div>'
+        '<div class="section-heading"><div><h2>📚 Belangrijkste onderwerpen</h2></div><a href="/examenstof/">Alle examenstof</a></div>'
         f'<div class="topic-grid">{"".join(topic_cards)}</div>'
         '</section>'
         '<section class="home-section">'

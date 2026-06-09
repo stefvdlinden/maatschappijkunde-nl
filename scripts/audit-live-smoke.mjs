@@ -9,7 +9,7 @@ const auth = process.env.MK_DEV_AUTH || process.env.MK_LIVE_AUTH || '';
 const pageChecks = [
   '/',
   '/examenstof/',
-  '/kerndoelen/',
+  '/kerndoelen/mensenwerk/',
   '/begrippen/',
   '/downloads/',
   '/examenstof/amv-kerndoel1/',
@@ -34,6 +34,11 @@ const redirectChecks = [
     path: '/begrippen/reageerakkoord/',
     expectedStatus: 301,
     expectedLocation: 'https://schoolwoorden.nl/begrip/regeerakkoord/'
+  },
+  {
+    path: '/kerndoelen/',
+    expectedStatus: 301,
+    expectedLocation: '/examenstof/'
   },
   {
     path: '/politiekenbeleid-kerndoel1-1/',

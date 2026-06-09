@@ -14,6 +14,14 @@ const title = page.seoTitle || page.title || 'Maatschappijkunde.nl';
 const description = page.description || undefined;
 const isHome = page.url === '/';
 const pagesByUrl = new Map(pages.map((item) => [item.url, item]));
+const normalizeText = (value = '') => value
+  .replace(/<[^>]*>/g, ' ')
+  .replace(/\s+/g, ' ')
+  .trim()
+  .toLowerCase();
+const descriptionText = normalizeText(description || '');
+const bodyText = normalizeText(page.html || page.plainText || '');
+const showIntro = Boolean(descriptionText) && !bodyText.includes(descriptionText);
 
 const labelFromSegment = (segment) => segment
   .split('-')
@@ -49,7 +57,7 @@ const breadcrumbs = buildBreadcrumbs(page);
     <article class="content-page legacy-content">
       <p class="content-page__type">{page.typeLabel}</p>
       <h1>{page.title}</h1>
-      {description && <p class="content-page__intro">{description}</p>}
+      {showIntro && <p class="content-page__intro">{description}</p>}
       {page.html && <div class="content-body" set:html={page.html} />}
     </article>
   )}

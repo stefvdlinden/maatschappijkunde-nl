@@ -45,7 +45,7 @@
     "line": "108",
     "status": "301",
     "source": "/begrippen/coalitiepartijen/",
-    "target": "https://schoolwoorden.nl/begrip/coalitiepartijen/"
+    "target": "https://schoolwoorden.nl/begrip/coalitie/"
   },
   {
     "line": "109",
@@ -423,7 +423,7 @@
     "line": "171",
     "status": "301",
     "source": "/begrippen/delicten/",
-    "target": "https://schoolwoorden.nl/begrip/delicten/"
+    "target": "https://schoolwoorden.nl/begrip/delict/"
   },
   {
     "line": "172",
@@ -1203,7 +1203,7 @@
     "line": "301",
     "status": "301",
     "source": "/begrippen/stereotypen/",
-    "target": "https://schoolwoorden.nl/begrip/stereotypen/"
+    "target": "https://schoolwoorden.nl/begrip/stereotype/"
   },
   {
     "line": "302",
@@ -1467,6 +1467,12 @@
     "line": "extra:removed-planning",
     "status": "301",
     "source": "/planning/leerjaar4/",
+    "target": "/examenstof/"
+  },
+  {
+    "line": "extra:removed-kerndoelen-index",
+    "status": "301",
+    "source": "/kerndoelen/",
     "target": "/examenstof/"
   }
 ]

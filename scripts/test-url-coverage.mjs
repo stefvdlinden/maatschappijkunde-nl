@@ -42,7 +42,7 @@ const redirects = readJson('../data/site/redirects.json');
 const urlInventory = readCsv('../data/generated/url-inventory.csv');
 const pageUrls = new Set(pages.map((page) => page.url));
 const redirectSources = new Set(redirects.map((redirect) => redirect.source));
-const removedStaticPages = new Set(['/planning/', '/planning/leerjaar3/', '/planning/leerjaar4/']);
+const removedStaticPages = new Set(['/planning/', '/planning/leerjaar3/', '/planning/leerjaar4/', '/kerndoelen/']);
 
 for (const row of urlInventory) {
   const url = row.url;

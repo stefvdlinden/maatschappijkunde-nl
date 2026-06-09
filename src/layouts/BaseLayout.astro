@@ -1,13 +1,12 @@
 ---
 const {
   title = 'Maatschappijkunde.nl',
-  description = 'Alle examenstof van het VMBO examenvak maatschappijleer 2.',
+  description = 'Alle examenstof van het VMBO examenvak maatschappijkunde.',
   breadcrumbs = []
 } = Astro.props;
 
 const navItems = [
   { href: '/examenstof/', label: 'Examenstof' },
-  { href: '/kerndoelen/', label: 'Kerndoelen' },
   { href: '/begrippen/', label: 'Begrippen' },
   { href: '/downloads/', label: 'Downloads' }
 ];
@@ -58,7 +57,7 @@ const navItems = [
       <div class="site-footer__inner">
         <div>
           <a class="footer-brand" href="/">Maatschappijkunde.nl</a>
-          <p>Examenstof, kerndoelen, begrippen en downloads overzichtelijk bij elkaar voor leerlingen en docenten.</p>
+          <p>Examenstof, begrippen en downloads overzichtelijk bij elkaar voor leerlingen en docenten.</p>
           <p class="footer-credit">De oorspronkelijke inhoud is gemaakt door Wessel Peeters. Stef van der Linden heeft de inhoud overgenomen om deze beschikbaar te houden.</p>
         </div>
         <nav aria-label="Voettekstmenu">
@@ -445,8 +444,7 @@ const navItems = [
   }
 
   .home-hero__panel ul,
-  .link-list,
-  .topic-card ul {
+  .link-list {
     padding-left: 1.15rem;
   }
 
@@ -492,11 +490,61 @@ const navItems = [
     padding: 18px;
   }
 
-  .topic-card a,
+  .topic-card__title,
   .quick-card a {
     color: var(--accent-dark);
     font-weight: 760;
     text-decoration: none;
+  }
+
+  .topic-card ul,
+  .subject-card ul {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .topic-card li,
+  .subject-card li {
+    max-width: none;
+  }
+
+  .topic-link {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 9px;
+    align-items: start;
+    padding: 9px 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--bg-soft);
+    color: var(--text);
+    font-weight: 640;
+    line-height: 1.35;
+    text-decoration: none;
+  }
+
+  .topic-link:hover,
+  .topic-link:focus-visible {
+    border-color: #b9d3ee;
+    background: #fff;
+    outline: none;
+  }
+
+  .topic-link__badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 22px;
+    padding: 1px 7px;
+    border: 1px solid #c8ddf2;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--accent-dark);
+    font-size: 0.78rem;
+    font-weight: 800;
+    white-space: nowrap;
   }
 
   .topic-card p,
@@ -554,11 +602,6 @@ const navItems = [
 
   .subject-group {
     margin-top: 34px;
-  }
-
-  .subject-card ul {
-    margin: 0;
-    padding-left: 1.1rem;
   }
 
   .glossary-fallbacks {

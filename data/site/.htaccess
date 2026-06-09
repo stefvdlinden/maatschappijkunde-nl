@@ -7,7 +7,7 @@ Redirect 301 /begrippen/begroting/ https://schoolwoorden.nl/begrip/begroting/
 Redirect 301 /begrippen/algemene-beschouwingen/ https://schoolwoorden.nl/begrip/algemene-beschouwingen/
 Redirect 301 /begrippen/burgemeester/ https://schoolwoorden.nl/begrip/burgemeester/
 Redirect 301 /begrippen/college-burgemeester-en-wethouders/ https://schoolwoorden.nl/begrip/college-van-burgemeester-en-wethouders
-Redirect 301 /begrippen/coalitiepartijen/ https://schoolwoorden.nl/begrip/coalitiepartijen/
+Redirect 301 /begrippen/coalitiepartijen/ https://schoolwoorden.nl/begrip/coalitie/
 Redirect 301 /begrippen/commissaris-van-de-koning/ https://schoolwoorden.nl/begrip/commissaris-van-de-koning/
 Redirect 301 /begrippen/dictatuur/ https://schoolwoorden.nl/begrip/dictatuur/
 Redirect 301 /begrippen/gemeenteraad/ https://schoolwoorden.nl/begrip/gemeenteraad/
@@ -70,7 +70,7 @@ Redirect 301 /begrippen/criminaliteit/ https://schoolwoorden.nl/begrip/criminali
 Redirect 301 /begrippen/wetboek-van-strafrecht/ https://schoolwoorden.nl/begrip/wetboek-van-strafrecht/
 Redirect 301 /begrippen/overtredingen/ https://schoolwoorden.nl/begrip/overtreding/
 Redirect 301 /begrippen/misdrijven/ https://schoolwoorden.nl/begrip/misdrijf/
-Redirect 301 /begrippen/delicten/ https://schoolwoorden.nl/begrip/delicten/
+Redirect 301 /begrippen/delicten/ https://schoolwoorden.nl/begrip/delict/
 Redirect 301 /begrippen/materiele-schade/ https://schoolwoorden.nl/begrip/materiele-gevolgen/
 Redirect 301 /begrippen/immateriele-schade/ https://schoolwoorden.nl/begrip/immateriele-gevolgen/
 Redirect 301 /begrippen/sector-kanton/ https://schoolwoorden.nl/begrip/sector-kanton/
@@ -200,7 +200,7 @@ Redirect 301 /begrippen/vreemdelingenidentiteisbewijs/ https://schoolwoorden.nl/
 Redirect 301 /begrippen/sociale-ongelijkheid/ https://schoolwoorden.nl/begrip/sociale-ongelijkheid/
 Redirect 301 /begrippen/eigenrichting/ https://schoolwoorden.nl/begrip/eigenrichting/
 Redirect 301 /begrippen/vermogenscriminaliteit/ https://schoolwoorden.nl/begrip/vermogenscriminaliteit/
-Redirect 301 /begrippen/stereotypen/ https://schoolwoorden.nl/begrip/stereotypen/
+Redirect 301 /begrippen/stereotypen/ https://schoolwoorden.nl/begrip/stereotype/
 Redirect 301 /begrippen/minderheidskabinet/ https://schoolwoorden.nl/begrip/minderheidskabinet/
 Redirect 301 /begrippen/amusementsfunctie/ https://schoolwoorden.nl/begrip/amusementsfunctie/
 Redirect 301 /begrippen/burgerinitiatief/ https://schoolwoorden.nl/begrip/burgerinitiatief/
@@ -245,6 +245,7 @@ Redirect 301 /ciminaliteitenrechtsstaat-kerndoel1/ /examenstof/criminaliteitenre
 Redirect 301 /planning/ /examenstof/
 Redirect 301 /planning/leerjaar3/ /examenstof/
 Redirect 301 /planning/leerjaar4/ /examenstof/
+Redirect 301 /kerndoelen/ /examenstof/
 
 <IfModule mod_headers.c>
   Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
