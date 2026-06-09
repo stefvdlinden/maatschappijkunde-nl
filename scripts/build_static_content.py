@@ -93,6 +93,23 @@ LEGACY_MODULES = {}
 TITLE_REWRITES = {
     ("1029", "???? Analyse Maatschappelijk Vraagstuk"): "Analyse Maatschappelijk Vraagstuk"
 }
+SCHOOLWOORDEN_CANONICAL_SLUGS = {
+    "agenda-functie": "agendafunctie",
+    "commentaar-functie": "commentaarfunctie",
+    "controlerende-functie": "controle-of-waakhondfunctie",
+    "europese-parlement": "europees-parlement",
+    "immateriele-schade": "immateriele-gevolgen",
+    "informerende-functie": "informatiefunctie",
+    "materiele-schade": "materiele-gevolgen",
+    "misdrijven": "misdrijf",
+    "multi-step-flow-theorie": "multistepflowtheorie",
+    "overtredingen": "overtreding",
+    "terbeschikkingstelling-tbs": "tbs",
+    "theorie-van-selectieve-perceptie": "theorie-van-de-selectieve-perceptie",
+    "volksverzekeringen": "volksverzekering",
+    "wet-economische-delicten": "wet-op-de-economische-delicten",
+    "zwevende-kiezer": "zwevende-kiezers",
+}
 DOWNLOAD_ITEMS = [
     ("Mens en Werk - leertekst", "PDF", "/wp-content/uploads/2016/12/Mens-en-Werk-Kerndoel-1-tm-6-leertekst.pdf"),
     ("Multiculturele Samenleving - leertekst", "PDF", "/wp-content/uploads/2016/12/Multiculturele-Samenleving-Kerndoel-1-tm-5-leertekst.pdf"),
@@ -302,6 +319,22 @@ def normalize_internal_urls(content):
     return text
 
 
+def canonicalize_schoolwoorden_url(url):
+    text = url or ""
+    for old_slug, new_slug in SCHOOLWOORDEN_CANONICAL_SLUGS.items():
+        text = re.sub(
+            rf"(?P<prefix>https://schoolwoorden\.nl/begrip/|/begrip/){re.escape(old_slug)}(?P<suffix>/?)(?=$|[\"'<\s])",
+            rf"\g<prefix>{new_slug}\g<suffix>",
+            text,
+            flags=re.I
+        )
+    return text
+
+
+def canonicalize_schoolwoorden_links(content):
+    return canonicalize_schoolwoorden_url(content or "")
+
+
 def clean_wordpress_blocks(content):
     text = content or ""
     text = re.sub(r"<!--\s*/?wp:[^>]*-->", "", text, flags=re.I)
@@ -508,6 +541,7 @@ def build_glossary_terms(posts, posts_by_id, redirect_by_source, schoolwoorden_u
         legacy_url = rel_url(post, posts_by_id)
         legacy_slug = legacy_url.strip("/").split("/")[-1]
         redirect_target = (redirect_by_source.get(legacy_url) or "").rstrip("/")
+        redirect_target = canonicalize_schoolwoorden_url(redirect_target)
         redirect_slug = redirect_target.rsplit("/", 1)[-1].lower() if "schoolwoorden.nl/begrip/" in redirect_target else ""
         title_slug = slugify_text(title)
         sitemap_url = (
@@ -516,6 +550,7 @@ def build_glossary_terms(posts, posts_by_id, redirect_by_source, schoolwoorden_u
             or schoolwoorden_urls.get(title_slug)
         )
         schoolwoorden_url = sitemap_url or redirect_target
+        schoolwoorden_url = canonicalize_schoolwoorden_url(schoolwoorden_url)
         raw_definition, _ = convert_shortcodes(post.get("post_content") or "")
         raw_definition = normalize_internal_urls(raw_definition)
         raw_definition = clean_wordpress_blocks(raw_definition)
@@ -721,6 +756,7 @@ def build_homepage(kb_overviews, pages_by_url):
         '<h2>Snel starten</h2>'
         '<ul>'
         '<li><a href="/kerndoelen/mensenwerk/">Mens en Werk</a></li>'
+        '<li><a href="/kerndoelen/multiculturelesamenleving/">Multiculturele Samenleving</a></li>'
         '<li><a href="/kerndoelen/massamedia/">Massamedia</a></li>'
         '<li><a href="/kerndoelen/politiekenbeleid/">Politiek en Beleid</a></li>'
         '<li><a href="/kerndoelen/criminaliteit-en-rechtsstaat/">Criminaliteit en Rechtsstaat</a></li>'
@@ -809,6 +845,8 @@ def main():
     LEGACY_MODULES = extract_legacy_modules(meta_by_post)
 
     redirects = read_csv(GENERATED / "redirects.csv")
+    for redirect in redirects:
+        redirect["target"] = canonicalize_schoolwoorden_url(redirect.get("target") or "")
     known_redirect_sources = {redirect["source"] for redirect in redirects}
     redirects.extend(
         redirect for redirect in EXTRA_REDIRECTS
@@ -830,6 +868,7 @@ def main():
         meta = meta_by_post.get(str(post.get("ID")), {})
         converted, notes = convert_shortcodes(post.get("post_content") or "")
         converted = normalize_internal_urls(converted)
+        converted = canonicalize_schoolwoorden_links(converted)
         converted = clean_wordpress_blocks(converted)
         converted = remove_youtube(converted)
         converted = apply_text_corrections(converted)
@@ -1093,7 +1132,7 @@ def main():
     )
 
     for page in pages:
-        page["html"] = clean_empty_legacy_wrappers(convert_strong_lists(improve_readability(apply_text_corrections(remove_youtube(page.get("html") or "")))))
+        page["html"] = clean_empty_legacy_wrappers(canonicalize_schoolwoorden_links(convert_strong_lists(improve_readability(apply_text_corrections(remove_youtube(page.get("html") or ""))))))
         page["description"] = clean_text(apply_text_corrections(page.get("description") or ""))
         page["plainText"] = clean_text(page["html"])
 

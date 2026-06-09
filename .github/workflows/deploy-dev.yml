@@ -1,9 +1,6 @@
 name: Deploy dev site to TransIP
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 concurrency:

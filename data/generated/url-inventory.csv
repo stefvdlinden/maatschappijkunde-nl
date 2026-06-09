@@ -2,7 +2,7 @@ url,content_type,title,source_content,in_sitemap,sitemap,lastmod,redirect_status
 /,,,,yes,post-sitemap.xml,2025-10-26 09:52 +00:00,,,1,3832,investigate - sitemap URL not matched to extracted content
 /begrippen/,page,Begrippenlijst,yes,yes,page-sitemap.xml,2016-06-26 17:22 +00:00,,,13,495,preserve as static page
 /begrippen/advocaat/,glossary,Advocaat,yes,,,,301,https://schoolwoorden.nl/begrip/advocaat/,,,keep redirect
-/begrippen/agenda-functie/,glossary,Agenda functie,yes,,,,301,https://schoolwoorden.nl/begrip/agenda-functie/,90,17,keep redirect
+/begrippen/agenda-functie/,glossary,Agenda functie,yes,,,,301,https://schoolwoorden.nl/begrip/agendafunctie/,90,17,keep redirect
 /begrippen/agendatheorie/,glossary,Agendatheorie,yes,,,,301,https://schoolwoorden.nl/begrip/agendatheorie/,38,156,keep redirect
 /begrippen/algemene-beschouwingen/,glossary,Algemene Beschouwingen,yes,,,,301,https://schoolwoorden.nl/begrip/algemene-beschouwingen/,,,keep redirect
 /begrippen/allochtoon/,glossary,Allochtoon,yes,,,,301,https://schoolwoorden.nl/begrip/allochtoon/,,,keep redirect
@@ -34,12 +34,12 @@ url,content_type,title,source_content,in_sitemap,sitemap,lastmod,redirect_status
 /begrippen/collectieve-arbeidsovereenkomst/,glossary,Collectieve arbeidsovereenkomst,yes,,,,301,https://schoolwoorden.nl/begrip/collectieve-arbeidsovereenkomst/,,,keep redirect
 /begrippen/college-burgemeester-en-wethouders/,glossary,College van B en W,yes,,,,301,https://schoolwoorden.nl/begrip/college-van-burgemeester-en-wethouders,,,keep redirect
 /begrippen/collegeakkoord/,glossary,Collegeakkoord,yes,,,,301,https://schoolwoorden.nl/begrip/collegeakkoord/,,,keep redirect
-/begrippen/commentaar-functie/,glossary,Commentaar functie,yes,,,,301,https://schoolwoorden.nl/begrip/commentaar-functie/,,,keep redirect
+/begrippen/commentaar-functie/,glossary,Commentaar functie,yes,,,,301,https://schoolwoorden.nl/begrip/commentaarfunctie/,,,keep redirect
 /begrippen/commissaris-van-de-koning/,glossary,Commissaris van de Koning,yes,,,,301,https://schoolwoorden.nl/begrip/commissaris-van-de-koning/,,,keep redirect
 /begrippen/conjuncturele-werkloosheid/,glossary,Conjuncturele werkloosheid,yes,,,,301,https://schoolwoorden.nl/begrip/conjuncturele-werkloosheid/,,,keep redirect
 /begrippen/constitutionele-monarchie/,glossary,Constitutionele Monarchie,yes,,,,301,https://schoolwoorden.nl/begrip/constitutionele-monarchie/,,,keep redirect
 /begrippen/consulterend-leiderschap/,glossary,Consulterend leiderschap,yes,,,,301,https://schoolwoorden.nl/begrip/consulterend-leiderschap/,,,keep redirect
-/begrippen/controlerende-functie/,glossary,Controlerende functie,yes,,,,301,https://schoolwoorden.nl/begrip/controlerende-functie/,77,27,keep redirect
+/begrippen/controlerende-functie/,glossary,Controlerende functie,yes,,,,301,https://schoolwoorden.nl/begrip/controle-of-waakhondfunctie/,77,27,keep redirect
 /begrippen/criminaliteit/,glossary,Criminaliteit,yes,,,,301,https://schoolwoorden.nl/begrip/criminaliteit/,50,72,keep redirect
 /begrippen/cultuur/,glossary,Cultuur,yes,,,,301,https://schoolwoorden.nl/begrip/cultuur/,99,13,keep redirect
 /begrippen/cultuuroverdracht/,glossary,Cultuuroverdracht,yes,,,,301,https://schoolwoorden.nl/begrip/cultuuroverdracht/,55,55,keep redirect
@@ -59,7 +59,7 @@ url,content_type,title,source_content,in_sitemap,sitemap,lastmod,redirect_status
 /begrippen/europese-commissie/,glossary,Europese Commissie,yes,,,,301,https://schoolwoorden.nl/begrip/europese-commissie/,,,keep redirect
 /begrippen/europese-gemeenschap-kolen-en-staal/,glossary,Europese Gemeenschap voor Kolen en Staal,yes,,,,301,https://schoolwoorden.nl/begrip/europese-gemeenschap-voor-kolen-en-staal,,,keep redirect
 /begrippen/europese-gemeenschap/,glossary,Europese Gemeenschap,yes,,,,301,https://schoolwoorden.nl/begrip/europese-gemeenschap/,,,keep redirect
-/begrippen/europese-parlement/,glossary,Europese Parlement,yes,,,,301,https://schoolwoorden.nl/begrip/europese-parlement/,,,keep redirect
+/begrippen/europese-parlement/,glossary,Europese Parlement,yes,,,,301,https://schoolwoorden.nl/begrip/europees-parlement/,,,keep redirect
 /begrippen/europese-raad/,glossary,Europese Raad,yes,,,,301,https://schoolwoorden.nl/begrip/europese-raad/,,,keep redirect
 /begrippen/europese-unie/,glossary,Europese Unie,yes,,,,301,https://schoolwoorden.nl/begrip/europese-unie/,,,keep redirect
 /begrippen/fouilleren/,glossary,Fouilleren,yes,,,,301,https://schoolwoorden.nl/begrip/fouilleren/,,,keep redirect
@@ -78,13 +78,13 @@ url,content_type,title,source_content,in_sitemap,sitemap,lastmod,redirect_status
 /begrippen/hoge-raad/,glossary,Hoge Raad,yes,,,,301,https://schoolwoorden.nl/begrip/hoge-raad/,,,keep redirect
 /begrippen/hoger-beroep/,glossary,Hoger beroep,yes,,,,301,https://schoolwoorden.nl/begrip/hoger-beroep/,,,keep redirect
 /begrippen/ik-cultuur/,glossary,Ik-cultuur,yes,,,,301,https://schoolwoorden.nl/begrip/ik-cultuur/,81,20,keep redirect
-/begrippen/immateriele-schade/,glossary,Immateriële schade,yes,,,,301,https://schoolwoorden.nl/begrip/immateriele-schade/,,,keep redirect
+/begrippen/immateriele-schade/,glossary,Immateriële schade,yes,,,,301,https://schoolwoorden.nl/begrip/immateriele-gevolgen/,,,keep redirect
 /begrippen/immigratiebeleid/,glossary,Immigratiebeleid,yes,,,,301,https://schoolwoorden.nl/begrip/immigratiebeleid/,,,keep redirect
 /begrippen/inburgeren/,glossary,Inburgeren,yes,,,,301,https://schoolwoorden.nl/begrip/inburgeren/,,,keep redirect
 /begrippen/indirecte-verkiezingen/,glossary,Indirecte Verkiezingen,yes,,,,301,https://schoolwoorden.nl/begrip/indirecte-verkiezingen/,56,55,keep redirect
 /begrippen/indoctrinatie/,glossary,Indoctrinatie,yes,,,,301,https://schoolwoorden.nl/begrip/indoctrinatie/,,,keep redirect
 /begrippen/informatisering/,glossary,Informatisering,yes,,,,301,https://schoolwoorden.nl/begrip/informatisering/,,,keep redirect
-/begrippen/informerende-functie/,glossary,Informerende functie,yes,,,,301,https://schoolwoorden.nl/begrip/informerende-functie/,,,keep redirect
+/begrippen/informerende-functie/,glossary,Informerende functie,yes,,,,301,https://schoolwoorden.nl/begrip/informatiefunctie/,,,keep redirect
 /begrippen/injectienaaldtheorie/,glossary,Injectienaaldtheorie,yes,,,,301,https://schoolwoorden.nl/begrip/injectienaaldtheorie/,16,334,keep redirect
 /begrippen/integratie/,glossary,Integratie,yes,,,,301,https://schoolwoorden.nl/begrip/integreren/,,,keep redirect
 /begrippen/integratiebeleid/,glossary,Integratiebeleid,yes,,,,301,https://schoolwoorden.nl/begrip/integratiebeleid/,,,keep redirect
@@ -108,7 +108,7 @@ url,content_type,title,source_content,in_sitemap,sitemap,lastmod,redirect_status
 /begrippen/machtenscheiding/,glossary,Machtenscheiding,yes,,,,301,https://schoolwoorden.nl/begrip/machtenscheiding/,,,keep redirect
 /begrippen/machtiging-tot-voorlopig-verblijf/,glossary,Machtiging tot Voorlopig Verblijf,yes,,,,301,https://schoolwoorden.nl/begrip/machtiging-tot-voorlopig-verblijf/,,,keep redirect
 /begrippen/manipulatie/,glossary,Manipulatie,yes,,,,301,https://schoolwoorden.nl/begrip/manipulatie/,,,keep redirect
-/begrippen/materiele-schade/,glossary,Materiële schade,yes,,,,301,https://schoolwoorden.nl/begrip/materiele-schade/,,,keep redirect
+/begrippen/materiele-schade/,glossary,Materiële schade,yes,,,,301,https://schoolwoorden.nl/begrip/materiele-gevolgen/,,,keep redirect
 /begrippen/mechanisering/,glossary,Mechanisering,yes,,,,301,https://schoolwoorden.nl/begrip/mechanisering/,,,keep redirect
 /begrippen/medezeggenschap/,glossary,Medezeggenschap,yes,,,,301,https://schoolwoorden.nl/begrip/medezeggenschap/,,,keep redirect
 /begrippen/medezeggenschapsraad/,glossary,Medezeggenschapsraad,yes,,,,301,https://schoolwoorden.nl/begrip/medezeggenschapsraad/,,,keep redirect
@@ -119,9 +119,9 @@ url,content_type,title,source_content,in_sitemap,sitemap,lastmod,redirect_status
 /begrippen/minister-president/,glossary,Minister President,yes,,,,301,https://schoolwoorden.nl/begrip/minister-president/,,,keep redirect
 /begrippen/minister/,glossary,Minister,yes,,,,301,https://schoolwoorden.nl/begrip/minister/,,,keep redirect
 /begrippen/ministeriele-verantwoordelijkheid/,glossary,Ministeriële verantwoordelijkheid,yes,,,,301,https://schoolwoorden.nl/begrip/ministeriele-verantwoordelijkheid/,,,keep redirect
-/begrippen/misdrijven/,glossary,Misdrijven,yes,,,,301,https://schoolwoorden.nl/begrip/misdrijven/,,,keep redirect
+/begrippen/misdrijven/,glossary,Misdrijven,yes,,,,301,https://schoolwoorden.nl/begrip/misdrijf/,,,keep redirect
 /begrippen/moederland/,glossary,Moederland,yes,,,,301,https://schoolwoorden.nl/begrip/moederland/,,,keep redirect
-/begrippen/multi-step-flow-theorie/,glossary,Multi-step-flow theorie,yes,,,,301,https://schoolwoorden.nl/begrip/multi-step-flow-theorie/,36,162,keep redirect
+/begrippen/multi-step-flow-theorie/,glossary,Multi-step-flow theorie,yes,,,,301,https://schoolwoorden.nl/begrip/multistepflowtheorie/,36,162,keep redirect
 /begrippen/multicultureel-drama/,glossary,Multicultureel drama,yes,,,,301,https://schoolwoorden.nl/begrip/multicultureel-drama/,,,keep redirect
 /begrippen/nachtwakersstaat/,glossary,Nachtwakersstaat,yes,,,,301,https://schoolwoorden.nl/begrip/nachtwakersstaat/,,,keep redirect
 /begrippen/niet-westerse-cultuur/,glossary,Niet-westerse cultuur,yes,,,,301,https://schoolwoorden.nl/begrip/niet-westerse-cultuur/,45,118,keep redirect
@@ -133,7 +133,7 @@ url,content_type,title,source_content,in_sitemap,sitemap,lastmod,redirect_status
 /begrippen/opinierende-functie/,glossary,Opiniërende functie,yes,,,,301,https://schoolwoorden.nl/begrip/opinierende-functie/,,,keep redirect
 /begrippen/opiuwet/,glossary,Opiumwet,yes,,,,301,https://schoolwoorden.nl/begrip/opiumwet/,,,keep redirect
 /begrippen/oppositiepartijen/,glossary,Oppositiepartijen,yes,,,,301,https://schoolwoorden.nl/begrip/oppositiepartijen/,64,39,keep redirect
-/begrippen/overtredingen/,glossary,Overtredingen,yes,,,,301,https://schoolwoorden.nl/begrip/overtredingen/,,,keep redirect
+/begrippen/overtredingen/,glossary,Overtredingen,yes,,,,301,https://schoolwoorden.nl/begrip/overtreding/,,,keep redirect
 /begrippen/parlement/,glossary,Parlement,yes,,,,301,https://schoolwoorden.nl/begrip/parlement/,,,keep redirect
 /begrippen/parlementair-jaar/,glossary,Parlementair Jaar,yes,,,,301,https://schoolwoorden.nl/begrip/parlementair-jaar/,,,keep redirect
 /begrippen/parlementaire-democratie/,glossary,Parlementaire Democratie,yes,,,,301,https://schoolwoorden.nl/begrip/parlementaire-democratie/,70,32,keep redirect
@@ -197,8 +197,8 @@ url,content_type,title,source_content,in_sitemap,sitemap,lastmod,redirect_status
 /begrippen/stereotypen/,glossary,Stereotypen,yes,,,,301,https://schoolwoorden.nl/begrip/stereotypen/,,,keep redirect
 /begrippen/structurele-werkloosheid/,glossary,Structurele werkloosheid,yes,,,,301,https://schoolwoorden.nl/begrip/structurele-werkloosheid/,,,keep redirect
 /begrippen/symbolische-functie/,glossary,Symbolische functie,yes,,,,301,https://schoolwoorden.nl/begrip/symbolische-functie/,,,keep redirect
-/begrippen/terbeschikkingstelling-tbs/,glossary,Terbeschikkingstelling (TBS),yes,,,,301,https://schoolwoorden.nl/begrip/terbeschikkingstelling-tbs/,,,keep redirect
-/begrippen/theorie-selectieve-perceptie/,glossary,Theorie van selectieve perceptie,yes,,,,301,https://schoolwoorden.nl/begrip/theorie-van-selectieve-perceptie,47,95,keep redirect
+/begrippen/terbeschikkingstelling-tbs/,glossary,Terbeschikkingstelling (TBS),yes,,,,301,https://schoolwoorden.nl/begrip/tbs/,,,keep redirect
+/begrippen/theorie-selectieve-perceptie/,glossary,Theorie van selectieve perceptie,yes,,,,301,https://schoolwoorden.nl/begrip/theorie-van-de-selectieve-perceptie,47,95,keep redirect
 /begrippen/toelatingsbeleid/,glossary,Toelatingsbeleid,yes,,,,301,https://schoolwoorden.nl/begrip/toelatingsbeleid/,,,keep redirect
 /begrippen/trias-politica/,glossary,Trias Politica,yes,,,,301,https://schoolwoorden.nl/begrip/trias-politica/,39,152,keep redirect
 /begrippen/troonrede/,glossary,Troonrede,yes,,,,301,https://schoolwoorden.nl/begrip/troonrede/,,,keep redirect
@@ -219,7 +219,7 @@ url,content_type,title,source_content,in_sitemap,sitemap,lastmod,redirect_status
 /begrippen/visum/,glossary,Visum,yes,,,,301,https://schoolwoorden.nl/begrip/visum/,,,keep redirect
 /begrippen/vluchtelingenverdrag-van-geneve/,glossary,Vluchtelingenverdrag van Genève,yes,,,,301,https://schoolwoorden.nl/begrip/vluchtelingenverdrag-van-geneve/,,,keep redirect
 /begrippen/volksvertegenwoordigers/,glossary,Volksvertegenwoordigers,yes,,,,301,https://schoolwoorden.nl/begrip/volksvertegenwoordigers/,88,18,keep redirect
-/begrippen/volksverzekeringen/,glossary,Volksverzekeringen,yes,,,,301,https://schoolwoorden.nl/begrip/volksverzekeringen/,,,keep redirect
+/begrippen/volksverzekeringen/,glossary,Volksverzekeringen,yes,,,,301,https://schoolwoorden.nl/begrip/volksverzekering/,,,keep redirect
 /begrippen/vonnis/,glossary,Vonnis,yes,,,,301,https://schoolwoorden.nl/begrip/vonnis/,,,keep redirect
 /begrippen/vooroordeel/,glossary,Vooroordeel,yes,,,,301,https://schoolwoorden.nl/begrip/vooroordeel/,,,keep redirect
 /begrippen/voorzitter-tweede-kamer/,glossary,Voorzitter van de Tweede Kamer,yes,,,,301,https://schoolwoorden.nl/begrip/voorzitter-van-de-tweede-kamer,,,keep redirect
@@ -232,14 +232,14 @@ url,content_type,title,source_content,in_sitemap,sitemap,lastmod,redirect_status
 /begrippen/werknemersverzekeringen/,glossary,Werknemersverzekeringen,yes,,,,301,https://schoolwoorden.nl/begrip/werknemersverzekeringen/,,,keep redirect
 /begrippen/werkverhoudingen/,glossary,Werkverhoudingen,yes,,,,301,https://schoolwoorden.nl/begrip/werkverhoudingen/,,,keep redirect
 /begrippen/westerse-cultuur/,glossary,westerse cultuur,yes,,,,301,https://schoolwoorden.nl/begrip/westerse-cultuur/,22,285,keep redirect
-/begrippen/wet-economische-delicten/,glossary,Wet Economische Delicten,yes,,,,301,https://schoolwoorden.nl/begrip/wet-economische-delicten/,,,keep redirect
+/begrippen/wet-economische-delicten/,glossary,Wet Economische Delicten,yes,,,,301,https://schoolwoorden.nl/begrip/wet-op-de-economische-delicten/,,,keep redirect
 /begrippen/wet/,glossary,Wet,yes,,,,301,https://schoolwoorden.nl/begrip/wet/,,,keep redirect
 /begrippen/wetboek-van-strafrecht/,glossary,Wetboek van Strafrecht,yes,,,,301,https://schoolwoorden.nl/begrip/wetboek-van-strafrecht/,,,keep redirect
 /begrippen/wetgevende-macht/,glossary,Wetgevende Macht,yes,,,,301,https://schoolwoorden.nl/begrip/wetgevende-macht/,94,15,keep redirect
 /begrippen/wij-cultuur/,glossary,Wij-cultuur,yes,,,,301,https://schoolwoorden.nl/begrip/wij-cultuur/,75,29,keep redirect
 /begrippen/witteboordencriminaliteit/,glossary,Witteboordencriminaliteit,yes,,,,301,https://schoolwoorden.nl/begrip/witteboordencriminaliteit/,,,keep redirect
 /begrippen/xenofobie/,glossary,Xenofobie,yes,,,,301,https://schoolwoorden.nl/begrip/xenofobie/,,,keep redirect
-/begrippen/zwevende-kiezer/,glossary,Zwevende kiezer,yes,,,,301,https://schoolwoorden.nl/begrip/zwevende-kiezer/,83,19,keep redirect
+/begrippen/zwevende-kiezer/,glossary,Zwevende kiezer,yes,,,,301,https://schoolwoorden.nl/begrip/zwevende-kiezers/,83,19,keep redirect
 /category/examenstof/,,,,yes,category-sitemap.xml,2025-10-26 09:52 +00:00,,,,,investigate - sitemap URL not matched to extracted content
 /category/multiculti/,,,,yes,category-sitemap.xml,2025-10-26 09:52 +00:00,,,,,investigate - sitemap URL not matched to extracted content
 /contact-support/,page,Contact Support,yes,yes,page-sitemap.xml,2024-04-09 12:20 +00:00,,,,,preserve as static page

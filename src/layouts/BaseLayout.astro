@@ -19,6 +19,10 @@ const navItems = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
+    <link rel="icon" href="/wp-content/uploads/2018/04/cropped-MASK-logo-1000x1000-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/wp-content/uploads/2018/04/cropped-MASK-logo-1000x1000-192x192.png" sizes="192x192" type="image/png" />
+    <link rel="apple-touch-icon" href="/wp-content/uploads/2018/04/cropped-MASK-logo-1000x1000-180x180.png" />
+    <meta name="msapplication-TileImage" content="/wp-content/uploads/2018/04/cropped-MASK-logo-1000x1000-270x270.png" />
   </head>
   <body>
     <header class="site-header">
@@ -62,6 +66,62 @@ const navItems = [
         </nav>
       </div>
     </footer>
+
+    <div class="cookie-consent" data-cookie-consent hidden>
+      <p>We gebruiken Google Analytics alleen na toestemming om anoniem sitegebruik te meten.</p>
+      <div class="cookie-consent__actions">
+        <button type="button" data-analytics-accept>Akkoord</button>
+        <button type="button" data-analytics-decline>Niet nu</button>
+      </div>
+    </div>
+
+    <script>
+      (() => {
+        const measurementId = 'G-BTVVHN69N9';
+        const storageKey = 'mk_analytics_consent';
+        const banner = document.querySelector('[data-cookie-consent]');
+        const acceptButton = document.querySelector('[data-analytics-accept]');
+        const declineButton = document.querySelector('[data-analytics-decline]');
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function gtag(){ window.dataLayer.push(arguments); };
+        window.gtag('consent', 'default', {
+          analytics_storage: 'denied',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied'
+        });
+
+        const loadAnalytics = () => {
+          if (document.querySelector(`script[src*="${measurementId}"]`)) return;
+          window.gtag('consent', 'update', { analytics_storage: 'granted' });
+          const script = document.createElement('script');
+          script.async = true;
+          script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+          document.head.appendChild(script);
+          window.gtag('js', new Date());
+          window.gtag('config', measurementId, { anonymize_ip: true });
+        };
+
+        const consent = localStorage.getItem(storageKey);
+        if (consent === 'granted') {
+          loadAnalytics();
+        } else if (consent !== 'denied' && banner) {
+          banner.hidden = false;
+        }
+
+        acceptButton?.addEventListener('click', () => {
+          localStorage.setItem(storageKey, 'granted');
+          banner.hidden = true;
+          loadAnalytics();
+        });
+
+        declineButton?.addEventListener('click', () => {
+          localStorage.setItem(storageKey, 'denied');
+          banner.hidden = true;
+        });
+      })();
+    </script>
   </body>
 </html>
 
@@ -599,6 +659,55 @@ const navItems = [
   }
 
   .site-footer a {
+    color: #fff;
+  }
+
+  .cookie-consent {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 20;
+    display: grid;
+    gap: 12px;
+    width: min(360px, calc(100vw - 36px));
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: var(--shadow);
+  }
+
+  .cookie-consent[hidden] {
+    display: none;
+  }
+
+  .cookie-consent p {
+    margin: 0;
+    color: var(--text);
+    font-size: 0.94rem;
+  }
+
+  .cookie-consent__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .cookie-consent button {
+    min-height: 36px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--accent-dark);
+    font: inherit;
+    font-weight: 760;
+    cursor: pointer;
+  }
+
+  .cookie-consent button:first-child {
+    border-color: var(--accent-dark);
+    background: var(--accent-dark);
     color: #fff;
   }
 
