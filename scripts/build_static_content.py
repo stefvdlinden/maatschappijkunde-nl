@@ -120,20 +120,20 @@ SCHOOLWOORDEN_CANONICAL_SLUGS = {
     "zwevende-kiezer": "zwevende-kiezers",
 }
 DOWNLOAD_ITEMS = [
-    ("Mens en Werk - leertekst", "PDF", "/wp-content/uploads/2016/12/Mens-en-Werk-Kerndoel-1-tm-6-leertekst.pdf"),
-    ("Multiculturele Samenleving - leertekst", "PDF", "/wp-content/uploads/2016/12/Multiculturele-Samenleving-Kerndoel-1-tm-5-leertekst.pdf"),
-    ("Massamedia - leertekst", "PDF", "/wp-content/uploads/2017/06/Massamedia-Kerndoel-1-tm-4-leertekst.pdf"),
-    ("Politiek en Beleid - leertekst", "PDF", "/wp-content/uploads/2018/04/Politiek-en-Beleid-Kerndoel-1-tm-5-leertekst.pdf"),
-    ("Criminaliteit en Rechtsstaat - leertekst", "PDF", "/wp-content/uploads/2017/06/Criminaliteit-en-Rechtsstaat-Kerndoel-1-tm-5-leertekst.pdf"),
-    ("Analyse Maatschappelijk Vraagstuk - leertekst", "PDF", "/wp-content/uploads/2016/12/Analyse-Maatschappelijk-Vraagstuk-AMV-Kerndoel-1-tm-3.pdf"),
-    ("Schema parlementaire democratie", "JPG", "/wp-content/uploads/2016/02/Nederlandse-Parlementaire-Democratie-A3.jpg"),
-    ("Checklist CSE Maatschappijkunde 2018", "PDF", "/wp-content/uploads/2019/04/Checklist-CSE-Maatschappijkunde-2018.pdf"),
-    ("Check CSE Maatschappijkunde 2017", "PDF", "/wp-content/uploads/2017/04/Check-CSE-Maatschappijleer-2-2017.pdf"),
-    ("Massamedia - leertekst 2020", "PDF", "/wp-content/uploads/2020/03/3_Massamedia.pdf"),
-    ("Multiculturele Samenleving - leertekst 2018", "PDF", "/wp-content/uploads/2018/12/Multiculturele-Samenleving-Kerndoel-1-tm-5-leertekst.pdf"),
-    ("Mens en Werk - leertekst 2018", "PDF", "/wp-content/uploads/2018/12/Mens-en-Werk-Kerndoel-1-tm-6-leertekst.pdf"),
-    ("Analyse Maatschappelijk Vraagstuk - leertekst 2016", "PDF", "/wp-content/uploads/2016/03/Analyse-Maatschappelijk-Vraagstuk-AMV-Kerndoel-1-tm-3-leertekst.pdf"),
-    ("Criminaliteit en Rechtsstaat - leertekst 2016", "PDF", "/wp-content/uploads/2016/02/Criminaliteit-en-Rechtsstaat-Leertekst-Maatschappijkunde.nl_.pdf"),
+    {"title": "Leertekst Mens en Werk", "kind": "Leertekst", "theme": "Mens en Werk", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2016/12/Mens-en-Werk-Kerndoel-1-tm-6-leertekst.pdf", "thumb": "/wp-content/uploads/2016/12/Mens-en-Werk-212x300.png"},
+    {"title": "Leertekst Multiculturele Samenleving", "kind": "Leertekst", "theme": "Multiculturele Samenleving", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2016/12/Multiculturele-Samenleving-Kerndoel-1-tm-5-leertekst.pdf", "thumb": "/wp-content/uploads/2016/12/Multiculturele-Samenleving-leertekst-212x300.jpg"},
+    {"title": "Leertekst Massamedia", "kind": "Leertekst", "theme": "Massamedia", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2017/06/Massamedia-Kerndoel-1-tm-4-leertekst.pdf", "thumb": "/wp-content/uploads/2017/06/Massamedia-Kerndoel-1-tm-4-leertekst-pdf-212x300.jpg"},
+    {"title": "Leertekst Politiek en Beleid", "kind": "Leertekst", "theme": "Politiek en Beleid", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2018/04/Politiek-en-Beleid-Kerndoel-1-tm-5-leertekst.pdf", "thumb": "/wp-content/uploads/2018/04/Politiek-en-Beleid-Kerndoel-1-tm-5-leertekst-pdf-212x300.jpg"},
+    {"title": "Leertekst Criminaliteit en Rechtsstaat", "kind": "Leertekst", "theme": "Criminaliteit en Rechtsstaat", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2017/06/Criminaliteit-en-Rechtsstaat-Kerndoel-1-tm-5-leertekst.pdf", "thumb": "/wp-content/uploads/2017/06/Criminaliteit-en-Rechtsstaat-Kerndoel-1-tm-5-leertekst-pdf-212x300.jpg"},
+    {"title": "Leertekst Analyse Maatschappelijk Vraagstuk", "kind": "Leertekst", "theme": "Analyse Maatschappelijk Vraagstuk", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2016/12/Analyse-Maatschappelijk-Vraagstuk-AMV-Kerndoel-1-tm-3.pdf", "thumb": "/wp-content/uploads/2016/12/Analyse-Maatschappelijk-Vraagstuk-212x300.png"},
+    {"title": "Schema Parlementaire Democratie", "kind": "Schema", "theme": "Politiek en Beleid", "subject": "Maatschappijkunde", "file_type": "JPG", "url": "/wp-content/uploads/2016/02/Nederlandse-Parlementaire-Democratie-A3.jpg", "thumb": "/wp-content/uploads/2016/02/Nederlandse-Parlementaire-Democratie-A3-300x212.jpg"},
+    {"title": "Checklist CSE Maatschappijkunde 2018", "kind": "Checklist", "theme": "Centraal examen", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2019/04/Checklist-CSE-Maatschappijkunde-2018.pdf", "thumb": "/wp-content/uploads/2015/12/Maatschappijkunde-download-slider-600x200_c.jpg"},
+    {"title": "Check CSE Maatschappijkunde 2017", "kind": "Checklist", "theme": "Centraal examen", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2017/04/Check-CSE-Maatschappijleer-2-2017.pdf", "thumb": "/wp-content/uploads/2017/04/Check-CSE-Maatschappijleer-2-2017-pdf-212x300.jpg"},
+    {"title": "Leertekst Massamedia 2020", "kind": "Leertekst", "theme": "Massamedia", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2020/03/3_Massamedia.pdf", "thumb": "/wp-content/uploads/2020/03/Massamedia-leertekst-211x300.png"},
+    {"title": "Leertekst Multiculturele Samenleving 2018", "kind": "Leertekst", "theme": "Multiculturele Samenleving", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2018/12/Multiculturele-Samenleving-Kerndoel-1-tm-5-leertekst.pdf", "thumb": "/wp-content/uploads/2016/12/Multiculturele-Samenleving-leertekst-212x300.jpg"},
+    {"title": "Leertekst Mens en Werk 2018", "kind": "Leertekst", "theme": "Mens en Werk", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2018/12/Mens-en-Werk-Kerndoel-1-tm-6-leertekst.pdf", "thumb": "/wp-content/uploads/2016/12/Mens-en-Werk-212x300.png"},
+    {"title": "Leertekst Analyse Maatschappelijk Vraagstuk 2016", "kind": "Leertekst", "theme": "Analyse Maatschappelijk Vraagstuk", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2016/03/Analyse-Maatschappelijk-Vraagstuk-AMV-Kerndoel-1-tm-3-leertekst.pdf", "thumb": "/wp-content/uploads/2016/12/Analyse-Maatschappelijk-Vraagstuk-212x300.png"},
+    {"title": "Leertekst Criminaliteit en Rechtsstaat 2016", "kind": "Leertekst", "theme": "Criminaliteit en Rechtsstaat", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2016/02/Criminaliteit-en-Rechtsstaat-Leertekst-Maatschappijkunde.nl_.pdf", "thumb": "/wp-content/uploads/2016/12/Criminaliteit-en-Rechtsstaat-212x300.png"},
 ]
 EXAMENSTOF_GROUPS = [
     ("Maatschappijkunde", [
@@ -658,21 +658,39 @@ def build_over_page():
 def build_downloads_page():
     cards = []
     missing = []
-    for title, file_type, url in DOWNLOAD_ITEMS:
+    for item in DOWNLOAD_ITEMS:
+        title = item["title"]
+        file_type = item["file_type"]
+        url = item["url"]
+        thumb = item.get("thumb") or ""
         file_path = PUBLIC / url.lstrip("/")
         if not file_path.exists():
             missing.append(url)
+        if thumb and not (PUBLIC / thumb.lstrip("/")).exists():
+            missing.append(thumb)
+        thumb_html = (
+            f'<img class="download-card__thumb" src="{html.escape(thumb)}" alt="" loading="lazy">'
+            if thumb else ""
+        )
         cards.append(
             '<article class="download-card">'
+            f'{thumb_html}'
+            '<div class="download-card__body">'
             f'<h2>{html.escape(title)}</h2>'
-            f'<p class="download-meta">{html.escape(file_type)}</p>'
+            '<dl class="download-details">'
+            f'<div><dt>Type</dt><dd>{html.escape(item["kind"])}</dd></div>'
+            f'<div><dt>Thema</dt><dd>{html.escape(item["theme"])}</dd></div>'
+            f'<div><dt>Vak</dt><dd>{html.escape(item["subject"])}</dd></div>'
+            f'<div><dt>Bestand</dt><dd>{html.escape(file_type)}</dd></div>'
+            '</dl>'
             f'<a class="download-button" href="{html.escape(url)}" download>Download</a>'
+            '</div>'
             '</article>'
         )
     if missing:
         raise FileNotFoundError("Downloadbestand ontbreekt in public: " + ", ".join(missing))
     return (
-        '<p>Alle beschikbare bestanden staan hieronder bij elkaar.</p>'
+        '<p>Download gratis leerteksten, schema’s en checklists voor maatschappijkunde. De bestanden zijn geschikt voor herhalen, samenvatten en voorbereiden op toetsen of het centraal examen.</p>'
         f'<div class="download-grid">{"".join(cards)}</div>'
     )
 
@@ -763,7 +781,7 @@ def build_homepage(kb_overviews, pages_by_url):
         '<div class="home-hero__copy">'
         '<p class="home-eyebrow">VMBO maatschappijkunde</p>'
         '<h1>Maatschappijkunde.nl</h1>'
-        '<p>Examenstof, kerndoelen, begrippen en downloads voor maatschappijkunde en maatschappijleer.</p>'
+        '<p>Vind snel uitleg, begrippen, kerndoelen en downloads voor het VMBO-vak maatschappijkunde. Geschikt voor leren, herhalen en examentraining.</p>'
         '<div class="home-actions">'
         '<a class="button-link" href="/examenstof/">Naar examenstof</a>'
         '<a class="button-link secondary" href="/begrippen/">Begrippen zoeken</a>'
@@ -783,6 +801,10 @@ def build_homepage(kb_overviews, pages_by_url):
         '<section class="home-section">'
         '<div class="section-heading"><div><h2>📚 Belangrijkste onderwerpen</h2></div><a href="/examenstof/">Alle examenstof</a></div>'
         f'<div class="topic-grid">{"".join(topic_cards)}</div>'
+        '</section>'
+        '<section class="home-section answer-section">'
+        '<h2>Wat vind je op Maatschappijkunde.nl?</h2>'
+        '<p>Maatschappijkunde.nl bundelt examenstof per onderwerp, een begrippenlijst met Schoolwoorden.nl-koppelingen en downloadbare leerteksten voor leerlingen en docenten.</p>'
         '</section>'
         '<section class="home-section">'
         '<div class="section-heading"><div><h2>Verder op de site</h2></div></div>'

@@ -10,6 +10,37 @@ const navItems = [
   { href: '/begrippen/', label: 'Begrippen' },
   { href: '/downloads/', label: 'Downloads' }
 ];
+
+const siteUrl = Astro.site ?? new URL('https://maatschappijkunde.nl');
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const logoUrl = new URL('/wp-content/uploads/2018/04/cropped-MASK-logo-1000x1000.png', siteUrl).toString();
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Maatschappijkunde.nl',
+    url: new URL('/', siteUrl).toString(),
+    inLanguage: 'nl-NL',
+    description
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'EducationalOrganization',
+    name: 'Maatschappijkunde.nl',
+    url: new URL('/', siteUrl).toString(),
+    logo: logoUrl
+  },
+  ...(breadcrumbs.length > 1 ? [{
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((crumb, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: crumb.label,
+      item: new URL(crumb.href || Astro.url.pathname, siteUrl).toString()
+    }))
+  }] : [])
+];
 ---
 <!doctype html>
 <html lang="nl">
@@ -18,10 +49,22 @@ const navItems = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:site_name" content="Maatschappijkunde.nl" />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={logoUrl} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
     <link rel="icon" href="/wp-content/uploads/2018/04/cropped-MASK-logo-1000x1000-32x32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="/wp-content/uploads/2018/04/cropped-MASK-logo-1000x1000-192x192.png" sizes="192x192" type="image/png" />
     <link rel="apple-touch-icon" href="/wp-content/uploads/2018/04/cropped-MASK-logo-1000x1000-180x180.png" />
     <meta name="msapplication-TileImage" content="/wp-content/uploads/2018/04/cropped-MASK-logo-1000x1000-270x270.png" />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
     <header class="site-header">
@@ -67,10 +110,10 @@ const navItems = [
     </footer>
 
     <div class="cookie-consent" data-cookie-consent hidden>
-      <p>We gebruiken Google Analytics alleen na toestemming om anoniem sitegebruik te meten.</p>
+      <p><strong>Help Maatschappijkunde.nl verbeteren</strong><br />Met anonieme statistieken zien we welke uitleg en downloads leerlingen nodig hebben. Google Analytics wordt pas geladen na je toestemming.</p>
       <div class="cookie-consent__actions">
-        <button type="button" data-analytics-accept>Akkoord</button>
-        <button type="button" data-analytics-decline>Niet nu</button>
+        <button type="button" data-analytics-accept>Ja, help mee</button>
+        <button type="button" data-analytics-decline>Geen statistieken</button>
       </div>
     </div>
 
@@ -515,6 +558,7 @@ const navItems = [
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     gap: 9px;
+    align-content: start;
     align-items: start;
     padding: 9px 10px;
     border: 1px solid var(--line);
@@ -545,6 +589,7 @@ const navItems = [
     font-size: 0.78rem;
     font-weight: 800;
     white-space: nowrap;
+    align-self: start;
   }
 
   .topic-card p,
@@ -580,10 +625,51 @@ const navItems = [
     font-size: 1.08rem;
   }
 
-  .download-meta {
+  .download-card {
+    grid-template-columns: 96px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .download-card__thumb {
+    width: 96px;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--bg-soft);
+  }
+
+  .download-card__body {
+    display: grid;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .download-details {
+    display: grid;
+    gap: 6px;
     margin: 0;
+  }
+
+  .download-details div {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .download-details dt,
+  .download-details dd {
+    margin: 0;
+    font-size: 0.92rem;
+  }
+
+  .download-details dt {
     color: var(--muted);
-    font-size: 0.94rem;
+    font-weight: 760;
+  }
+
+  .download-details dd {
+    color: var(--text);
   }
 
   .download-button {
@@ -712,7 +798,7 @@ const navItems = [
     z-index: 20;
     display: grid;
     gap: 12px;
-    width: min(360px, calc(100vw - 36px));
+    width: min(420px, calc(100vw - 36px));
     padding: 16px;
     border: 1px solid var(--line);
     border-radius: 8px;
@@ -728,6 +814,7 @@ const navItems = [
     margin: 0;
     color: var(--text);
     font-size: 0.94rem;
+    line-height: 1.45;
   }
 
   .cookie-consent__actions {
@@ -752,6 +839,21 @@ const navItems = [
     border-color: var(--accent-dark);
     background: var(--accent-dark);
     color: #fff;
+  }
+
+  @media (max-width: 520px) {
+    .download-card {
+      grid-template-columns: 76px minmax(0, 1fr);
+    }
+
+    .download-card__thumb {
+      width: 76px;
+    }
+
+    .download-details div {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
   }
 
   @media (max-width: 760px) {
