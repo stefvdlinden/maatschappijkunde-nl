@@ -1450,5 +1450,23 @@
     "status": "301",
     "source": "/ciminaliteitenrechtsstaat-kerndoel1/",
     "target": "/examenstof/criminaliteitenrechtsstaat-kerndoel1/"
+  },
+  {
+    "line": "extra:removed-planning",
+    "status": "301",
+    "source": "/planning/",
+    "target": "/examenstof/"
+  },
+  {
+    "line": "extra:removed-planning",
+    "status": "301",
+    "source": "/planning/leerjaar3/",
+    "target": "/examenstof/"
+  },
+  {
+    "line": "extra:removed-planning",
+    "status": "301",
+    "source": "/planning/leerjaar4/",
+    "target": "/examenstof/"
   }
 ]

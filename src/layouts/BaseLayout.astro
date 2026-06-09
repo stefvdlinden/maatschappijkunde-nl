@@ -9,7 +9,6 @@ const navItems = [
   { href: '/examenstof/', label: 'Examenstof' },
   { href: '/kerndoelen/', label: 'Kerndoelen' },
   { href: '/begrippen/', label: 'Begrippen' },
-  { href: '/planning/', label: 'Planning' },
   { href: '/downloads/', label: 'Downloads' }
 ];
 ---
@@ -55,7 +54,7 @@ const navItems = [
       <div class="site-footer__inner">
         <div>
           <a class="footer-brand" href="/">Maatschappijkunde.nl</a>
-          <p>Examenstof, kerndoelen, begrippen en planning overzichtelijk bij elkaar voor leerlingen en docenten.</p>
+          <p>Examenstof, kerndoelen, begrippen en downloads overzichtelijk bij elkaar voor leerlingen en docenten.</p>
           <p class="footer-credit">De oorspronkelijke inhoud is gemaakt door Wessel Peeters. Stef van der Linden heeft de inhoud overgenomen om deze beschikbaar te houden.</p>
         </div>
         <nav aria-label="Voettekstmenu">
@@ -412,8 +411,15 @@ const navItems = [
     color: var(--muted);
   }
 
-  .topic-grid,
-  .quick-grid {
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .quick-grid,
+  .download-grid,
+  .subject-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 16px;
@@ -438,6 +444,75 @@ const navItems = [
     margin: 0;
     color: var(--muted);
     font-size: 0.96rem;
+  }
+
+  .content-list {
+    display: grid;
+    gap: 12px;
+    padding-left: 1.35rem;
+  }
+
+  .content-list li {
+    max-width: 78ch;
+  }
+
+  .download-card,
+  .subject-card {
+    display: grid;
+    gap: 10px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+  }
+
+  .download-card h2,
+  .subject-card h2 {
+    margin: 0;
+    font-size: 1.08rem;
+  }
+
+  .download-meta {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.94rem;
+  }
+
+  .download-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-height: 38px;
+    padding: 0 14px;
+    border-radius: 8px;
+    background: var(--accent-dark);
+    color: #fff;
+    font-weight: 760;
+    text-decoration: none;
+  }
+
+  .subject-group {
+    margin-top: 34px;
+  }
+
+  .subject-card ul {
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+
+  .glossary-fallbacks {
+    margin: 18px 0 28px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+  }
+
+  .glossary-fallbacks summary {
+    cursor: pointer;
+    color: var(--accent-dark);
+    font-weight: 760;
   }
 
   .glossary-index {
@@ -570,6 +645,16 @@ const navItems = [
 
     .site-footer nav {
       justify-content: start;
+    }
+
+    .topic-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 761px) and (max-width: 980px) {
+    .topic-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 </style>

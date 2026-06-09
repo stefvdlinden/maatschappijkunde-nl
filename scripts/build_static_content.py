@@ -69,12 +69,70 @@ EXTRA_REDIRECTS = [
         "status": "301",
         "source": "/ciminaliteitenrechtsstaat-kerndoel1/",
         "target": "/examenstof/criminaliteitenrechtsstaat-kerndoel1/"
+    },
+    {
+        "line": "extra:removed-planning",
+        "status": "301",
+        "source": "/planning/",
+        "target": "/examenstof/"
+    },
+    {
+        "line": "extra:removed-planning",
+        "status": "301",
+        "source": "/planning/leerjaar3/",
+        "target": "/examenstof/"
+    },
+    {
+        "line": "extra:removed-planning",
+        "status": "301",
+        "source": "/planning/leerjaar4/",
+        "target": "/examenstof/"
     }
 ]
 LEGACY_MODULES = {}
 TITLE_REWRITES = {
     ("1029", "???? Analyse Maatschappelijk Vraagstuk"): "Analyse Maatschappelijk Vraagstuk"
 }
+DOWNLOAD_ITEMS = [
+    ("Mens en Werk - leertekst", "PDF", "/wp-content/uploads/2016/12/Mens-en-Werk-Kerndoel-1-tm-6-leertekst.pdf"),
+    ("Multiculturele Samenleving - leertekst", "PDF", "/wp-content/uploads/2016/12/Multiculturele-Samenleving-Kerndoel-1-tm-5-leertekst.pdf"),
+    ("Massamedia - leertekst", "PDF", "/wp-content/uploads/2017/06/Massamedia-Kerndoel-1-tm-4-leertekst.pdf"),
+    ("Politiek en Beleid - leertekst", "PDF", "/wp-content/uploads/2018/04/Politiek-en-Beleid-Kerndoel-1-tm-5-leertekst.pdf"),
+    ("Criminaliteit en Rechtsstaat - leertekst", "PDF", "/wp-content/uploads/2017/06/Criminaliteit-en-Rechtsstaat-Kerndoel-1-tm-5-leertekst.pdf"),
+    ("Analyse Maatschappelijk Vraagstuk - leertekst", "PDF", "/wp-content/uploads/2016/12/Analyse-Maatschappelijk-Vraagstuk-AMV-Kerndoel-1-tm-3.pdf"),
+    ("Schema parlementaire democratie", "JPG", "/wp-content/uploads/2016/02/Nederlandse-Parlementaire-Democratie-A3.jpg"),
+    ("Checklist CSE Maatschappijkunde 2018", "PDF", "/wp-content/uploads/2019/04/Checklist-CSE-Maatschappijkunde-2018.pdf"),
+    ("Check CSE Maatschappijleer 2 2017", "PDF", "/wp-content/uploads/2017/04/Check-CSE-Maatschappijleer-2-2017.pdf"),
+    ("Massamedia - leertekst 2020", "PDF", "/wp-content/uploads/2020/03/3_Massamedia.pdf"),
+    ("Multiculturele Samenleving - leertekst 2018", "PDF", "/wp-content/uploads/2018/12/Multiculturele-Samenleving-Kerndoel-1-tm-5-leertekst.pdf"),
+    ("Mens en Werk - leertekst 2018", "PDF", "/wp-content/uploads/2018/12/Mens-en-Werk-Kerndoel-1-tm-6-leertekst.pdf"),
+    ("Analyse Maatschappelijk Vraagstuk - leertekst 2016", "PDF", "/wp-content/uploads/2016/03/Analyse-Maatschappelijk-Vraagstuk-AMV-Kerndoel-1-tm-3-leertekst.pdf"),
+    ("Criminaliteit en Rechtsstaat - leertekst 2016", "PDF", "/wp-content/uploads/2016/02/Criminaliteit-en-Rechtsstaat-Leertekst-Maatschappijkunde.nl_.pdf"),
+]
+EXAMENSTOF_GROUPS = [
+    ("Maatschappijkunde", [
+        "/kerndoelen/mensenwerk/",
+        "/kerndoelen/multiculturelesamenleving/",
+        "/kerndoelen/massamedia/",
+        "/kerndoelen/politiekenbeleid/",
+        "/kerndoelen/criminaliteit-en-rechtsstaat/",
+        "/kerndoelen/amv/",
+    ]),
+    ("Maatschappijleer", [
+        "/kerndoelen/maatschappijleer-vmbo/",
+        "/kerndoelen/maatschappijleer/",
+        "/kerndoelen/domein-b-rechtsstaat/",
+        "/kerndoelen/domein-c-parlementaire-democratie/",
+        "/kerndoelen/domein-d-verzorgingsstaat/",
+        "/kerndoelen/domien-e-pluriforme-samenleving/",
+    ]),
+    ("Maatschappijwetenschappen", [
+        "/kerndoelen/cultuur-en-socialisatie/",
+        "/kerndoelen/beeldvorming-en-stereotypering/",
+        "/kerndoelen/macht-en-zeggenschap/",
+        "/kerndoelen/sociale-verschillen/",
+    ]),
+]
 
 
 def read_csv(path):
@@ -280,6 +338,22 @@ def remove_youtube(content):
 def apply_text_corrections(content):
     text = content or ""
     replacements = [
+        (r"\bTesktboekjes\b", "Tekstboekjes"),
+        (r"\bwerplekken\b", "werkplekken"),
+        (r"\bopzoek\b", "op zoek"),
+        (r"\bVrijwilligers werk\b", "Vrijwilligerswerk"),
+        (r"\bvrijwilligers werk\b", "vrijwilligerswerk"),
+        (r"\blichamelijk of geestelijk inspanning\b", "lichamelijke of geestelijke inspanning"),
+        (r"\bWerkt geeft\b", "Werk geeft"),
+        (r"\bhet regering\b", "de regering"),
+        (r"\bwordt door het regering\b", "wordt door de regering"),
+        (r"\bcoalitieparijten\b", "coalitiepartijen"),
+        (r"\bvoortellen\b", "voorstellen"),
+        (r"\bMinisters President\b", "minister-president"),
+        (r"\bMinisters-president\b", "minister-president"),
+        (r"\bmeerheid\b", "meerderheid"),
+        (r"\bbepaald, medewerkers\b", "bepaalt, medewerkers"),
+        (r"\bde de\b", "de"),
         (r"\bPressiemidelen\b", "Pressiemiddelen"),
         (r"\bpressiemidelen\b", "pressiemiddelen"),
         (r"\bHerstvakantie\b", "Herfstvakantie"),
@@ -316,6 +390,46 @@ def apply_text_corrections(content):
     for pattern, replacement in replacements:
         text = re.sub(pattern, replacement, text)
     return text
+
+
+def convert_strong_lists(content):
+    def split_strong_markers(inner, marker_re, ordered=False):
+        matches = list(marker_re.finditer(inner))
+        if len(matches) < 2:
+            return None
+        prefix = inner[:matches[0].start()].strip()
+        if prefix and len(clean_text(prefix).split()) > 18:
+            return None
+        items = []
+        for index, match in enumerate(matches):
+            title = clean_text(match.group("title")).strip(" :")
+            start = match.end()
+            end = matches[index + 1].start() if index + 1 < len(matches) else len(inner)
+            body = inner[start:end].strip()
+            body = re.sub(r"^\s*[:.)-]\s*", "", body)
+            if not title or not clean_text(body):
+                return None
+            items.append((title, body))
+        before = f"<p>{prefix}</p>" if prefix else ""
+        tag = "ol" if ordered else "ul"
+        list_items = "".join(
+            f"<li><strong>{html.escape(title)}</strong> {body}</li>"
+            for title, body in items
+        )
+        return f'{before}<{tag} class="content-list">{list_items}</{tag}>'
+
+    numbered_re = re.compile(r"<strong>\s*(?:\d+)\.\s*(?P<title>[^<]+?)\s*</strong>", re.I)
+    colon_re = re.compile(r"<strong>\s*(?P<title>[^<:]{3,70}?):\s*</strong>", re.I)
+
+    def convert_paragraph(match):
+        inner = match.group(1)
+        converted = split_strong_markers(inner, numbered_re, ordered=True)
+        if converted:
+            return converted
+        converted = split_strong_markers(inner, colon_re, ordered=False)
+        return converted or match.group(0)
+
+    return re.sub(r"<p>(.*?)</p>", convert_paragraph, content or "", flags=re.I | re.S)
 
 
 def improve_readability(content):
@@ -440,7 +554,7 @@ def build_glossary_page(glossary_terms):
                 link = f'<a href="{html.escape(term["schoolwoordenUrl"])}">{title}</a>'
             else:
                 link = title
-            definition_html = f'<p>{definition}</p>' if definition else '<p>Geen definitie uit de oude content beschikbaar.</p>'
+            definition_html = f'<p>{definition}</p>' if definition else '<p>Geen definitie beschikbaar.</p>'
             rows.append(
                 '<article class="glossary-item">'
                 f'<h3>{link}</h3>'
@@ -455,9 +569,21 @@ def build_glossary_page(glossary_terms):
         )
     linked = sum(1 for term in glossary_terms if term.get("schoolwoordenUrl"))
     matched = sum(1 for term in glossary_terms if term.get("matchedSitemap"))
+    fallback_terms = [term for term in glossary_terms if term.get("schoolwoordenUrl") and not term.get("matchedSitemap")]
+    fallback_list = "".join(
+        f'<li>{html.escape(term["title"])} - <a href="{html.escape(term["schoolwoordenUrl"])}">{html.escape(term["schoolwoordenUrl"])}</a></li>'
+        for term in fallback_terms
+    )
+    fallback_details = (
+        '<details class="glossary-fallbacks">'
+        f'<summary>{len(fallback_terms)} koppelingen niet exact in de sitemap bevestigd</summary>'
+        f'<ul>{fallback_list}</ul>'
+        '</details>'
+    ) if fallback_terms else ""
     return (
-        '<p>Hieronder staan alle begrippen uit de oude content. Elk gekoppeld begrip verwijst naar de actuele begrippenpagina op Schoolwoorden.nl.</p>'
+        '<p>Hieronder staan de begrippen uit de lesstof. Elk gekoppeld begrip verwijst naar Schoolwoorden.nl.</p>'
         f'<p class="notice">Begrippen gekoppeld aan Schoolwoorden.nl: {linked} van {len(glossary_terms)}. Daarvan zijn {matched} koppelingen exact bevestigd in de sitemap.</p>'
+        f'{fallback_details}'
         f'<nav class="glossary-index" aria-label="Begrippen op letter">{nav_letters}</nav>'
         f'{"".join(sections)}'
     )
@@ -465,9 +591,66 @@ def build_glossary_page(glossary_terms):
 
 def build_over_page():
     return (
-        '<p>Maatschappijkunde.nl bewaart de geconverteerde examenstof, kerndoelen, begrippen, planningen en downloads zodat oude links beschikbaar blijven voor leerlingen en docenten.</p>'
+        '<p>Maatschappijkunde.nl bewaart examenstof, kerndoelen, begrippen en downloads voor leerlingen en docenten.</p>'
         '<p>De oorspronkelijke inhoud is gemaakt door Wessel Peeters. Stef van der Linden heeft de inhoud overgenomen om deze beschikbaar te houden.</p>'
     )
+
+
+def build_downloads_page():
+    cards = []
+    missing = []
+    for title, file_type, url in DOWNLOAD_ITEMS:
+        file_path = PUBLIC / url.lstrip("/")
+        if not file_path.exists():
+            missing.append(url)
+        cards.append(
+            '<article class="download-card">'
+            f'<h2>{html.escape(title)}</h2>'
+            f'<p class="download-meta">{html.escape(file_type)}</p>'
+            f'<a class="download-button" href="{html.escape(url)}" download>Download</a>'
+            '</article>'
+        )
+    if missing:
+        raise FileNotFoundError("Downloadbestand ontbreekt in public: " + ", ".join(missing))
+    return (
+        '<p>Alle beschikbare bestanden staan hieronder bij elkaar.</p>'
+        f'<div class="download-grid">{"".join(cards)}</div>'
+    )
+
+
+def build_examenstof_page(kb_overviews, pages_by_url):
+    used = set()
+    sections = []
+    for group_title, urls in EXAMENSTOF_GROUPS:
+        cards = []
+        for url in urls:
+            page = pages_by_url.get(url)
+            if not page:
+                continue
+            used.add(url)
+            links = re.findall(r'<li><a href="([^"]+)">([^<]+)</a></li>', page.get("html") or "")
+            child_links = "".join(
+                f'<li><a href="{html.escape(href)}">{html.escape(clean_text(label))}</a></li>'
+                for href, label in links
+            )
+            cards.append(
+                '<article class="subject-card">'
+                f'<h2><a href="{html.escape(url)}">{html.escape(page["title"])}</a></h2>'
+                f'<ul>{child_links}</ul>'
+                '</article>'
+            )
+        if cards:
+            sections.append(
+                f'<section class="subject-group"><h2>{html.escape(group_title)}</h2>'
+                f'<div class="subject-grid">{"".join(cards)}</div></section>'
+            )
+    remaining = [page for page in kb_overviews if page["url"] not in used]
+    if remaining:
+        sections.append(
+            '<section class="subject-group"><h2>Overige onderwerpen</h2>'
+            f'{html_link_list(remaining)}</section>'
+        )
+    return "".join(sections)
 
 
 def build_homepage(kb_overviews, pages_by_url):
@@ -494,7 +677,6 @@ def build_homepage(kb_overviews, pages_by_url):
         topic_cards.append(
             '<section class="topic-card">'
             f'<a href="{html.escape(url)}">{html.escape(page["title"])}</a>'
-            '<p>Kerndoelen, uitleg en bijbehorende leerstof op een vaste URL.</p>'
             f'<ul>{child_links}</ul>'
             '</section>'
         )
@@ -506,26 +688,22 @@ def build_homepage(kb_overviews, pages_by_url):
             topic_cards.append(
                 '<section class="topic-card">'
                 f'<a href="{html.escape(page["url"])}">{html.escape(page["title"])}</a>'
-                '<p>Overzicht met gekoppelde examenstof en onderwerpen.</p>'
                 '</section>'
             )
             if len(topic_cards) >= 6:
                 break
 
     quick_cards = [
-        ("/examenstof/", "Examenstof", "Start bij de onderwerpen en ga direct naar de juiste kerndoelen."),
-        ("/kerndoelen/", "Kerndoelen", "Alle oude en nieuwe kerndoeloverzichten blijven vindbaar."),
-        ("/begrippen/", "Begrippen", "Gebruik de begrippenlijst om termen snel terug te vinden."),
-        ("/planning/", "Planning", "Bekijk de bewaarde jaarplanningen en gekoppelde lessen."),
-        ("/downloads/", "Downloads", "Vind bestanden en aanvullend lesmateriaal op de oude URL."),
-        ("/leertips/", "Leertips", "Praktische verwijzingen voor leren, herhalen en voorbereiden.")
+        ("/examenstof/", "Examenstof"),
+        ("/kerndoelen/", "Kerndoelen"),
+        ("/begrippen/", "Begrippen"),
+        ("/downloads/", "Downloads")
     ]
     quick_html = "".join(
         '<section class="quick-card">'
         f'<a href="{html.escape(url)}">{html.escape(title)}</a>'
-        f'<p>{html.escape(text)}</p>'
         '</section>'
-        for url, title, text in quick_cards
+        for url, title in quick_cards
     )
 
     return (
@@ -533,7 +711,7 @@ def build_homepage(kb_overviews, pages_by_url):
         '<div class="home-hero__copy">'
         '<p class="home-eyebrow">VMBO maatschappijleer 2</p>'
         '<h1>Maatschappijkunde.nl</h1>'
-        '<p>Alle geconverteerde examenstof, kerndoelen, begrippen, planningen en downloads staan hier weer overzichtelijk bij elkaar. De oude URL\'s blijven behouden, maar de navigatie is rustiger en sneller te scannen.</p>'
+        '<p>Examenstof, kerndoelen, begrippen en downloads voor maatschappijkunde en maatschappijleer.</p>'
         '<div class="home-actions">'
         '<a class="button-link" href="/examenstof/">Naar examenstof</a>'
         '<a class="button-link secondary" href="/begrippen/">Begrippen zoeken</a>'
@@ -550,11 +728,11 @@ def build_homepage(kb_overviews, pages_by_url):
         '</aside>'
         '</section>'
         '<section class="home-section">'
-        '<div class="section-heading"><div><h2>Belangrijkste onderwerpen</h2><p>De meest gebruikte ingangen naar de examenstof.</p></div><a href="/kerndoelen/">Alle kerndoelen</a></div>'
+        '<div class="section-heading"><div><h2>Belangrijkste onderwerpen</h2></div><a href="/kerndoelen/">Alle kerndoelen</a></div>'
         f'<div class="topic-grid">{"".join(topic_cards)}</div>'
         '</section>'
         '<section class="home-section">'
-        '<div class="section-heading"><div><h2>Verder op de site</h2><p>Vaste onderdelen voor leren, plannen en terugzoeken.</p></div></div>'
+        '<div class="section-heading"><div><h2>Verder op de site</h2></div></div>'
         f'<div class="quick-grid">{quick_html}</div>'
         '</section>'
     )
@@ -656,6 +834,7 @@ def main():
         converted = remove_youtube(converted)
         converted = apply_text_corrections(converted)
         converted = improve_readability(converted)
+        converted = convert_strong_lists(converted)
         converted = clean_empty_legacy_wrappers(converted)
         title = normalize_title(post)
         page = {
@@ -736,10 +915,7 @@ def main():
             intro_text = description
         else:
             intro_text = (
-                f"Dit overzicht bundelt de examenstof en kerndoelen voor {term['name']}. "
-                "De pagina blijft beschikbaar op de oorspronkelijke URL en verwijst naar "
-                "de gekoppelde uitleg, opdrachten, slides en downloads waar die "
-                "in de oude site aan dit onderwerp waren gekoppeld."
+                f"Overzicht van examenstof en kerndoelen voor {term['name']}."
             )
         intro = f"<p>{html.escape(intro_text)}</p>"
         plain_text = clean_text(" ".join([intro_text, " ".join(p["title"] for p in related_pages)]))
@@ -769,21 +945,27 @@ def main():
     if root_page:
         root_page["title"] = "Maatschappijkunde.nl"
         root_page["seoTitle"] = "Maatschappijkunde.nl"
-        root_page["description"] = "Alle examenstof, kerndoelen, begrippen, planningen en downloads voor maatschappijkunde overzichtelijk bij elkaar."
+        root_page["description"] = "Examenstof, kerndoelen, begrippen en downloads voor maatschappijkunde en maatschappijleer."
         root_page["html"] = build_homepage(kb_overviews, pages_by_url)
         root_page["plainText"] = clean_text(root_page["html"])
 
     over_page = pages_by_url.get("/over/")
     if over_page:
-        over_page["description"] = "Herkomst en beschikbaarheid van de geconverteerde inhoud op Maatschappijkunde.nl."
+        over_page["description"] = "Herkomst van de inhoud op Maatschappijkunde.nl."
         over_page["html"] = build_over_page()
         over_page["plainText"] = clean_text(over_page["html"])
 
     glossary_page = pages_by_url.get("/begrippen/")
     if glossary_page:
-        glossary_page["description"] = "Alle begrippen uit de oude content, gekoppeld aan Schoolwoorden.nl."
+        glossary_page["description"] = "Alle begrippen uit de lesstof, gekoppeld aan Schoolwoorden.nl."
         glossary_page["html"] = build_glossary_page(glossary_terms)
         glossary_page["plainText"] = clean_text(glossary_page["html"])
+
+    downloads_page = pages_by_url.get("/downloads/")
+    if downloads_page:
+        downloads_page["description"] = "Downloads voor maatschappijkunde en maatschappijleer."
+        downloads_page["html"] = build_downloads_page()
+        downloads_page["plainText"] = clean_text(downloads_page["html"])
 
     def fill_existing_page(url, html_content, plain_text=None):
         page = pages_by_url.get(url)
@@ -819,12 +1001,11 @@ def main():
         return sorted_pages(matched)
 
     overview_links = html_link_list(kb_overviews)
-    fill_existing_page(
-        "/examenstof/",
-        "<p>Alle examenstof is hieronder gegroepeerd per onderwerp en kerndoel.</p>"
-        "<h2>Onderwerpen</h2>"
-        f"{overview_links}"
-    )
+    examenstof_page = pages_by_url.get("/examenstof/")
+    if examenstof_page:
+        examenstof_page["description"] = "Examenstof gegroepeerd per vak en onderwerp."
+        examenstof_page["html"] = build_examenstof_page(kb_overviews, pages_by_url)
+        examenstof_page["plainText"] = clean_text(examenstof_page["html"])
     fill_existing_page(
         "/kerndoelen/",
         "<p>Alle kerndoelen en examenonderwerpen zijn hieronder als overzicht beschikbaar.</p>"
@@ -853,9 +1034,7 @@ def main():
             continue
         enhance_short_page(
             category_url,
-            "<p>Dit categorie-overzicht verwijst naar de bijbehorende examenstof en kerndoelen "
-            f"voor {html.escape(title)}. De originele URL blijft behouden voor bezoekers, "
-            "oude links en zoekmachines.</p>"
+            f"<p>Examenstof en kerndoelen voor {html.escape(title)}.</p>"
             f'<p><a href="{html.escape(overview_url)}">Bekijk het volledige kerndoeloverzicht voor {html.escape(title)}</a>.</p>'
             f"{overview.get('html') or ''}",
             clean_text(f"{title} categorie overzicht {overview.get('plainText') or ''}"),
@@ -864,25 +1043,19 @@ def main():
 
     enhance_short_page(
         "/category/examenstof/",
-        "<p>Dit archief bundelt berichten en verwijzingen rond examenstof. Voor de statische site "
-        "blijft deze URL beschikbaar en verwijst het overzicht door naar alle gegroepeerde "
-        "kerndoel- en examenstofpagina's.</p>"
+        "<p>Archief met verwijzingen rond examenstof.</p>"
         f"{overview_links}",
         force=True
     )
     enhance_short_page(
         "/category/multiculti/",
-        "<p>Dit categorie-overzicht verwijst naar de examenstof over multiculturele samenleving. "
-        "De pagina blijft bestaan voor oude categorie-links en verwijst naar de bijbehorende "
-        "kerndoelen en leerstof.</p>"
+        "<p>Examenstof over de multiculturele samenleving.</p>"
         f"{pages_by_url.get('/kerndoelen/multiculturelesamenleving/', {}).get('html') or ''}",
         force=True
     )
     enhance_short_page(
         "/category/featured/",
-        "<p>Dit archief bevat uitgelichte verwijzingen uit de oude WordPress-site. In de statische "
-        "versie blijft de URL behouden en wordt doorgelinkt naar de belangrijkste overzichten "
-        "voor examenstof, kerndoelen, begrippen en downloads.</p>"
+        "<p>Uitgelichte verwijzingen naar examenstof, kerndoelen, begrippen en downloads.</p>"
         f"{html_link_list(pages_matching('/examenstof/', '/kerndoelen/', '/begrippen/', '/downloads/'))}",
         force=True
     )
@@ -893,44 +1066,34 @@ def main():
     }.items():
         enhance_short_page(
             tag_url,
-            f"<p>Dit tag-overzicht groepeert examenstof die in de oude site aan {html.escape(label)} "
-            "was gekoppeld. De statische conversie behoudt deze URL en biedt toegang tot de "
-            "relevante kerndoeloverzichten.</p>"
+            f"<p>Examenstof voor {html.escape(label)}.</p>"
             f"{overview_links}",
             force=True
         )
 
     enhance_short_page(
         "/examenstof-2/",
-        "<p>Deze oude kennisbank-archive URL blijft beschikbaar als ingang naar de examenstof. "
-        "Gebruik de onderstaande links om door te gaan naar de geconverteerde kerndoel- en "
-        "onderwerpoverzichten.</p>"
+        "<p>Kennisbankarchief voor examenstof.</p>"
         f"{overview_links}"
     )
     enhance_short_page(
         "/contact-support/",
-        "<p>Deze supportpagina uit de oude kennisbank blijft behouden voor bestaande links. "
-        "Voor inhoudelijke navigatie op de statische site zijn de examenstof, kerndoelen, "
-        "begrippen en overige informatiepagina's hieronder beschikbaar.</p>"
+        "<p>Inhoudelijke navigatie naar examenstof, kerndoelen, begrippen en overige informatiepagina's.</p>"
         f"{html_link_list(pages_matching('/examenstof/', '/kerndoelen/', '/begrippen/', '/over/'))}"
     )
     enhance_short_page(
         "/leertips/",
-        "<p>Deze pagina verzamelt leertips en verwijzingen naar hulpmiddelen voor maatschappijleer "
-        "en maatschappijkunde. De bestaande downloads en links blijven behouden. Aanvullend staan "
-        "hieronder de belangrijkste examenstof- en kerndoeloverzichten.</p>"
+        "<p>Leertips en hulpmiddelen voor maatschappijleer en maatschappijkunde.</p>"
         f"{overview_links}"
     )
     enhance_short_page(
         "/websites/",
-        "<p>Deze pagina bewaart de oude verzameling handige websites en verwijzingen. Voor de "
-        "statische site blijft de URL behouden en wordt de pagina aangevuld met links naar de "
-        "belangrijkste interne overzichten.</p>"
+        "<p>Handige websites en verwijzingen voor maatschappijleer en maatschappijkunde.</p>"
         f"{html_link_list(pages_matching('/examenstof/', '/kerndoelen/', '/begrippen/'))}"
     )
 
     for page in pages:
-        page["html"] = clean_empty_legacy_wrappers(improve_readability(apply_text_corrections(remove_youtube(page.get("html") or ""))))
+        page["html"] = clean_empty_legacy_wrappers(convert_strong_lists(improve_readability(apply_text_corrections(remove_youtube(page.get("html") or "")))))
         page["description"] = clean_text(apply_text_corrections(page.get("description") or ""))
         page["plainText"] = clean_text(page["html"])
 

@@ -1,7 +1,43 @@
 {
-  "total_issues": 0,
+  "total_issues": 5,
   "high_issues": 0,
   "medium_issues": 0,
-  "low_issues": 0,
-  "issues": []
+  "low_issues": 5,
+  "issues": [
+    {
+      "page": "/kerndoelen/beeldvorming-en-stereotypering/",
+      "title": "Beeldvorming en stereotypering",
+      "issue": "short_content",
+      "severity": "low",
+      "detail": "27 words"
+    },
+    {
+      "page": "/kerndoelen/cultuur-en-socialisatie/",
+      "title": "Cultuur en Socialisatie",
+      "issue": "short_content",
+      "severity": "low",
+      "detail": "23 words"
+    },
+    {
+      "page": "/kerndoelen/domein-c-parlementaire-democratie/",
+      "title": "Domein C: Parlementaire Democratie",
+      "issue": "short_content",
+      "severity": "low",
+      "detail": "20 words"
+    },
+    {
+      "page": "/kerndoelen/macht-en-zeggenschap/",
+      "title": "Macht en zeggenschap",
+      "issue": "short_content",
+      "severity": "low",
+      "detail": "29 words"
+    },
+    {
+      "page": "/kerndoelen/sociale-verschillen/",
+      "title": "Sociale verschillen",
+      "issue": "short_content",
+      "severity": "low",
+      "detail": "27 words"
+    }
+  ]
 }

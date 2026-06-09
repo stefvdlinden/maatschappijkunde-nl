@@ -11,7 +11,7 @@ const pageChecks = [
   '/examenstof/',
   '/kerndoelen/',
   '/begrippen/',
-  '/planning/',
+  '/downloads/',
   '/examenstof/amv-kerndoel1/',
   '/examenstof/criminaliteitenrechtsstaat-kerndoel1/',
   '/category/amv/',

@@ -42,11 +42,16 @@ const redirects = readJson('../data/site/redirects.json');
 const urlInventory = readCsv('../data/generated/url-inventory.csv');
 const pageUrls = new Set(pages.map((page) => page.url));
 const redirectSources = new Set(redirects.map((redirect) => redirect.source));
+const removedStaticPages = new Set(['/planning/', '/planning/leerjaar3/', '/planning/leerjaar4/']);
 
 for (const row of urlInventory) {
   const url = row.url;
   if (!url) continue;
   if (row.advice === 'preserve as static page') {
+    if (removedStaticPages.has(url)) {
+      assert(redirectSources.has(url), `Expected redirect for removed page ${url}`);
+      continue;
+    }
     assert(pageUrls.has(url), `Expected static page for ${url}`);
   }
   if (row.advice === 'keep redirect') {
