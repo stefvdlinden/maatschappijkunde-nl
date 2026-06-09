@@ -5,6 +5,7 @@ import html
 import json
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,6 +18,7 @@ GENERATED = ROOT / "data" / "generated"
 SITE = ROOT / "data" / "site"
 PUBLIC = ROOT / "public"
 SQL = SRC / "maatsk_nkhniy67.sql"
+SCHOOLWOORDEN_SITEMAP = GENERATED / "schoolwoorden-sitemap.xml"
 
 PUBLIC_TYPES = {"page", "post", "ht_kb", "glossary"}
 TYPE_LABELS = {
@@ -362,6 +364,112 @@ def sorted_pages(items):
     return sorted(items, key=lambda p: (p["title"].lower(), p["url"]))
 
 
+def slugify_text(value):
+    normalized = unicodedata.normalize("NFKD", value or "")
+    ascii_text = "".join(char for char in normalized if not unicodedata.combining(char))
+    ascii_text = ascii_text.lower()
+    ascii_text = re.sub(r"[^a-z0-9]+", "-", ascii_text)
+    return ascii_text.strip("-")
+
+
+def read_schoolwoorden_urls():
+    if not SCHOOLWOORDEN_SITEMAP.exists():
+        return {}
+    xml = SCHOOLWOORDEN_SITEMAP.read_text(encoding="utf-8", errors="replace")
+    urls = re.findall(r"<loc>\s*(https://schoolwoorden\.nl/begrip/[^<\s]+)\s*</loc>", xml, flags=re.I)
+    by_slug = {}
+    for url in urls:
+        clean_url = html.unescape(url).rstrip("/")
+        slug = clean_url.rsplit("/", 1)[-1].lower()
+        by_slug[slug] = clean_url
+    return by_slug
+
+
+def build_glossary_terms(posts, posts_by_id, redirect_by_source, schoolwoorden_urls):
+    terms = []
+    for post in posts:
+        if post.get("post_status") != "publish" or post.get("post_type") != "glossary":
+            continue
+        title = normalize_title(post)
+        legacy_url = rel_url(post, posts_by_id)
+        legacy_slug = legacy_url.strip("/").split("/")[-1]
+        redirect_target = (redirect_by_source.get(legacy_url) or "").rstrip("/")
+        redirect_slug = redirect_target.rsplit("/", 1)[-1].lower() if "schoolwoorden.nl/begrip/" in redirect_target else ""
+        title_slug = slugify_text(title)
+        sitemap_url = (
+            schoolwoorden_urls.get(redirect_slug)
+            or schoolwoorden_urls.get(legacy_slug)
+            or schoolwoorden_urls.get(title_slug)
+        )
+        schoolwoorden_url = sitemap_url or redirect_target
+        raw_definition, _ = convert_shortcodes(post.get("post_content") or "")
+        raw_definition = normalize_internal_urls(raw_definition)
+        raw_definition = clean_wordpress_blocks(raw_definition)
+        raw_definition = remove_youtube(raw_definition)
+        raw_definition = apply_text_corrections(raw_definition)
+        definition = clean_text(raw_definition)
+        terms.append({
+            "title": title,
+            "legacyUrl": legacy_url,
+            "definition": definition,
+            "schoolwoordenUrl": schoolwoorden_url or "",
+            "matchedSitemap": bool(sitemap_url)
+        })
+    return sorted(terms, key=lambda item: (item["title"].lower(), item["legacyUrl"]))
+
+
+def build_glossary_page(glossary_terms):
+    grouped = {}
+    for term in glossary_terms:
+        first = slugify_text(term["title"])[:1].upper() or "#"
+        if not first.isdigit() and not ("A" <= first <= "Z"):
+            first = "#"
+        grouped.setdefault(first, []).append(term)
+
+    nav_letters = "".join(
+        f'<a href="#begrippen-{html.escape(letter.lower())}">{html.escape(letter)}</a>'
+        for letter in sorted(grouped)
+    )
+    sections = []
+    for letter in sorted(grouped):
+        rows = []
+        for term in grouped[letter]:
+            title = html.escape(term["title"])
+            definition = html.escape(term["definition"])
+            if term["schoolwoordenUrl"]:
+                link = f'<a href="{html.escape(term["schoolwoordenUrl"])}">{title}</a>'
+            else:
+                link = title
+            definition_html = f'<p>{definition}</p>' if definition else '<p>Geen definitie uit de oude content beschikbaar.</p>'
+            rows.append(
+                '<article class="glossary-item">'
+                f'<h3>{link}</h3>'
+                f'{definition_html}'
+                '</article>'
+            )
+        sections.append(
+            f'<section class="glossary-section" id="begrippen-{html.escape(letter.lower())}">'
+            f'<h2>{html.escape(letter)}</h2>'
+            f'<div class="glossary-grid">{"".join(rows)}</div>'
+            '</section>'
+        )
+    linked = sum(1 for term in glossary_terms if term.get("schoolwoordenUrl"))
+    matched = sum(1 for term in glossary_terms if term.get("matchedSitemap"))
+    return (
+        '<p>Hieronder staan alle begrippen uit de oude content. Elk gekoppeld begrip verwijst naar de actuele begrippenpagina op Schoolwoorden.nl.</p>'
+        f'<p class="notice">Begrippen gekoppeld aan Schoolwoorden.nl: {linked} van {len(glossary_terms)}. Daarvan zijn {matched} koppelingen exact bevestigd in de sitemap.</p>'
+        f'<nav class="glossary-index" aria-label="Begrippen op letter">{nav_letters}</nav>'
+        f'{"".join(sections)}'
+    )
+
+
+def build_over_page():
+    return (
+        '<p>Maatschappijkunde.nl bewaart de geconverteerde examenstof, kerndoelen, begrippen, planningen en downloads zodat oude links beschikbaar blijven voor leerlingen en docenten.</p>'
+        '<p>De oorspronkelijke inhoud is gemaakt door Wessel Peeters. Stef van der Linden heeft de inhoud overgenomen om deze beschikbaar te houden.</p>'
+    )
+
+
 def build_homepage(kb_overviews, pages_by_url):
     featured_urls = [
         "/kerndoelen/mensenwerk/",
@@ -528,6 +636,9 @@ def main():
         redirect for redirect in EXTRA_REDIRECTS
         if redirect["source"] not in known_redirect_sources
     )
+    redirect_by_source = {redirect["source"]: redirect["target"] for redirect in redirects}
+    schoolwoorden_urls = read_schoolwoorden_urls()
+    glossary_terms = build_glossary_terms(posts, posts_by_id, redirect_by_source, schoolwoorden_urls)
     redirect_sources = {r["source"] for r in redirects}
     pages = []
     pages_by_id = {}
@@ -661,6 +772,18 @@ def main():
         root_page["description"] = "Alle examenstof, kerndoelen, begrippen, planningen en downloads voor maatschappijkunde overzichtelijk bij elkaar."
         root_page["html"] = build_homepage(kb_overviews, pages_by_url)
         root_page["plainText"] = clean_text(root_page["html"])
+
+    over_page = pages_by_url.get("/over/")
+    if over_page:
+        over_page["description"] = "Herkomst en beschikbaarheid van de geconverteerde inhoud op Maatschappijkunde.nl."
+        over_page["html"] = build_over_page()
+        over_page["plainText"] = clean_text(over_page["html"])
+
+    glossary_page = pages_by_url.get("/begrippen/")
+    if glossary_page:
+        glossary_page["description"] = "Alle begrippen uit de oude content, gekoppeld aan Schoolwoorden.nl."
+        glossary_page["html"] = build_glossary_page(glossary_terms)
+        glossary_page["plainText"] = clean_text(glossary_page["html"])
 
     def fill_existing_page(url, html_content, plain_text=None):
         page = pages_by_url.get(url)
@@ -814,6 +937,21 @@ def main():
     pages.sort(key=lambda p: (p["url"] != "/", p["url"]))
     (SITE / "pages.json").write_text(json.dumps(pages, ensure_ascii=False, indent=2), encoding="utf-8")
     (SITE / "redirects.json").write_text(json.dumps(redirects, ensure_ascii=False, indent=2), encoding="utf-8")
+    (SITE / "schoolwoorden-glossary-match-summary.json").write_text(json.dumps({
+        "glossary_terms": len(glossary_terms),
+        "linked_schoolwoorden_urls": sum(1 for term in glossary_terms if term.get("schoolwoordenUrl")),
+        "matched_schoolwoorden_sitemap_urls": sum(1 for term in glossary_terms if term.get("matchedSitemap")),
+        "unmatched_terms": [
+            {"title": term["title"], "legacyUrl": term["legacyUrl"]}
+            for term in glossary_terms
+            if not term.get("schoolwoordenUrl")
+        ],
+        "linked_from_existing_redirect": [
+            {"title": term["title"], "legacyUrl": term["legacyUrl"], "schoolwoordenUrl": term["schoolwoordenUrl"]}
+            for term in glossary_terms
+            if term.get("schoolwoordenUrl") and not term.get("matchedSitemap")
+        ]
+    }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     write_redirect_files(redirects)
     print(json.dumps({"pages": len(pages), "redirects": len(redirects)}, ensure_ascii=False))

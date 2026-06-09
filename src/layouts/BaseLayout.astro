@@ -10,8 +10,7 @@ const navItems = [
   { href: '/kerndoelen/', label: 'Kerndoelen' },
   { href: '/begrippen/', label: 'Begrippen' },
   { href: '/planning/', label: 'Planning' },
-  { href: '/downloads/', label: 'Downloads' },
-  { href: '/over/', label: 'Over' }
+  { href: '/downloads/', label: 'Downloads' }
 ];
 ---
 <!doctype html>
@@ -57,6 +56,7 @@ const navItems = [
         <div>
           <a class="footer-brand" href="/">Maatschappijkunde.nl</a>
           <p>Examenstof, kerndoelen, begrippen en planning overzichtelijk bij elkaar voor leerlingen en docenten.</p>
+          <p class="footer-credit">De oorspronkelijke inhoud is gemaakt door Wessel Peeters. Stef van der Linden heeft de inhoud overgenomen om deze beschikbaar te houden.</p>
         </div>
         <nav aria-label="Voettekstmenu">
           {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
@@ -440,6 +440,54 @@ const navItems = [
     font-size: 0.96rem;
   }
 
+  .glossary-index {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 24px 0 30px;
+  }
+
+  .glossary-index a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    min-height: 36px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--accent-dark);
+    font-weight: 760;
+    text-decoration: none;
+  }
+
+  .glossary-section {
+    margin-top: 36px;
+  }
+
+  .glossary-grid {
+    display: grid;
+    gap: 12px;
+  }
+
+  .glossary-item {
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+  }
+
+  .glossary-item h3 {
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+  }
+
+  .glossary-item p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.98rem;
+  }
+
   .site-footer {
     border-top: 1px solid var(--line);
     background: #172033;
@@ -464,6 +512,11 @@ const navItems = [
   .site-footer p {
     margin: 8px 0 0;
     color: #b9c7d8;
+  }
+
+  .footer-credit {
+    max-width: 68ch;
+    font-size: 0.94rem;
   }
 
   .site-footer nav {
