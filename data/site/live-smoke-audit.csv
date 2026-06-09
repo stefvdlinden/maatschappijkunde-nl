@@ -3,7 +3,7 @@ path,type,expected_status,actual_status,expected_location,actual_location,issue
 "/examenstof/","page","200","200","","",""
 "/kerndoelen/","page","200","200","","",""
 "/begrippen/","page","200","200","","",""
-"/planning/","page","200","200","","",""
+"/downloads/","page","200","200","","",""
 "/examenstof/amv-kerndoel1/","page","200","200","","",""
 "/examenstof/criminaliteitenrechtsstaat-kerndoel1/","page","200","200","","",""
 "/category/amv/","page","200","200","","",""

@@ -40,7 +40,7 @@
       "issue": ""
     },
     {
-      "path": "/planning/",
+      "path": "/downloads/",
       "type": "page",
       "expectedStatus": 200,
       "actualStatus": 200,
