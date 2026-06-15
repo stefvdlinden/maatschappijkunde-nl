@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "prepare:content": "python3 scripts/extract_safe_media.py && python3 scripts/build_static_content.py",
-    "build": "npm run prepare:content && ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "postbuild:seo": "node scripts/postbuild-seo.mjs",
+    "build": "npm run prepare:content && ASTRO_TELEMETRY_DISABLED=1 astro build && npm run postbuild:seo",
     "dev": "npm run prepare:content && ASTRO_TELEMETRY_DISABLED=1 astro dev",
     "test": "npm run prepare:content && node scripts/test-url-coverage.mjs && node scripts/audit-redirects.mjs && node scripts/audit-static-migration.mjs && node scripts/audit-converted-html.mjs && node scripts/audit-visible-artifacts.mjs && node scripts/audit-content-fidelity.mjs && node scripts/audit-internal-links.mjs && node scripts/audit-external-references.mjs && node scripts/report-url-gaps.mjs",
     "audit:live:redirects": "node scripts/audit-live-redirects.mjs",
