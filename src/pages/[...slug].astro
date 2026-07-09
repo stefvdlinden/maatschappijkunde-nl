@@ -13,6 +13,7 @@ const { page } = Astro.props;
 const title = page.seoTitle || page.title || 'Maatschappijkunde.nl';
 const description = page.description || undefined;
 const isHome = page.url === '/';
+const isWidePage = ['/examenstof/', '/begrippen/', '/downloads/'].includes(page.url);
 const pagesByUrl = new Map(pages.map((item) => [item.url, item]));
 const normalizeText = (value = '') => value
   .replace(/<[^>]*>/g, ' ')
@@ -54,7 +55,7 @@ const breadcrumbs = buildBreadcrumbs(page);
   {isHome ? (
     <div class="home-page" set:html={page.html} />
   ) : (
-    <article class="content-page legacy-content">
+    <article class:list={['content-page', 'legacy-content', { 'content-page--wide': isWidePage }]}>
       <p class="content-page__type">{page.typeLabel}</p>
       <h1>{page.title}</h1>
       {showIntro && <p class="content-page__intro">{description}</p>}
