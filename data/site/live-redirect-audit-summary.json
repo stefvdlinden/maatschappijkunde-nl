@@ -1,7 +1,7 @@
 {
-  "origin": "https://dev.maatschappijkunde.nl",
+  "origin": "https://maatschappijkunde.nl",
   "total_checks": 6,
-  "total_issues": 0,
+  "total_issues": 3,
   "checks": [
     {
       "path": "/begrippen/tweede-kamer/",
@@ -30,26 +30,26 @@
     {
       "path": "/politiekenbeleid-kerndoel1-1/",
       "expectedStatus": 301,
-      "actualStatus": 301,
-      "expectedLocation": "https://dev.maatschappijkunde.nl/examenstof/politiekenbeleid-kerndoel1-1/",
-      "actualLocation": "https://dev.maatschappijkunde.nl/examenstof/politiekenbeleid-kerndoel1-1/",
-      "issue": ""
+      "actualStatus": 200,
+      "expectedLocation": "https://maatschappijkunde.nl/examenstof/politiekenbeleid-kerndoel1-1/",
+      "actualLocation": "",
+      "issue": "status:200;location:missing"
     },
     {
       "path": "/amv-kerndoel1/",
       "expectedStatus": 301,
-      "actualStatus": 301,
-      "expectedLocation": "https://dev.maatschappijkunde.nl/examenstof/amv-kerndoel1/",
-      "actualLocation": "https://dev.maatschappijkunde.nl/examenstof/amv-kerndoel1/",
-      "issue": ""
+      "actualStatus": 200,
+      "expectedLocation": "https://maatschappijkunde.nl/examenstof/amv-kerndoel1/",
+      "actualLocation": "",
+      "issue": "status:200;location:missing"
     },
     {
       "path": "/ciminaliteitenrechtsstaat-kerndoel1/",
       "expectedStatus": 301,
-      "actualStatus": 301,
-      "expectedLocation": "https://dev.maatschappijkunde.nl/examenstof/criminaliteitenrechtsstaat-kerndoel1/",
-      "actualLocation": "https://dev.maatschappijkunde.nl/examenstof/criminaliteitenrechtsstaat-kerndoel1/",
-      "issue": ""
+      "actualStatus": 200,
+      "expectedLocation": "https://maatschappijkunde.nl/examenstof/criminaliteitenrechtsstaat-kerndoel1/",
+      "actualLocation": "",
+      "issue": "status:200;location:missing"
     }
   ]
 }

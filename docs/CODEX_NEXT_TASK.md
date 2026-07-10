@@ -1,6 +1,6 @@
 # Volgende taak voor Codex
 
-De statische conversiepijplijn voor maatschappijkunde.nl staat lokaal, is gekoppeld aan GitHub en deployt naar `https://dev.maatschappijkunde.nl/`.
+De statische conversiepijplijn voor maatschappijkunde.nl staat lokaal, is gekoppeld aan GitHub en deployt naar `https://maatschappijkunde.nl/`.
 
 ## Huidige status
 

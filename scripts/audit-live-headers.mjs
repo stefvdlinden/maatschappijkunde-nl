@@ -3,15 +3,15 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const origin = process.env.MK_LIVE_ORIGIN || process.env.MK_DEV_ORIGIN || 'https://dev.maatschappijkunde.nl';
-const auth = process.env.MK_DEV_AUTH || '';
+const origin = process.env.MK_LIVE_ORIGIN || 'https://maatschappijkunde.nl';
+const auth = process.env.MK_LIVE_AUTH || process.env.MK_DEV_AUTH || '';
 
 const checks = [
   { path: '/', type: 'html', expectedStatus: 200 },
   { path: '/examenstof/', type: 'html', expectedStatus: 200 },
   { path: '/sitemap-index.xml', type: 'xml', expectedStatus: 200 },
   { path: '/_redirects', type: 'redirect-file', expectedStatus: 200 },
-  { path: '/.htaccess', type: 'protected-config', expectedStatus: 403 },
+  { path: '/.htaccess', type: 'protected-config', expectedStatus: 404 },
   { path: '/wp-content/uploads/2016/12/Analyse-Maatschappelijk-Vraagstuk-212x300.png', type: 'asset', expectedStatus: 200 }
 ];
 

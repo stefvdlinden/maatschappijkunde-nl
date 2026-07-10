@@ -101,7 +101,7 @@ MK_LIVE_ORIGIN='https://maatschappijkunde.nl' npm run audit:live:smoke
 
 - Dev is technisch groen voor cutover.
 - Productie-cutover is nog niet uitgevoerd vanuit deze workspace.
-- DNS voor `maatschappijkunde.nl` en `dev.maatschappijkunde.nl` wijst naar `80.69.67.10`.
+- DNS voor `maatschappijkunde.nl` en `maatschappijkunde.nl` wijst naar `80.69.67.10`.
 - Productiechecks tonen dat productie nog niet dezelfde statische build serveert als dev.
 - Nog extern te bevestigen: productiepad, TTL en rollbackroute bij TransIP.
 - Laatste uitvoeringsrapport: `docs/CUTOVER_EXECUTION_REPORT.md`.

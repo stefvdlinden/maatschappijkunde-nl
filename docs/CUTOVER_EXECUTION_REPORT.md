@@ -6,7 +6,7 @@ Datum: 2026-06-07
 
 | Activiteit | Status | Bevinding |
 |---|---|---|
-| 1. Productiepad, DNS-route en rollbackroute bevestigen | Deels uitgevoerd | DNS voor `maatschappijkunde.nl` en `dev.maatschappijkunde.nl` wijst naar `80.69.67.10`. GitHub bevat alleen generieke SFTP-secrets, geen aparte productie-workflow of aparte productie-secrets. Productiepad en rollbackroute zijn niet vanuit deze workspace te bevestigen. |
+| 1. Productiepad, DNS-route en rollbackroute bevestigen | Deels uitgevoerd | DNS voor `maatschappijkunde.nl` en `maatschappijkunde.nl` wijst naar `80.69.67.10`. GitHub bevat alleen generieke SFTP-secrets, geen aparte productie-workflow of aparte productie-secrets. Productiepad en rollbackroute zijn niet vanuit deze workspace te bevestigen. |
 | 2. Productie-cutover uitvoeren | Geblokkeerd | Er is geen productie-workflow en het concrete productiepad/rollbackpad is niet bevestigd. Daarom is er geen productie-deploy of DNS-wijziging uitgevoerd. |
 | 3. Directe preflight voor cutover | Uitgevoerd | `npm test`, `npm run build`, dev redirect-audit, dev header-audit en dev smoke-audit zijn groen. |
 | 4. Productie-livechecks uitvoeren | Uitgevoerd als verificatie | Productie is nog niet gelijk aan dev: header-audit heeft 4 warning rows, redirect-audit heeft 1 issue, smoke-audit heeft 2 issues. |

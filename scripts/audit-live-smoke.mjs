@@ -3,8 +3,8 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const origin = process.env.MK_LIVE_ORIGIN || process.env.MK_DEV_ORIGIN || 'https://dev.maatschappijkunde.nl';
-const auth = process.env.MK_DEV_AUTH || process.env.MK_LIVE_AUTH || '';
+const origin = process.env.MK_LIVE_ORIGIN || 'https://maatschappijkunde.nl';
+const auth = process.env.MK_LIVE_AUTH || process.env.MK_DEV_AUTH || '';
 
 const pageChecks = [
   '/',

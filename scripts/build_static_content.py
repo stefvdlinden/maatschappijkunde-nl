@@ -813,8 +813,19 @@ def build_homepage(kb_overviews, pages_by_url):
     )
 
 
+def cloudflare_redirect_status(redirect):
+    status = redirect["status"]
+    return f"{status}!" if redirect.get("target", "").startswith("/") else status
+
+
 def write_redirect_files(redirects):
-    netlify_lines = [f'{r["source"]} {r["target"]} {r["status"]}' for r in redirects]
+    netlify_lines = [f'{r["source"]} {r["target"]} {cloudflare_redirect_status(r)}' for r in redirects]
+    cloudflare_header_lines = [
+        "/*",
+        "  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload",
+        "  X-Content-Type-Options: nosniff",
+        ""
+    ]
     apache_lines = [
         "# Generated from data/site/redirects.json. Do not edit by hand.",
         "RewriteEngine On",
@@ -834,10 +845,14 @@ def write_redirect_files(redirects):
         ""
     ]
     (SITE / "_redirects").write_text("\n".join(netlify_lines) + "\n", encoding="utf-8")
+    (SITE / "_headers").write_text("\n".join(cloudflare_header_lines), encoding="utf-8")
     (SITE / ".htaccess").write_text("\n".join(apache_lines), encoding="utf-8")
     PUBLIC.mkdir(parents=True, exist_ok=True)
     (PUBLIC / "_redirects").write_text("\n".join(netlify_lines) + "\n", encoding="utf-8")
-    (PUBLIC / ".htaccess").write_text("\n".join(apache_lines), encoding="utf-8")
+    (PUBLIC / "_headers").write_text("\n".join(cloudflare_header_lines), encoding="utf-8")
+    public_htaccess = PUBLIC / ".htaccess"
+    if public_htaccess.exists():
+        public_htaccess.unlink()
 
 
 def main():
@@ -853,10 +868,13 @@ def main():
             redirects_file = SITE / "_redirects"
             if redirects_file.exists():
                 (PUBLIC / "_redirects").write_text(redirects_file.read_text(encoding="utf-8"), encoding="utf-8")
-            htaccess_file = SITE / ".htaccess"
-            if htaccess_file.exists():
-                (PUBLIC / ".htaccess").write_text(htaccess_file.read_text(encoding="utf-8"), encoding="utf-8")
-            else:
+            headers_file = SITE / "_headers"
+            if headers_file.exists():
+                (PUBLIC / "_headers").write_text(headers_file.read_text(encoding="utf-8"), encoding="utf-8")
+            public_htaccess = PUBLIC / ".htaccess"
+            if public_htaccess.exists():
+                public_htaccess.unlink()
+            if not redirects_file.exists():
                 write_redirect_files(redirects)
             print(json.dumps({
                 "pages": len(pages),

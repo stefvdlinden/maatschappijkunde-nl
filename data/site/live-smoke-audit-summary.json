@@ -1,7 +1,7 @@
 {
-  "origin": "https://dev.maatschappijkunde.nl",
-  "total_checks": 16,
-  "total_issues": 0,
+  "origin": "https://maatschappijkunde.nl",
+  "total_checks": 17,
+  "total_issues": 4,
   "checks": [
     {
       "path": "/",
@@ -22,7 +22,7 @@
       "issue": ""
     },
     {
-      "path": "/kerndoelen/",
+      "path": "/kerndoelen/mensenwerk/",
       "type": "page",
       "expectedStatus": 200,
       "actualStatus": 200,
@@ -121,31 +121,40 @@
       "issue": ""
     },
     {
+      "path": "/kerndoelen/",
+      "type": "redirect",
+      "expectedStatus": 301,
+      "actualStatus": 200,
+      "expectedLocation": "https://maatschappijkunde.nl/examenstof/",
+      "actualLocation": "",
+      "issue": "status:200;location:missing"
+    },
+    {
       "path": "/politiekenbeleid-kerndoel1-1/",
       "type": "redirect",
       "expectedStatus": 301,
-      "actualStatus": 301,
-      "expectedLocation": "https://dev.maatschappijkunde.nl/examenstof/politiekenbeleid-kerndoel1-1/",
-      "actualLocation": "https://dev.maatschappijkunde.nl/examenstof/politiekenbeleid-kerndoel1-1/",
-      "issue": ""
+      "actualStatus": 200,
+      "expectedLocation": "https://maatschappijkunde.nl/examenstof/politiekenbeleid-kerndoel1-1/",
+      "actualLocation": "",
+      "issue": "status:200;location:missing"
     },
     {
       "path": "/amv-kerndoel1/",
       "type": "redirect",
       "expectedStatus": 301,
-      "actualStatus": 301,
-      "expectedLocation": "https://dev.maatschappijkunde.nl/examenstof/amv-kerndoel1/",
-      "actualLocation": "https://dev.maatschappijkunde.nl/examenstof/amv-kerndoel1/",
-      "issue": ""
+      "actualStatus": 200,
+      "expectedLocation": "https://maatschappijkunde.nl/examenstof/amv-kerndoel1/",
+      "actualLocation": "",
+      "issue": "status:200;location:missing"
     },
     {
       "path": "/ciminaliteitenrechtsstaat-kerndoel1/",
       "type": "redirect",
       "expectedStatus": 301,
-      "actualStatus": 301,
-      "expectedLocation": "https://dev.maatschappijkunde.nl/examenstof/criminaliteitenrechtsstaat-kerndoel1/",
-      "actualLocation": "https://dev.maatschappijkunde.nl/examenstof/criminaliteitenrechtsstaat-kerndoel1/",
-      "issue": ""
+      "actualStatus": 200,
+      "expectedLocation": "https://maatschappijkunde.nl/examenstof/criminaliteitenrechtsstaat-kerndoel1/",
+      "actualLocation": "",
+      "issue": "status:200;location:missing"
     }
   ]
 }

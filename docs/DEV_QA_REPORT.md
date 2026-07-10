@@ -14,7 +14,7 @@ Laatste GitHub Actions run:
 - Deploy via SFTP: success
 - Duur: 12m26s
 
-`https://dev.maatschappijkunde.nl/` reageert met Basic Auth realm `omzetten hosting`.
+`https://maatschappijkunde.nl/` reageert met Basic Auth realm `omzetten hosting`.
 Met de dev-credentials is de live dev-site bereikbaar.
 
 Recente succesvolle runs:
@@ -29,7 +29,7 @@ Recente succesvolle runs:
 
 Workflow-onderhoud:
 
-- Dev-deploys gebruiken `concurrency` met `cancel-in-progress: true`, zodat deployments naar `dev.maatschappijkunde.nl` niet parallel lopen.
+- Dev-deploys gebruiken `concurrency` met `cancel-in-progress: true`, zodat deployments naar `maatschappijkunde.nl` niet parallel lopen.
 - De workflow zet `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true`.
 - GitHub toont nog een informatieve annotatie dat `actions/checkout@v4` en `actions/setup-node@v4` Node.js 20 targeten, maar forced op Node.js 24 draaien.
 - Dit is geen deploy-failure. De workflow slaagt en de site wordt gedeployed.
@@ -94,7 +94,7 @@ Redirects zijn server-side werkend gemaakt voor TransIP door naast `_redirects` 
 
 Live redirectbevindingen:
 
-- `https://dev.maatschappijkunde.nl/_redirects` is live bereikbaar met status `200`, maar Netlify-style `_redirects` wordt niet door TransIP/nginx toegepast.
+- `https://maatschappijkunde.nl/_redirects` is live bereikbaar met status `200`, maar Netlify-style `_redirects` wordt niet door TransIP/nginx toegepast.
 - `/begrippen/tweede-kamer/` geeft `301` naar `https://schoolwoorden.nl/begrip/tweede-kamer/`.
 - `/begrippen/parlement/` volgt door naar `https://schoolwoorden.nl/begrip/parlement`.
 - `/begrippen/reageerakkoord/` geeft `301` naar `https://schoolwoorden.nl/begrip/regeerakkoord/`.
@@ -103,7 +103,7 @@ Live redirectbevindingen:
   - `/amv-kerndoel1/`
   - `/ciminaliteitenrechtsstaat-kerndoel1/`
 - Live redirect-audit na deploy `27089769954`: 6 checks, 0 issues.
-- `https://dev.maatschappijkunde.nl/.htaccess` geeft `403`, dus het bestand wordt niet publiek als tekst geserveerd.
+- `https://maatschappijkunde.nl/.htaccess` geeft `403`, dus het bestand wordt niet publiek als tekst geserveerd.
 
 ## 5. Headers en cache
 

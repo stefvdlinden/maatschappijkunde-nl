@@ -33,6 +33,16 @@ const writeText = (file, content) => {
   fs.writeFileSync(file, content, 'utf8');
 };
 
+const forceLocalRedirect = (line = '') => {
+  if (line.startsWith('#')) return line;
+  const parts = line.split(/\s+/);
+  if (parts.length < 3 || !parts[1]?.startsWith('/')) return line;
+  const status = parts[2] || '301';
+  if (!/^30[1278]!?$/.test(status)) return line;
+  parts[2] = status.endsWith('!') ? status : `${status}!`;
+  return parts.join(' ');
+};
+
 if (!fs.existsSync(DIST)) {
   throw new Error('dist directory is missing. Run this script after astro build.');
 }
@@ -114,10 +124,23 @@ for (const line of [...seoRedirects, ...existingRedirects]) {
   const source = line.split(/\s+/)[0];
   if (seenSources.has(source)) continue;
   seenSources.add(source);
-  mergedRedirects.push(line);
+  mergedRedirects.push(forceLocalRedirect(line));
 }
 
 writeText(redirectsPath, `${mergedRedirects.join('\n')}\n`);
+
+const headersPath = path.join(DIST, '_headers');
+writeText(headersPath, [
+  '/*',
+  '  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload',
+  '  X-Content-Type-Options: nosniff',
+  ''
+].join('\n'));
+
+const htaccessPath = path.join(DIST, '.htaccess');
+if (fs.existsSync(htaccessPath)) {
+  fs.unlinkSync(htaccessPath);
+}
 
 console.log(JSON.stringify({
   canonical: SITE_ORIGIN,
@@ -126,6 +149,7 @@ console.log(JSON.stringify({
     'dist/sitemap.xml',
     'dist/sitemap-index.xml',
     'dist/robots.txt',
-    'dist/_redirects'
+    'dist/_redirects',
+    'dist/_headers'
   ]
 }, null, 2));
