@@ -15,3 +15,9 @@ data/source/*.zip
 
 # OS/editor noise
 .DS_Store
+
+# Reproduceerbare live-auditmomenten
+data/site/live-*-audit.csv
+data/site/live-*-audit-summary.json
+data/site/production-*-audit.csv
+data/site/production-*-audit-summary.json

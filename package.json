@@ -8,14 +8,13 @@
     "postbuild:seo": "node scripts/postbuild-seo.mjs",
     "build": "npm run prepare:content && ASTRO_TELEMETRY_DISABLED=1 astro build && npm run postbuild:seo",
     "dev": "npm run prepare:content && ASTRO_TELEMETRY_DISABLED=1 astro dev",
-    "test": "npm run prepare:content && node scripts/test-url-coverage.mjs && node scripts/audit-redirects.mjs && node scripts/audit-static-migration.mjs && node scripts/audit-converted-html.mjs && node scripts/audit-visible-artifacts.mjs && node scripts/audit-content-fidelity.mjs && node scripts/audit-internal-links.mjs && node scripts/audit-external-references.mjs && node scripts/report-url-gaps.mjs",
+    "test": "npm run prepare:content && node scripts/test-url-coverage.mjs && node scripts/audit-redirects.mjs && node scripts/audit-static-migration.mjs && node scripts/audit-converted-html.mjs && node scripts/audit-visible-artifacts.mjs && node scripts/audit-content-fidelity.mjs && node scripts/audit-internal-links.mjs && node scripts/audit-external-references.mjs && node scripts/report-url-gaps.mjs && node scripts/audit-repository-cleanliness.mjs",
     "audit:live:redirects": "node scripts/audit-live-redirects.mjs",
     "audit:live:headers": "node scripts/audit-live-headers.mjs",
     "audit:live:smoke": "node scripts/audit-live-smoke.mjs",
     "audit:sitemap-urls": "node scripts/audit-sitemap-url-coverage.mjs"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.3.1",
     "astro": "^5.10.1"
   }
 }

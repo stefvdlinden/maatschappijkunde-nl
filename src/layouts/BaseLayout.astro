@@ -176,18 +176,18 @@ const structuredData = [
   h3 { margin-top: 30px; font-size: 1.2rem; }
   p, li { max-width: 78ch; }
   img, iframe { max-width: 100%; }
-  .content-body img, .legacy-content img { height: auto; aspect-ratio: attr(width) / attr(height); }
-  .content-body iframe, .legacy-content iframe { width: 100%; aspect-ratio: 16 / 9; min-height: 315px; display: block; border: 0; }
+  .content-body img, .article-content img { height: auto; aspect-ratio: attr(width) / attr(height); }
+  .content-body iframe, .article-content iframe { width: 100%; aspect-ratio: 16 / 9; min-height: 315px; display: block; border: 0; }
   table { display: block; width: 100%; max-width: 100%; overflow-x: auto; border-collapse: collapse; margin: 24px 0; border: 1px solid var(--line); border-radius: 8px; }
   th, td { padding: 10px 12px; border: 1px solid var(--line); vertical-align: top; }
   th { background: #edf5ff; text-align: left; }
   .notice { color: var(--muted); padding: 12px 14px; border: 1px solid var(--line); background: var(--bg-soft); border-radius: 8px; }
-  .wp-row, .wp-column, .wp-column-text, .shortcode-panel, .legacy-content { display: flow-root; }
+  .content-row, .content-column, .content-column-text, .content-panel, .article-content { display: flow-root; }
   .content-body { font-size: 1.03rem; }
   .content-body > * + * { margin-top: 1.05rem; }
-  .legacy-module-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; padding: 0; list-style: none; }
-  .legacy-module-list a { display: grid; gap: 10px; color: var(--text); text-decoration: none; }
-  .legacy-module-list img { width: 100%; border: 1px solid var(--line); }
+  .module-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; padding: 0; list-style: none; }
+  .module-list a { display: grid; gap: 10px; color: var(--text); text-decoration: none; }
+  .module-list img { width: 100%; border: 1px solid var(--line); }
   .toggle, .tab-section { margin: 18px 0; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
   .home-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 380px); gap: 28px; align-items: center; margin: -10px 0 38px; }
   .home-hero__copy { max-width: 760px; }

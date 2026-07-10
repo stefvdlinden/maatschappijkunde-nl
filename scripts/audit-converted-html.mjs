@@ -10,7 +10,7 @@ const checks = [
   { name: 'legacy_shortcode', pattern: /\[\/?[a-zA-Z0-9_:-]+(?:\s|\]|\/)/, severity: 'high' },
   { name: 'youtube_reference', pattern: /(?:youtube\.com|youtube-nocookie\.com|youtu\.be)/i, severity: 'high' },
   { name: 'empty_embed_container', pattern: /<div class="embed-container embed-responsive embed-responsive-4by3">\s*<\/div>/i, severity: 'medium' },
-  { name: 'empty_legacy_wrapper', pattern: /<(?:div|section) class="(?:wp-row|wp-column|wp-column-text|shortcode-panel|tab-section|toggle)">\s*<\/(?:div|section)>/i, severity: 'high' },
+  { name: 'empty_content_wrapper', pattern: /<(?:div|section) class="(?:content-row|content-column|content-column-text|content-panel|tab-section|toggle)">\s*<\/(?:div|section)>/i, severity: 'high' },
   { name: 'manual_code_review_notice', pattern: /Ingesloten code moet handmatig worden beoordeeld/i, severity: 'medium' },
   { name: 'php_reference', pattern: /(?:href|src)=["'][^"']+\.php(?:\?|["'])/i, severity: 'high' }
 ];

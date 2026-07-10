@@ -52,7 +52,7 @@ const classifyIssues = (check, response, headerValues) => {
     issues.push('html_missing_x_content_type_options');
   }
 
-  if (check.type === 'protected-config' && response.status !== 403) {
+  if (check.type === 'protected-config' && response.status !== check.expectedStatus) {
     issues.push('config_not_protected');
   }
 

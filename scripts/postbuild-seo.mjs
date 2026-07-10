@@ -64,6 +64,12 @@ const urlset = [
 
 writeText(path.join(DIST, 'sitemap.xml'), urlset);
 
+for (const file of fs.readdirSync(DIST)) {
+  if (/^sitemap-\d+\.xml$/i.test(file)) {
+    fs.unlinkSync(path.join(DIST, file));
+  }
+}
+
 const sitemapIndex = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',

@@ -1,6 +1,6 @@
 # maatschappijkunde-static
 
-Codex-ready startpakket voor de statische herbouw van maatschappijkunde.nl.
+Statische Astro-site voor maatschappijkunde.nl.
 
 ## Eerste stap
 Voer de inventarisatie uit:
@@ -28,9 +28,9 @@ De resultaten verschijnen in `data/generated/`.
 5. Test URL's en redirects.
 6. Optimaliseer SEO/AEO.
 
-## Eerste statische conversiepijplijn
+## Statische conversiepijplijn
 
-Deze repo bevat nu een minimale Astro-build zonder redesign. De build gebruikt de WordPress SQL-export en de gegenereerde inventaris als bron.
+De build gebruikt de SQL-export en de veilige uploads als brondata voor een zelfstandige Astro-site.
 
 ```bash
 npm install
@@ -41,13 +41,14 @@ npm run build
 
 Belangrijke bestanden:
 
-- `scripts/build_static_content.py` - haalt gepubliceerde content uit de SQL-export, converteert bekende shortcodes naar veilige HTML en schrijft `data/site/pages.json`.
+- `scripts/build_static_content.py` - haalt gepubliceerde content uit de SQL-export, converteert bekende bronshortcodes naar veilige HTML en schrijft `data/site/pages.json`, `data/site/redirects.json`, `data/site/_redirects` en `data/site/_headers`.
 - `scripts/extract_safe_media.py` - extraheert alleen veilige media uit jaar/maandmappen van `uploads.zip` naar `public/wp-content/uploads/`.
+- `scripts/postbuild-seo.mjs` - schrijft de definitieve productievarianten van `dist/sitemap.xml`, `dist/sitemap-index.xml`, `dist/robots.txt`, `dist/_redirects` en `dist/_headers`.
 - `scripts/audit-static-migration.mjs` - controleert lokale uploadverwijzingen en onopgeloste shortcodes.
 - `scripts/audit-converted-html.mjs` - controleert geconverteerde HTML op shortcode-resten, WordPress block-comments, lege embeds en PHP-verwijzingen.
 - `scripts/audit-internal-links.mjs` - controleert interne links tegen gegenereerde pagina's en redirects.
 - `scripts/report-url-gaps.mjs` - schrijft URL's met `investigate`-status naar `data/site/url-gaps.csv`.
-- `data/site/redirects.json` en `public/_redirects` - redirects uit `data/generated/redirects.csv`.
+- `data/site/redirects.json` en `public/_redirects` - redirects uit `data/generated/redirects.csv` en aanvullende legacy-regels.
 - `data/site/safe-media.csv` - overzicht van veilig geëxtraheerde media.
 - `data/site/asset-audit.csv` - controle van uploadverwijzingen in geconverteerde content.
 - `data/site/html-conversion-audit.csv` - rapport met resterende conversiepunten.
@@ -57,6 +58,18 @@ Belangrijke bestanden:
 - `scripts/test-url-coverage.mjs` - controleert dat preserve/redirect-URL's uit de inventaris afgedekt blijven.
 
 Begrippenpagina's waarvoor een bestaande 301 naar schoolwoorden.nl bestaat, worden niet lokaal gepubliceerd. Die redirectregels krijgen voorrang.
+
+## Legacy asset compatibility
+
+Het publieke pad `/wp-content/uploads/` blijft bewust bestaan als compatibiliteitspad. Dit betekent niet dat de site nog op WordPress draait. Het pad bevat alleen veilig geëxtraheerde statische assets, zodat bestaande content, downloads, afbeeldingen, Google-resultaten en externe links blijven werken.
+
+## Generator-eigenaarschap
+
+- Contentvoorbereiding: `npm run prepare:content`.
+- Buildfase: `astro build`.
+- Postbuildfase: `npm run postbuild:seo`.
+
+`scripts/postbuild-seo.mjs` is de enige eigenaar van de definitieve sitemap, robots.txt, Cloudflare redirects en Cloudflare headers in `dist/`. Auditoutput is reproduceerbaar en hoort alleen als actuele projectdocumentatie in `docs/` wanneer het blijvende waarde heeft.
 
 Huidige status van de migratie-audit:
 

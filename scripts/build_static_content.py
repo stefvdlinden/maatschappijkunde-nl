@@ -223,14 +223,14 @@ def extract_legacy_modules(meta_by_post):
 def render_legacy_module(category):
     items = LEGACY_MODULES.get(category, [])
     if not items:
-        return f'<div class="shortcode-panel" data-legacy-module="uhe_style1" data-category="{html.escape(category)}">Oude oefenmodule: {html.escape(category)}</div>'
+        return f'<div class="content-panel" data-content-module="uhe_style1" data-category="{html.escape(category)}">Oefenmodule: {html.escape(category)}</div>'
     links = []
     for item in items:
         image = f'<img src="{html.escape(item["image"])}" alt="" loading="lazy">' if item.get("image") else ""
         description = f'<span>{html.escape(item.get("description", ""))}</span>' if item.get("description") else ""
         href = html.escape(item.get("link") or "#")
         links.append(f'<li><a href="{href}">{image}{description}</a></li>')
-    return f'<ul class="legacy-module-list" data-legacy-module="uhe_style1" data-category="{html.escape(category)}">{"".join(links)}</ul>'
+    return f'<ul class="module-list" data-content-module="uhe_style1" data-category="{html.escape(category)}">{"".join(links)}</ul>'
 
 
 def normalize_title(post):
@@ -292,17 +292,17 @@ def convert_shortcodes(content):
     text = re.sub(r"\[icon[^\]]*\]", '<span class="legacy-icon" aria-hidden="true"></span>', text, flags=re.I)
 
     wrappers = {
-        "vc_row": "wp-row",
-        "vc_column": "wp-column",
-        "vc_column_text": "wp-column-text",
-        "fusion_text": "wp-column-text",
-        "fullwidth": "wp-row",
-        "one_fifth": "wp-column",
-        "three_fifth": "wp-column",
-        "content_boxes": "wp-row",
-        "content_box": "wp-column",
-        "vc_message": "shortcode-panel",
-        "ultimate_modal": "shortcode-panel"
+        "vc_row": "content-row",
+        "vc_column": "content-column",
+        "vc_column_text": "content-column-text",
+        "fusion_text": "content-column-text",
+        "fullwidth": "content-row",
+        "one_fifth": "content-column",
+        "three_fifth": "content-column",
+        "content_boxes": "content-row",
+        "content_box": "content-column",
+        "vc_message": "content-panel",
+        "ultimate_modal": "content-panel"
     }
     for name, css_class in wrappers.items():
         text = strip_wrapping_shortcode(name, css_class, text)
@@ -495,9 +495,9 @@ def improve_readability(content):
     return text.strip()
 
 
-def clean_empty_legacy_wrappers(content):
+def clean_empty_content_wrappers(content):
     text = content or ""
-    empty_wrapper = re.compile(r'<div class="(?:wp-row|wp-column|wp-column-text|shortcode-panel|tab-section|toggle)">\s*</div>', re.I)
+    empty_wrapper = re.compile(r'<div class="(?:content-row|content-column|content-column-text|content-panel|tab-section|toggle)">\s*</div>', re.I)
     empty_section = re.compile(r'<section class="(?:tab-section|toggle)">\s*</section>', re.I)
     previous = None
     while previous != text:
@@ -814,36 +814,20 @@ def build_homepage(kb_overviews, pages_by_url):
 
 
 def write_redirect_files(redirects):
-    netlify_lines = [f'{r["source"]} {r["target"]} {r["status"]}' for r in redirects]
+    redirect_lines = [f'{r["source"]} {r["target"]} {r["status"]}' for r in redirects]
     cloudflare_header_lines = [
         "/*",
         "  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload",
         "  X-Content-Type-Options: nosniff",
         ""
     ]
-    apache_lines = [
-        "# Generated from data/site/redirects.json. Do not edit by hand.",
-        "RewriteEngine On",
-        *[f'Redirect {r["status"]} {r["source"]} {r["target"]}' for r in redirects],
-        "",
-        "<IfModule mod_headers.c>",
-        '  Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"',
-        '  Header set X-Content-Type-Options "nosniff"',
-        '  Header set Referrer-Policy "strict-origin-when-cross-origin"',
-        '  <FilesMatch "\\.(png|jpg|jpeg|gif|webp|svg|css|js|woff2?)$">',
-        '    Header set Cache-Control "public, max-age=31536000, immutable"',
-        "  </FilesMatch>",
-        '  <FilesMatch "\\.(html|xml)$">',
-        '    Header set Cache-Control "public, max-age=300"',
-        "  </FilesMatch>",
-        "</IfModule>",
-        ""
-    ]
-    (SITE / "_redirects").write_text("\n".join(netlify_lines) + "\n", encoding="utf-8")
+    (SITE / "_redirects").write_text("\n".join(redirect_lines) + "\n", encoding="utf-8")
     (SITE / "_headers").write_text("\n".join(cloudflare_header_lines), encoding="utf-8")
-    (SITE / ".htaccess").write_text("\n".join(apache_lines), encoding="utf-8")
+    site_htaccess = SITE / ".htaccess"
+    if site_htaccess.exists():
+        site_htaccess.unlink()
     PUBLIC.mkdir(parents=True, exist_ok=True)
-    (PUBLIC / "_redirects").write_text("\n".join(netlify_lines) + "\n", encoding="utf-8")
+    (PUBLIC / "_redirects").write_text("\n".join(redirect_lines) + "\n", encoding="utf-8")
     (PUBLIC / "_headers").write_text("\n".join(cloudflare_header_lines), encoding="utf-8")
     public_htaccess = PUBLIC / ".htaccess"
     if public_htaccess.exists():
@@ -869,6 +853,9 @@ def main():
             public_htaccess = PUBLIC / ".htaccess"
             if public_htaccess.exists():
                 public_htaccess.unlink()
+            site_htaccess = SITE / ".htaccess"
+            if site_htaccess.exists():
+                site_htaccess.unlink()
             if not redirects_file.exists():
                 write_redirect_files(redirects)
             print(json.dumps({
@@ -926,7 +913,7 @@ def main():
         converted = apply_text_corrections(converted)
         converted = improve_readability(converted)
         converted = convert_strong_lists(converted)
-        converted = clean_empty_legacy_wrappers(converted)
+        converted = clean_empty_content_wrappers(converted)
         title = normalize_title(post)
         page = {
             "id": str(post.get("ID")),
@@ -1184,7 +1171,7 @@ def main():
     )
 
     for page in pages:
-        page["html"] = clean_empty_legacy_wrappers(canonicalize_schoolwoorden_links(convert_strong_lists(improve_readability(apply_text_corrections(remove_youtube(page.get("html") or ""))))))
+        page["html"] = clean_empty_content_wrappers(canonicalize_schoolwoorden_links(convert_strong_lists(improve_readability(apply_text_corrections(remove_youtube(page.get("html") or ""))))))
         page["description"] = clean_text(apply_text_corrections(page.get("description") or ""))
         page["plainText"] = clean_text(page["html"])
 

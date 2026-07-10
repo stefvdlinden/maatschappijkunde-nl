@@ -17,7 +17,7 @@ for (const page of pages) {
   }
   if (!html) {
     rows.push({ page: page.url, title: page.title, issue: 'empty_html', severity: 'medium', detail: `${wordCount} words` });
-  } else if (wordCount < 30 && !html.includes('legacy-module-list')) {
+  } else if (wordCount < 30 && !html.includes('module-list')) {
     rows.push({ page: page.url, title: page.title, issue: 'short_content', severity: 'low', detail: `${wordCount} words` });
   }
 }
