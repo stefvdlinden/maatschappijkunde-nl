@@ -1,7 +1,7 @@
 path,type,expected_status,actual_status,cache_control,content_type,content_encoding,strict_transport_security,x_content_type_options,x_frame_options,referrer_policy,issue
-"/","html","200","200","public, max-age=0, must-revalidate","text/html; charset=utf-8","br","","nosniff","","strict-origin-when-cross-origin","html_missing_hsts"
-"/examenstof/","html","200","200","public, max-age=0, must-revalidate","text/html; charset=utf-8","br","","nosniff","","strict-origin-when-cross-origin","html_missing_hsts"
-"/sitemap-index.xml","xml","200","200","public, max-age=0, must-revalidate","application/xml","br","","nosniff","","strict-origin-when-cross-origin",""
-"/_redirects","redirect-file","200","200","public, max-age=0, must-revalidate","text/html; charset=utf-8","br","","nosniff","","strict-origin-when-cross-origin",""
-"/.htaccess","protected-config","404","200","public, max-age=0, must-revalidate","application/octet-stream","","","nosniff","","strict-origin-when-cross-origin","status:200;config_not_protected"
+"/","html","200","200","public, max-age=0, must-revalidate","text/html; charset=utf-8","br","max-age=31536000; includeSubDomains; preload","nosniff","","strict-origin-when-cross-origin",""
+"/examenstof/","html","200","200","public, max-age=0, must-revalidate","text/html; charset=utf-8","br","max-age=31536000; includeSubDomains; preload","nosniff","","strict-origin-when-cross-origin",""
+"/sitemap-index.xml","xml","200","200","public, max-age=0, must-revalidate","application/xml","br","max-age=31536000; includeSubDomains; preload","nosniff","","strict-origin-when-cross-origin",""
+"/_redirects","redirect-file","200","200","public, max-age=0, must-revalidate","text/html; charset=utf-8","br","max-age=31536000; includeSubDomains; preload","nosniff","","strict-origin-when-cross-origin",""
+"/.htaccess","protected-config","404","200","public, s-maxage=604800","application/octet-stream","","max-age=31536000; includeSubDomains; preload","nosniff","","strict-origin-when-cross-origin","status:200;config_not_protected"
 "/wp-content/uploads/2016/12/Analyse-Maatschappelijk-Vraagstuk-212x300.png","asset","200","200","public, max-age=14400, must-revalidate","image/png","","","nosniff","","strict-origin-when-cross-origin",""

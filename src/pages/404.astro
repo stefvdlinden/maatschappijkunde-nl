@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Pagina niet gevonden | Maatschappijkunde.nl';
+const description = 'Deze pagina kon niet worden gevonden op Maatschappijkunde.nl.';
+const breadcrumbs = [
+  { href: '/', label: 'Home' },
+  { label: 'Pagina niet gevonden' }
+];
+---
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <article class="content-page legacy-content">
+    <p class="content-page__type">Fout 404</p>
+    <h1>Pagina niet gevonden</h1>
+    <p class="content-page__intro">De pagina die je zoekt bestaat niet of is verplaatst.</p>
+    <div class="content-body">
+      <p>Ga terug naar de homepage of bekijk de examenstof om verder te zoeken.</p>
+      <p>
+        <a class="button-link" href="/">Naar de homepage</a>
+        <a class="button-link secondary" href="/examenstof/">Naar examenstof</a>
+      </p>
+    </div>
+  </article>
+</BaseLayout>

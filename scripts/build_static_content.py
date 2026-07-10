@@ -813,13 +813,8 @@ def build_homepage(kb_overviews, pages_by_url):
     )
 
 
-def cloudflare_redirect_status(redirect):
-    status = redirect["status"]
-    return f"{status}!" if redirect.get("target", "").startswith("/") else status
-
-
 def write_redirect_files(redirects):
-    netlify_lines = [f'{r["source"]} {r["target"]} {cloudflare_redirect_status(r)}' for r in redirects]
+    netlify_lines = [f'{r["source"]} {r["target"]} {r["status"]}' for r in redirects]
     cloudflare_header_lines = [
         "/*",
         "  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload",

@@ -1,7 +1,7 @@
 {
   "origin": "https://maatschappijkunde.nl",
   "total_checks": 6,
-  "total_warnings": 3,
+  "total_warnings": 1,
   "checks": [
     {
       "path": "/",
@@ -11,11 +11,11 @@
       "cacheControl": "public, max-age=0, must-revalidate",
       "contentType": "text/html; charset=utf-8",
       "contentEncoding": "br",
-      "strictTransportSecurity": "",
+      "strictTransportSecurity": "max-age=31536000; includeSubDomains; preload",
       "xContentTypeOptions": "nosniff",
       "xFrameOptions": "",
       "referrerPolicy": "strict-origin-when-cross-origin",
-      "issue": "html_missing_hsts"
+      "issue": ""
     },
     {
       "path": "/examenstof/",
@@ -25,11 +25,11 @@
       "cacheControl": "public, max-age=0, must-revalidate",
       "contentType": "text/html; charset=utf-8",
       "contentEncoding": "br",
-      "strictTransportSecurity": "",
+      "strictTransportSecurity": "max-age=31536000; includeSubDomains; preload",
       "xContentTypeOptions": "nosniff",
       "xFrameOptions": "",
       "referrerPolicy": "strict-origin-when-cross-origin",
-      "issue": "html_missing_hsts"
+      "issue": ""
     },
     {
       "path": "/sitemap-index.xml",
@@ -39,7 +39,7 @@
       "cacheControl": "public, max-age=0, must-revalidate",
       "contentType": "application/xml",
       "contentEncoding": "br",
-      "strictTransportSecurity": "",
+      "strictTransportSecurity": "max-age=31536000; includeSubDomains; preload",
       "xContentTypeOptions": "nosniff",
       "xFrameOptions": "",
       "referrerPolicy": "strict-origin-when-cross-origin",
@@ -53,7 +53,7 @@
       "cacheControl": "public, max-age=0, must-revalidate",
       "contentType": "text/html; charset=utf-8",
       "contentEncoding": "br",
-      "strictTransportSecurity": "",
+      "strictTransportSecurity": "max-age=31536000; includeSubDomains; preload",
       "xContentTypeOptions": "nosniff",
       "xFrameOptions": "",
       "referrerPolicy": "strict-origin-when-cross-origin",
@@ -64,10 +64,10 @@
       "type": "protected-config",
       "expectedStatus": 404,
       "actualStatus": 200,
-      "cacheControl": "public, max-age=0, must-revalidate",
+      "cacheControl": "public, s-maxage=604800",
       "contentType": "application/octet-stream",
       "contentEncoding": "",
-      "strictTransportSecurity": "",
+      "strictTransportSecurity": "max-age=31536000; includeSubDomains; preload",
       "xContentTypeOptions": "nosniff",
       "xFrameOptions": "",
       "referrerPolicy": "strict-origin-when-cross-origin",
