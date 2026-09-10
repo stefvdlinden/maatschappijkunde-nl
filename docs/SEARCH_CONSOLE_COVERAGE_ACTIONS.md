@@ -6,7 +6,7 @@ Bekeken op 10 september 2026 via de ingelogde browser voor de domeinproperty maa
 
 | Categorie | Aantal | Bevinding en actie |
 |---|---:|---|
-| Ongeautoriseerd verzoek (401) | 61 | Alle 61 voorbeelden horen bij de oude ontwikkelhost. Geen aangetoonde productie-401. Oude host afhandelen in de hostingconfiguratie. |
+| Ongeautoriseerd verzoek (401) | 61 | Alle 61 voorbeelden horen bij de oude ontwikkelhost. Geen aangetoonde productie-401. Oude host verwijst nu via Cloudflare naar productie; validatie gestart op 10 september. |
 | Pagina met omleiding | 21 | Vooral HTTP/www-varianten, feeds en begrippen. Bewuste omleidingen hoeven niet zelf geïndexeerd te worden. |
 | Niet gevonden (404) | 11 | Concrete productie-URL's; hieronder opgenomen. Redirectafhandeling hersteld in de middleware en live-audit uitgebreid. |
 | Serverfout (5xx) | 4 | Alle vier op de oude ontwikkelhost: multiculturele-samenleving-overzicht, criminaliteit kerndoel 4, verzorgingsstaat kerndoel 2 en examenstofarchief. |
@@ -52,5 +52,8 @@ Commit `10f7d71` is succesvol gepubliceerd. De eerste poging faalde op JSON-impo
 - De sitemap is opnieuw ingediend op 10 september 2026; de browser bevestigde **Sitemap ingediend**. Het weergegeven oude aantal ontdekte pagina's wordt pas bij verwerking bijgewerkt.
 - De 404-validatie staat op **Gestart, 10-09-2026**, met elf URL's in behandeling en nul mislukt bij aanvang.
 - De noindex-validatie liep al en is niet opnieuw gestart.
-- De oude ontwikkelhost-redirect is voorbereid maar wacht op expliciete goedkeuring voor het bijbehorende DNS-record. De oude 401-, 5xx- en soft-404-groepen zijn daarom nog niet opnieuw gevalideerd.
+- De oude ontwikkelhost verwijst na expliciete toestemming via een actieve 301 naar productie, met behoud van pad en queryparameters. Het proxied A-record voor subdomein `dev` gebruikt het bestaande adres 80.69.67.10. De wildcardrecords zijn behouden.
+- Cloudflare-regel **Retire old development host**, ID `c9471ff380af42a6a8a23c126ce15cb4`, geldt alleen voor de oude ontwikkelhost en gebruikt als dynamisch doel `concat("https://maatschappijkunde.nl", http.request.uri.path)` met querybehoud ingeschakeld. Deze zoneconfiguratie staat buiten de Pages-repository.
+- HTTP en HTTPS zijn live gecontroleerd. De homepage, een artikel met queryparameters, alle vier oude serverfoutpaden en de zoektemplate-query verwijzen naar productie en eindigen op HTTP 200.
+- De 401-, 5xx- en soft-404-validaties staan alle drie op **Gestart, 10-09-2026**. Dit bevestigt de aanvraag; Google moet de oude foutmeldingen nog opnieuw beoordelen.
 - Na hercrawl het rapport opnieuw beoordelen. Een gestarte validatie betekent niet dat Google alle pagina's al opnieuw heeft verwerkt.

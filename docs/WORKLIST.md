@@ -19,7 +19,7 @@ Bijgewerkt: 10 september 2026.
 
 ## Afronding productie
 
-Productie draait op commit `10f7d71`. De Cloudflare Pages-check is geslaagd. De eerste poging faalde doordat Wrangler 3.114.17 de JSON-importsyntax `with` niet kon verwerken; de compatibele import en gedeelde handler zijn daarna ook lokaal met exact die bundelaar getest.
+De runtimecorrectie uit commit `10f7d71` is gepubliceerd. De Cloudflare Pages-check is geslaagd. De eerste poging faalde doordat Wrangler 3.114.17 de JSON-importsyntax `with` niet kon verwerken; de compatibele import en gedeelde handler zijn daarna ook lokaal met exact die bundelaar getest.
 
 - [x] Cloudflare-buildlogs gelezen, concrete oorzaak opgelost en opnieuw gepubliceerd.
 - [x] Live smoke-audit: 17 checks, nul fouten.
@@ -29,10 +29,11 @@ Productie draait op commit `10f7d71`. De Cloudflare Pages-check is geslaagd. De 
 - [x] Sitemap opnieuw ingediend op 10 september; Google toont **Sitemap ingediend**.
 - [x] 404-validatie opnieuw gestart op 10 september: elf URL's in behandeling, nul mislukt bij aanvang.
 
-## Open externe acties
+- [x] Oude ontwikkelhost na expliciete toestemming doorverwezen naar productie: proxied A-record voor subdomein `dev` naar 80.69.67.10, met actieve Cloudflare-regel **Retire old development host**. De 301 behoudt pad en queryparameters. HTTP en HTTPS live gecontroleerd; de vier oude serverfoutpaden, een artikel en de zoektemplate-query komen uit op HTTP 200.
+- [x] Validaties voor 401, serverfouten en soft 404 gestart op 10 september; Search Console bevestigt voor alle drie **Validatie Gestart**.
 
-- [ ] Oude ontwikkelhost doorverwijzen naar productie. Een gericht proxied A-record naar het bestaande adres 80.69.67.10 en een 301 met pad- en querybehoud zijn in Cloudflare voorbereid. Automatische goedkeuringscontrole heeft de DNS-wijziging geblokkeerd wegens ontbrekende expliciete toestemming; goedkeuring is gevraagd. De wildcardrecords en overige domeininstellingen zijn niet gewijzigd.
-- [ ] Na Google's hercrawl de 404- en noindex-categorie opnieuw bekijken. Indexering is niet direct na deployment afgerond.
+## Open externe acties
+- [ ] Na Google's hercrawl de 401-, 404-, serverfout-, soft-404- en noindex-categorie opnieuw bekijken. Indexering is niet direct na deployment afgerond.
 - [ ] De 81 gecrawlde en 15 gevonden maar niet geïndexeerde URL's volgen. De groep bevat historische varianten, downloads en bestaande inhoud; geen algemene verwijder- of herschrijfopdracht.
 - [ ] Enkele oude paden zonder bewezen vervanger inhoudelijk beoordelen, waaronder `/vraag/verzorgingsstaat/`, `/vraag/downloads/`, `/featured/politiekenbeleid/`, `/glossary-categories/criminaliteitenrechtsstaat/` en het afgebroken pad `/examenstof/politiekenbeleid-`. Geen generieke redirect naar de homepage toevoegen.
 
