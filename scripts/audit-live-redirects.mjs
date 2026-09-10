@@ -7,6 +7,23 @@ const origin = process.env.MK_LIVE_ORIGIN || 'https://maatschappijkunde.nl';
 const auth = process.env.MK_LIVE_AUTH || process.env.MK_DEV_AUTH || '';
 
 const checks = [
+  ...[
+    ['/examenstof/politiekenbeleid-kerndoel-1-2/', '/examenstof/politiekenbeleid-kerndoel1-2/'],
+    ['/kerndoel-tags/se/page/2/', '/kerndoel-tags/se/'],
+    ['/amv-kerndoel3/', '/examenstof/amv-kerndoel3/'],
+    ['/massamedia-kerndoel3/', '/examenstof/massamedia-kerndoel3/'],
+    ['/kerndoelen/', '/examenstof/'],
+    ['/kerndoel-tags/', '/examenstof/'],
+    ['/planning/', '/examenstof/'],
+    ['/planning/leerjaar3/', '/examenstof/'],
+    ['/planning/leerjaar4/', '/examenstof/'],
+    ['/begrippen/maatschappelijke-positie', 'https://schoolwoorden.nl/begrip/maatschappelijke-positie/'],
+    ['/begrippen/sociale-mobiliteit/', 'https://schoolwoorden.nl/begrip/sociale-mobiliteit/'],
+    ['/examenstof/politiekenbeleid-kerndoel1-2/feed/', '/examenstof/politiekenbeleid-kerndoel1-2/'],
+    ['/examenstof/criminaliteitenrechtsstaat-kerndoel2/feed/', '/examenstof/criminaliteitenrechtsstaat-kerndoel2/'],
+    ['/examenstof/multiculturelemsamenleving-kerndoel-1/feed/', '/examenstof/multiculturelemsamenleving-kerndoel-1/'],
+    ['/multiculturelemsamenleving-kerndoel-1/feed/', '/multiculturelemsamenleving-kerndoel-1/']
+  ].map(([path, expectedLocation]) => ({ path, expectedLocation, expectedStatus: 301 })),
   {
     path: '/begrippen/tweede-kamer/',
     expectedStatus: 301,

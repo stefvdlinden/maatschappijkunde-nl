@@ -1434,6 +1434,12 @@
     "target": "https://schoolwoorden.nl/begrip/minister/"
   },
   {
+    "line": "extra:taxonomy-index",
+    "status": "301",
+    "source": "/kerndoel-tags/",
+    "target": "/examenstof/"
+  },
+  {
     "line": "extra:legacy-examenstof",
     "status": "301",
     "source": "/politiekenbeleid-kerndoel1-1/",
@@ -1474,5 +1480,107 @@
     "status": "301",
     "source": "/kerndoelen/",
     "target": "/examenstof/"
+  },
+  {
+    "line": "extra:legacy-link",
+    "status": "301",
+    "source": "/examenstof/kerndoel-1-2/",
+    "target": "/examenstof/politiekenbeleid-kerndoel1-2/"
+  },
+  {
+    "line": "extra:legacy-link",
+    "status": "301",
+    "source": "/politiekenbeleid-kerndoel1-2/",
+    "target": "/examenstof/politiekenbeleid-kerndoel1-2/"
+  },
+  {
+    "line": "extra:legacy-link",
+    "status": "301",
+    "source": "/politiekenbeleid-kerndoel1-3/",
+    "target": "/examenstof/politiekenbeleid-kerndoel1-3/"
+  },
+  {
+    "line": "extra:legacy-link",
+    "status": "301",
+    "source": "/politiekenbeleid-kerndoel1-4/",
+    "target": "/examenstof/politiekenbeleid-kerndoel1-4/"
+  },
+  {
+    "line": "extra:legacy-link",
+    "status": "301",
+    "source": "/politiekenbeleid-kerndoel2/",
+    "target": "/examenstof/politiekenbeleid-kerndoel2/"
+  },
+  {
+    "line": "extra:legacy-link",
+    "status": "301",
+    "source": "/politiekenbeleid-kerndoel3/",
+    "target": "/examenstof/politiekenbeleid-kerndoel3/"
+  },
+  {
+    "line": "extra:legacy-link",
+    "status": "301",
+    "source": "/politiekenbeleid-kerndoel4/",
+    "target": "/examenstof/politiekenbeleid-kerndoel4/"
+  },
+  {
+    "line": "extra:legacy-link",
+    "status": "301",
+    "source": "/politiekenbeleid-kerndoel5/",
+    "target": "/examenstof/politiekenbeleid-kerndoel5/"
+  },
+  {
+    "line": "extra:legacy-link",
+    "status": "301",
+    "source": "/amv-kerndoel2/",
+    "target": "/examenstof/amv-kerndoel2/"
+  },
+  {
+    "line": "extra:legacy-link",
+    "status": "301",
+    "source": "/amv-kerndoel3/",
+    "target": "/examenstof/amv-kerndoel3/"
+  },
+  {
+    "line": "extra:legacy-link",
+    "status": "301",
+    "source": "/ciminaliteitenrechtsstaat-kerndoel2/",
+    "target": "/examenstof/criminaliteitenrechtsstaat-kerndoel2/"
+  },
+  {
+    "line": "extra:legacy-link",
+    "status": "301",
+    "source": "/ciminaliteitenrechtsstaat-kerndoel3/",
+    "target": "/examenstof/criminaliteitenrechtsstat-kerndoel3/"
+  },
+  {
+    "line": "extra:legacy-link",
+    "status": "301",
+    "source": "/criminaliteitenrechtsstaat-kerndoel4/",
+    "target": "/examenstof/criminaliteitenrechtsstaat-kerndoel4/"
+  },
+  {
+    "line": "extra:legacy-link",
+    "status": "301",
+    "source": "/criminaliteitenrechtsstaat-kerndoel5/",
+    "target": "/examenstof/criminaliteitenrechtsstaat-kerndoel5/"
+  },
+  {
+    "line": "extra:legacy-link",
+    "status": "301",
+    "source": "/examenstof/politiekenbeleid-kerndoel-1-2/",
+    "target": "/examenstof/politiekenbeleid-kerndoel1-2/"
+  },
+  {
+    "line": "extra:legacy-link",
+    "status": "301",
+    "source": "/massamedia-kerndoel3/",
+    "target": "/examenstof/massamedia-kerndoel3/"
+  },
+  {
+    "line": "extra:legacy-link",
+    "status": "301",
+    "source": "/kerndoel-tags/se/page/2/",
+    "target": "/kerndoel-tags/se/"
   }
 ]

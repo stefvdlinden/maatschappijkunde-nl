@@ -10,7 +10,7 @@ const checks = [
   { path: '/', type: 'html', expectedStatus: 200 },
   { path: '/examenstof/', type: 'html', expectedStatus: 200 },
   { path: '/sitemap-index.xml', type: 'xml', expectedStatus: 200 },
-  { path: '/_redirects', type: 'redirect-file', expectedStatus: 200 },
+  { path: '/_redirects', type: 'protected-config', expectedStatus: 404 },
   { path: '/.htaccess', type: 'protected-config', expectedStatus: 404 },
   { path: '/wp-content/uploads/2016/12/Analyse-Maatschappelijk-Vraagstuk-212x300.png', type: 'asset', expectedStatus: 200 }
 ];

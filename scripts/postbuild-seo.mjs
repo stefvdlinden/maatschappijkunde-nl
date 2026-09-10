@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { seoRedirects } from '../lib/seo-redirects.js';
 
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, 'dist');
@@ -42,8 +43,10 @@ if (!fs.existsSync(PAGES_JSON)) {
 }
 
 const pages = JSON.parse(readText(PAGES_JSON));
+const redirectSources = new Set(seoRedirects.map(([source]) => source));
 const urls = pages
   .filter((page) => page && typeof page.url === 'string')
+  .filter((page) => !redirectSources.has(page.url))
   .filter((page) => !page.url.includes('/feed/'))
   .map((page) => ({
     loc: absoluteUrl(page.url),
@@ -96,23 +99,9 @@ const existingRedirects = readText(redirectsPath)
   .map((line) => line.trim())
   .filter(Boolean);
 
-const seoRedirects = [
-  '# SEO cleanup for Cloudflare Pages',
-  '/home / 301',
-  '/home/ / 301',
-  '/index.html / 301',
-  '/sitemap /sitemap.xml 301',
-  '/sitemap/ /sitemap.xml 301',
-  '/sitemap_index.xml /sitemap.xml 301',
-  '/wp-sitemap.xml /sitemap.xml 301',
-  '/feed/ / 301',
-  '/comments/feed/ / 301',
-  '/*/feed/ /:splat/ 301'
-];
-
 const seenSources = new Set();
 const mergedRedirects = [];
-for (const line of [...seoRedirects, ...existingRedirects]) {
+for (const line of [...seoRedirects.map((rule) => rule.join(' ')), ...existingRedirects]) {
   if (line.startsWith('#')) {
     mergedRedirects.push(line);
     continue;

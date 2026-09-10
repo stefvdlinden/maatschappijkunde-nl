@@ -1,6 +1,6 @@
 # Refactor Cleanup Audit
 
-Inventarisatie voor de cleanup na de WordPress-naar-Astro-migratie.
+Historische inventarisatie voor de cleanup na de WordPress-naar-Astro-migratie. Dit is geen actuele werklijst; zie [WORKLIST.md](WORKLIST.md) voor de stand van zaken. De genoemde aantallen zijn de toenmalige baseline.
 
 ## 1. Veilig verwijderen
 

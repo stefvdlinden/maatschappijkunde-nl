@@ -40,6 +40,10 @@ for (const redirect of redirects) {
     rows.push({ source, target, status, issue: 'source_conflicts_with_static_page' });
   }
 
+  if (isPath(target) && !pageUrls.has(target)) {
+    rows.push({ source, target, status, issue: 'missing_internal_target' });
+  }
+
   if (!isPath(target)) {
     try {
       const url = new URL(target);

@@ -1,87 +1,69 @@
-# maatschappijkunde-static
+# Maatschappijkunde.nl
 
-Statische Astro-site voor maatschappijkunde.nl.
+Statische Astro-site met bestaande lesstof, gebouwd uit een WordPress-export en gepubliceerd via Cloudflare Pages.
 
-## Eerste stap
-Voer de inventarisatie uit:
+## Projectdocumentatie
 
-```bash
-python3 scripts/inventory.py
-```
+- [Werklijst](docs/WORKLIST.md): actuele status, controles en open acties.
+- [Projectafspraken](PROJECT_BRIEF.md): doelgroep, inhoud, eigenaarschap en URL-beleid.
+- [Search Console](docs/SEARCH_CONSOLE_COVERAGE_ACTIONS.md): beoordeling van de indexeringsmeldingen.
+- [Broninventarisatie](docs/INVENTORY_REPORT.md): historische uitgangssituatie vóór de migratie.
+- [Cleanup-audit](docs/REFACTOR_CLEANUP_AUDIT.md): historische refactorinventarisatie.
 
-De resultaten verschijnen in `data/generated/`.
+## Ontwikkelen en controleren
 
-## Belangrijkste output
-- `summary.json` - kernsamenvatting.
-- `content-inventory.csv` - publieke pagina's, berichten, kennisbankartikelen en begrippen.
-- `url-inventory.csv` - gecombineerde URL-lijst uit content, sitemap, redirects en analytics.
-- `redirects.csv` - redirects uit `.htaccess`.
-- `shortcode-report.csv` en `shortcode-counts.csv` - WordPress/plugin-shortcodes die geconverteerd moeten worden.
-- `media-files.csv` en `db-attachments.csv` - media in uploads en database.
-- `analytics-top-pages.csv` - top URL's uit de GA4 PDF voor zover automatisch leesbaar.
-
-## Aanbevolen volgende fase
-1. Kies framework: Astro heeft de voorkeur voor deze contentwebsite.
-2. Maak content-extractor naar Markdown/JSON.
-3. Maak templates voor pagina's, examenstof, kerndoelen en eventueel begrippen/redirects.
-4. Bouw statische site.
-5. Test URL's en redirects.
-6. Optimaliseer SEO/AEO.
-
-## Statische conversiepijplijn
-
-De build gebruikt de SQL-export en de veilige uploads als brondata voor een zelfstandige Astro-site.
+Getest met Node.js 20.20.2, npm 10.8.2 en Python 3.
 
 ```bash
-npm install
-npm run prepare:content
+npm ci
 npm test
 npm run build
+npm run audit:sitemap-urls
+npm run dev
 ```
 
-Belangrijke bestanden:
+`npm test` bereidt content voor en controleert URL-dekking, redirects, de Pages-middleware, media, HTML-conversie, inhoud, interne links en repositoryhygiëne. De build schrijft `dist/`.
 
-- `scripts/build_static_content.py` - haalt gepubliceerde content uit de SQL-export, converteert bekende bronshortcodes naar veilige HTML en schrijft `data/site/pages.json`, `data/site/redirects.json`, `data/site/_redirects` en `data/site/_headers`.
-- `scripts/extract_safe_media.py` - extraheert alleen veilige media uit jaar/maandmappen van `uploads.zip` naar `public/wp-content/uploads/`.
-- `scripts/postbuild-seo.mjs` - schrijft de definitieve productievarianten van `dist/sitemap.xml`, `dist/sitemap-index.xml`, `dist/robots.txt`, `dist/_redirects` en `dist/_headers`.
-- `scripts/audit-static-migration.mjs` - controleert lokale uploadverwijzingen en onopgeloste shortcodes.
-- `scripts/audit-converted-html.mjs` - controleert geconverteerde HTML op shortcode-resten, WordPress block-comments, lege embeds en PHP-verwijzingen.
-- `scripts/audit-internal-links.mjs` - controleert interne links tegen gegenereerde pagina's en redirects.
-- `scripts/report-url-gaps.mjs` - schrijft URL's met `investigate`-status naar `data/site/url-gaps.csv`.
-- `data/site/redirects.json` en `public/_redirects` - redirects uit `data/generated/redirects.csv` en aanvullende legacy-regels.
-- `data/site/safe-media.csv` - overzicht van veilig geëxtraheerde media.
-- `data/site/asset-audit.csv` - controle van uploadverwijzingen in geconverteerde content.
-- `data/site/html-conversion-audit.csv` - rapport met resterende conversiepunten.
-- `data/site/internal-link-audit.csv` - rapport met interne links en status (`page`, `redirect`, `missing`).
-- `data/site/url-gaps.csv` - sitemap/analytics-URL's die nog gematcht of als redirect ingericht moeten worden.
-- `src/pages/[...slug].astro` - genereert alle statische URL's met behoud van paden.
-- `scripts/test-url-coverage.mjs` - controleert dat preserve/redirect-URL's uit de inventaris afgedekt blijven.
+Na publicatie:
 
-Begrippenpagina's waarvoor een bestaande 301 naar schoolwoorden.nl bestaat, worden niet lokaal gepubliceerd. Die redirectregels krijgen voorrang.
+```bash
+npm run audit:live:smoke
+npm run audit:live:redirects
+npm run audit:live:headers
+```
 
-## Legacy asset compatibility
+De live-audits gebruiken standaard de productie-origin. Stel `MK_LIVE_ORIGIN` in voor een preview. Lokale live-rapporten staan in `data/site/live-*-audit.*` en zijn genegeerd door Git.
 
-Het publieke pad `/wp-content/uploads/` blijft bewust bestaan als compatibiliteitspad. Dit betekent niet dat de site nog op WordPress draait. Het pad bevat alleen veilig geëxtraheerde statische assets, zodat bestaande content, downloads, afbeeldingen, Google-resultaten en externe links blijven werken.
+## Git en hosting
 
-## Generator-eigenaarschap
+Repository: [stefvdlinden/maatschappijkunde-nl](https://github.com/stefvdlinden/maatschappijkunde-nl). Productie: [maatschappijkunde.nl](https://maatschappijkunde.nl).
 
-- Contentvoorbereiding: `npm run prepare:content`.
-- Buildfase: `astro build`.
-- Postbuildfase: `npm run postbuild:seo`.
+De `main`-branch is gekoppeld aan Cloudflare Pages. Een push start een deployment; controleer de GitHub-check **Cloudflare Pages** en voer daarna de live-audits uit. Er zijn momenteel geen actieve GitHub Actions-workflows. Historische TransIP-runs horen bij de vorige hostingopzet.
 
-`scripts/postbuild-seo.mjs` is de enige eigenaar van de definitieve sitemap, robots.txt, Cloudflare redirects en Cloudflare headers in `dist/`. Auditoutput is reproduceerbaar en hoort alleen als actuele projectdocumentatie in `docs/` wanneer het blijvende waarde heeft.
+## Bronnen en gegenereerde bestanden
 
-Huidige status van de migratie-audit:
+- `data/source/maatsk_nkhniy67.sql` en `data/source/uploads.zip` zijn alleen lokaal beschikbaar en bewust uitgesloten van Git.
+- `scripts/inventory.py` maakt de oorspronkelijke inventarisatie in `data/generated/`; opnieuw uitvoeren is alleen nodig bij gewijzigde brondata.
+- `scripts/extract_safe_media.py` extraheert toegestane media naar `public/wp-content/uploads/`.
+- `scripts/build_static_content.py` genereert onder andere `data/site/pages.json`, `redirects.json`, `_redirects` en `_headers`.
+- Zonder SQL/ZIP gebruikt de build de bijgehouden site-data en publieke media. Daarom moeten wijzigingen aan de generator samen met de opnieuw gegenereerde output worden vastgelegd.
+- `src/pages/[...slug].astro` publiceert de contentpagina's; `src/layouts/BaseLayout.astro` verzorgt de gedeelde vormgeving en metadata.
+- `scripts/postbuild-seo.mjs` schrijft de definitieve sitemap, robots.txt, redirects en headers in `dist/`.
 
-- 1.295 veilige mediafiles geëxtraheerd (`.png`, `.jpg`, `.jpeg`, `.pdf`).
-- 31 uploadverwijzingen in geconverteerde content gecontroleerd, 0 ontbrekend.
-- 0 onopgeloste shortcode-types in de huidige geconverteerde HTML.
-- 211 interne links gecontroleerd, 0 ontbrekend.
-- 6 medium conversiepunten over voor handmatige beoordeling van `fusion_code`-achtige ingesloten code, 0 high issues.
-- 110 statische pagina's gegenereerd, inclusief kerndoel-, tag- en categorie-overzichten.
-- 0 URL's hebben nog `investigate`-status na dekking van taxonomie-overzichten.
+## Redirects
 
-Bekende interne link-normalisaties:
+`functions/_middleware.js` voert de regels uit `data/site/redirects.json` uit, inclusief varianten zonder eindslash. De SEO-regels uit `lib/seo-redirects.js` worden gedeeld met de postbuild. Feeds verwijzen naar hun bovenliggende pagina; `www` verwijst naar HTTPS zonder `www`. Queryparameters blijven behouden.
 
-- `/examenstof/kerndoel-1-2/` -> `/examenstof/politiekenbeleid-kerndoel1-2/`
-- `/politiekenbeleid-kerndoel1-2/` -> `/examenstof/politiekenbeleid-kerndoel1-2/`
+Dit is noodzakelijk omdat Cloudflare `_redirects` niet toepast op requests die door Pages Functions worden afgehandeld. Het bestand `/_redirects` hoort zelf niet publiek bereikbaar te zijn. Zie de [Cloudflare-documentatie](https://developers.cloudflare.com/pages/configuration/redirects/).
+
+Bestaande Schoolwoorden-redirects blijven behouden. Het compatibiliteitspad `/wp-content/uploads/` bevat statische media en is geen actieve WordPress-installatie.
+
+## Gecontroleerde lokale status — 10 september 2026
+
+- 106 contentpagina's; daarnaast een echte 404-pagina.
+- 264 migratieredirects, plus gedeelde SEO-regels.
+- 1.295 veilige media-assets en 59 gecontroleerde uploadverwijzingen, niets ontbreekt.
+- 776 interne links, niets ontbreekt.
+- Geen onopgeloste shortcodes, conversiefouten of ongedekte inventaris-URL's.
+- Vier lichte inhoudssignalen: korte maar functionele kerndoeloverzichten met links naar de lesstof; beoordeeld en behouden.
+- De sitemap sluit `/home/` uit omdat dit pad naar `/` redirectt: 105 indexeerbare URL's.

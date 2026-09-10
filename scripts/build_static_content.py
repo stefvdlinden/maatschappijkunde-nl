@@ -46,12 +46,23 @@ INTERNAL_URL_REWRITES = {
     "/criminaliteitenrechtsstaat-kerndoel4/": "/examenstof/criminaliteitenrechtsstaat-kerndoel4/",
     "/criminaliteitenrechtsstaat-kerndoel5/": "/examenstof/criminaliteitenrechtsstaat-kerndoel5/"
 }
+INTERNAL_URL_REWRITES.update({
+    "/examenstof/politiekenbeleid-kerndoel-1-2/": "/examenstof/politiekenbeleid-kerndoel1-2/",
+    "/massamedia-kerndoel3/": "/examenstof/massamedia-kerndoel3/",
+    "/kerndoel-tags/se/page/2/": "/kerndoel-tags/se/"
+})
 TAXONOMY_PREFIXES = {
     "ht_kb_category": "/kerndoelen/",
     "ht_kb_tag": "/kerndoel-tags/",
     "category": "/category/"
 }
 EXTRA_REDIRECTS = [
+    {
+        "line": "extra:taxonomy-index",
+        "status": "301",
+        "source": "/kerndoel-tags/",
+        "target": "/examenstof/"
+    },
     {
         "line": "extra:legacy-examenstof",
         "status": "301",
@@ -94,6 +105,12 @@ EXTRA_REDIRECTS = [
         "source": "/kerndoelen/",
         "target": "/examenstof/"
     }
+]
+# Apply the same known legacy mappings to incoming requests and internal links.
+EXTRA_REDIRECTS += [
+    {"line": "extra:legacy-link", "status": "301", "source": source, "target": target}
+    for source, target in INTERNAL_URL_REWRITES.items()
+    if source not in {rule["source"] for rule in EXTRA_REDIRECTS}
 ]
 LEGACY_MODULES = {}
 TITLE_REWRITES = {
@@ -1149,6 +1166,12 @@ def main():
             force=True
         )
 
+    enhance_short_page(
+        "/kerndoelen/domein-c-parlementaire-democratie/",
+        "<h2>Gerelateerde examenstof</h2>"
+        f"{html_link_list(pages_matching('/examenstof/machtenzeggenschap-', '/examenstof/politiekenbeleid-'))}",
+        force=True
+    )
     enhance_short_page(
         "/examenstof-2/",
         "<p>Kennisbankarchief voor examenstof.</p>"
