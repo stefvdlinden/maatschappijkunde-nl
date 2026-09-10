@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { onRequest } from '../functions/_middleware.js';
+import { createRedirectMiddleware } from '../lib/redirect-middleware.js';
 
 const redirects = JSON.parse(readFileSync(new URL('../data/site/redirects.json', import.meta.url)));
+const onRequest = createRedirectMiddleware(redirects);
 const origin = 'https://maatschappijkunde.nl';
 const request = (url) => onRequest({
   request: new Request(url),
