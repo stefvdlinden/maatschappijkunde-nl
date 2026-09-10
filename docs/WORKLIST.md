@@ -19,17 +19,27 @@ Bijgewerkt: 10 september 2026.
 
 ## Afronding productie
 
-- [ ] Gewijzigde site publiceren en Cloudflare-check verifiëren.
-- [ ] Live smoke-, redirect- en headeraudits uitvoeren op de nieuwe productieversie.
-- [ ] Sitemap opnieuw indienen en 404-validatie starten nadat de live controles slagen.
+Productie draait op commit `10f7d71`. De Cloudflare Pages-check is geslaagd. De eerste poging faalde doordat Wrangler 3.114.17 de JSON-importsyntax `with` niet kon verwerken; de compatibele import en gedeelde handler zijn daarna ook lokaal met exact die bundelaar getest.
+
+- [x] Cloudflare-buildlogs gelezen, concrete oorzaak opgelost en opnieuw gepubliceerd.
+- [x] Live smoke-audit: 17 checks, nul fouten.
+- [x] Live redirectaudit: 21 checks, nul fouten.
+- [x] Live headeraudit: zes checks, nul waarschuwingen.
+- [x] Alle 105 URL's uit de live sitemap gecontroleerd: HTTP 200 en de juiste canonical; `/home/` is uitgesloten.
+- [x] Sitemap opnieuw ingediend op 10 september; Google toont **Sitemap ingediend**.
+- [x] 404-validatie opnieuw gestart op 10 september: elf URL's in behandeling, nul mislukt bij aanvang.
 
 ## Open externe acties
 
-- [ ] Oude ontwikkelhost afhandelen via Cloudflare/hosting: de root toont een configuratieplaceholder (200), een gecontroleerde oude lesstof-URL geeft 404. De 61 historische 401's, vier 5xx'en en één soft 404 horen bij deze host. Dashboardtoegang vereist een gebruikerslogin. Definitieve keuze: de vervallen host naar productie laten verwijzen of de oude omgeving consistent uitfaseren; geen beveiliging uitschakelen om Google toegang te geven.
+- [ ] Oude ontwikkelhost doorverwijzen naar productie. Een gericht proxied A-record naar het bestaande adres 80.69.67.10 en een 301 met pad- en querybehoud zijn in Cloudflare voorbereid. Automatische goedkeuringscontrole heeft de DNS-wijziging geblokkeerd wegens ontbrekende expliciete toestemming; goedkeuring is gevraagd. De wildcardrecords en overige domeininstellingen zijn niet gewijzigd.
 - [ ] Na Google's hercrawl de 404- en noindex-categorie opnieuw bekijken. Indexering is niet direct na deployment afgerond.
 - [ ] De 81 gecrawlde en 15 gevonden maar niet geïndexeerde URL's volgen. De groep bevat historische varianten, downloads en bestaande inhoud; geen algemene verwijder- of herschrijfopdracht.
 - [ ] Enkele oude paden zonder bewezen vervanger inhoudelijk beoordelen, waaronder `/vraag/verzorgingsstaat/`, `/vraag/downloads/`, `/featured/politiekenbeleid/`, `/glossary-categories/criminaliteitenrechtsstaat/` en het afgebroken pad `/examenstof/politiekenbeleid-`. Geen generieke redirect naar de homepage toevoegen.
 
 ## Verificatie
 
-`npm test`, `npm run build` en `npm run audit:sitemap-urls` slagen. De oorspronkelijke sitemapinventaris bevat 100 URL's: 97 pagina's, drie bewuste redirects, nul ontbrekend. De actuele productiesitemap bevat na deze wijziging 105 URL's.
+`npm test`, `npm run build` en `npm run audit:sitemap-urls` slagen. De oorspronkelijke sitemapinventaris bevat 100 URL's: 97 pagina's, drie bewuste redirects, nul ontbrekend. De live sitemap bevat 105 URL's; alle URL's en canonicals zijn gecontroleerd.
+
+## Nieuw onderhoudspunt uit de buildlog
+
+- [ ] Astro en transitieve afhankelijkheden actualiseren. `npm audit` meldt op 10 september acht dependencybevindingen: één kritisch, zes hoog en één laag. npm noemt een Astro-major-upgrade als volledige oplossing. Dit is afzonderlijk onderhoud met migratie- en buildtests; er is geen ongecontroleerde `npm audit fix --force` uitgevoerd. De site wordt statisch gepubliceerd, maar de ontwikkel- en buildketen moet ook worden onderhouden.

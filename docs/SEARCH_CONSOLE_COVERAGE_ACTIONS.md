@@ -45,9 +45,12 @@ De root-middleware draaide voor inkomende requests, maar voerde alleen de www-no
 
 ## Vervolg
 
-1. Na geslaagde deployment alle live-audits uitvoeren.
-2. De vernieuwde sitemap opnieuw indienen.
-3. De 404-validatie opnieuw starten nadat de gemelde URL's correct reageren.
-4. De reeds lopende noindex-validatie laten afronden.
-5. Ontwikkelhost afzonderlijk afhandelen; op 10 september gaf de root een configuratieplaceholder (200) en een gecontroleerd oud artikel 404. Geen publieke sitecontent gevonden op die twee requests.
-6. Na hercrawl het rapport opnieuw beoordelen. Een gestarte validatie of geslaagde deploy betekent niet dat Google alle pagina's al opnieuw heeft verwerkt.
+Commit `10f7d71` is succesvol gepubliceerd. De eerste poging faalde op JSON-importsyntax die de oudere Cloudflare-bundelaar niet ondersteunde; dit is opgelost en met Wrangler 3.114.17 gecontroleerd.
+
+- Alle 105 live sitemap-URL's geven HTTP 200 met de juiste canonical.
+- Live smoke-, redirect- en headeraudits slagen met respectievelijk 17, 21 en zes checks.
+- De sitemap is opnieuw ingediend op 10 september 2026; de browser bevestigde **Sitemap ingediend**. Het weergegeven oude aantal ontdekte pagina's wordt pas bij verwerking bijgewerkt.
+- De 404-validatie staat op **Gestart, 10-09-2026**, met elf URL's in behandeling en nul mislukt bij aanvang.
+- De noindex-validatie liep al en is niet opnieuw gestart.
+- De oude ontwikkelhost-redirect is voorbereid maar wacht op expliciete goedkeuring voor het bijbehorende DNS-record. De oude 401-, 5xx- en soft-404-groepen zijn daarom nog niet opnieuw gevalideerd.
+- Na hercrawl het rapport opnieuw beoordelen. Een gestarte validatie betekent niet dat Google alle pagina's al opnieuw heeft verwerkt.

@@ -52,7 +52,7 @@ De `main`-branch is gekoppeld aan Cloudflare Pages. Een push start een deploymen
 
 ## Redirects
 
-`functions/_middleware.js` voert de regels uit `data/site/redirects.json` uit, inclusief varianten zonder eindslash. De SEO-regels uit `lib/seo-redirects.js` worden gedeeld met de postbuild. Feeds verwijzen naar hun bovenliggende pagina; `www` verwijst naar HTTPS zonder `www`. Queryparameters blijven behouden.
+`functions/_middleware.js` gebruikt de handler uit `lib/redirect-middleware.js` en voert de regels uit `data/site/redirects.json` uit, inclusief varianten zonder eindslash. De SEO-regels uit `lib/seo-redirects.js` worden gedeeld met de postbuild. Feeds verwijzen naar hun bovenliggende pagina; `www` verwijst naar HTTPS zonder `www`. Queryparameters blijven behouden.
 
 Dit is noodzakelijk omdat Cloudflare `_redirects` niet toepast op requests die door Pages Functions worden afgehandeld. Het bestand `/_redirects` hoort zelf niet publiek bereikbaar te zijn. Zie de [Cloudflare-documentatie](https://developers.cloudflare.com/pages/configuration/redirects/).
 
