@@ -2,7 +2,7 @@
 
 Bijgewerkt: 17 september 2026.
 
-## Hercontrole indexering — lokaal gereed, nog niet gepubliceerd
+## Hercontrole indexering — gepubliceerd op 17 september 2026
 
 - [x] Rapport van 14 september beoordeeld: 88 geïndexeerd, 160 uitgesloten; alle 60 401-, 42 gecrawlde, 16 gevonden en 11 404-voorbeelden bekeken.
 - [x] Alle 105 live sitemap-URL's gecontroleerd; HTTP 200, juiste canonical, geen aangetroffen noindex.
@@ -11,7 +11,8 @@ Bijgewerkt: 17 september 2026.
 - [x] Kapotte/omleidende broodkruimellinks vervangen door directe bestaande bovenliggende pagina's.
 - [x] Dertien onderwijs-overzichten via Examenstof ontsloten; Leertips en Websites via footer.
 - [x] Tests, build, sitemapdekking en controle van alle gerenderde interne links geslaagd; preview visueel bekeken.
-- [ ] Navigatiewijzigingen publiceren en daarna productie opnieuw controleren.
+- [x] Navigatiewijzigingen gepubliceerd in commit `88dd830`; Cloudflare Pages geslaagd, 44 live-checks geslaagd en nieuwe navigatie live bevestigd.
+- [x] Herindexering van `/examenstof/` aangevraagd en sitemap opnieuw ingediend; beide door Search Console bevestigd.
 
 ## Uitgevoerd en lokaal gecontroleerd
 

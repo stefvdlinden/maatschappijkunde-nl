@@ -25,7 +25,7 @@ Rapportdatum 14 september 2026: **88 geïndexeerd, 160 niet geïndexeerd**. Op 4
 - Zeven HTTPS-dev-URL's gecontroleerd, waaronder de vier historische serverfoutpaden en de zoektemplate: 301 naar productie en eindstatus 200.
 - Lopende validaties niet opnieuw gestart. Google's historische foutgroepen lopen achter op de actuele HTTP-responses.
 
-### Lokaal aangebrachte verbeteringen (nog niet gepubliceerd)
+### Aangebrachte verbeteringen (gepubliceerd op 17 september 2026)
 
 - Broodkruimels van categorie-, tag- en kerndoeloverzichten wijzen rechtstreeks naar `/examenstof/`. Hiermee verdwijnt onder andere de kapotte link naar `/category/` en vervallen omleidingen via de oude indexpaden. Gestructureerde broodkruimeldata gebruikt dezelfde links.
 - Examenstof linkt nu naar zes bestaande onderwerpcategorieën en zeven niveau-/examenoverzichten. Deze dertien overzichten hadden geen inkomende contentlinks.
@@ -34,6 +34,12 @@ Rapportdatum 14 september 2026: **88 geïndexeerd, 160 niet geïndexeerd**. Op 4
 - `npm test`, `npm run build` en `npm run audit:sitemap-urls` slagen. Alle interne links in de gerenderde 106 contentpagina's gecontroleerd: nul ontbrekende doelen. Nieuwe navigatie visueel gecontroleerd in lokale preview.
 
 De navigatieverbeteringen maken pagina's beter bereikbaar, maar bewijzen niet dat ontbrekende interne links de enige oorzaak van uitsluiting zijn. Indexering blijft een keuze van Google; zie [Google: pagina-indexeringsrapport](https://support.google.com/webmasters/answer/7440203?hl=nl).
+
+### Publicatie en indexeringsaanvraag — 17 september 2026
+
+Commit `88dd830` is ondertekend, naar main gepusht en succesvol gepubliceerd door Cloudflare Pages. De nieuwe navigatie en herstelde broodkruimels zijn live bevestigd; alle 44 smoke-, redirect- en headerchecks slagen.
+
+Google Search Console bevestigde **Indexering aangevraagd** voor `https://maatschappijkunde.nl/examenstof/`: toegevoegd aan de prioriteitscrawlwachtrij. Ook `https://maatschappijkunde.nl/sitemap.xml` opnieuw ingediend; Google bevestigde **Sitemap ingediend**. Dit bevestigt de aanvragen, niet dat Google de nieuwe versie al heeft geïndexeerd.
 
 ## Historische controle — 10 september 2026
 
