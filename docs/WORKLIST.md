@@ -1,6 +1,17 @@
 # Werklijst
 
-Bijgewerkt: 10 september 2026.
+Bijgewerkt: 17 september 2026.
+
+## Hercontrole indexering — lokaal gereed, nog niet gepubliceerd
+
+- [x] Rapport van 14 september beoordeeld: 88 geïndexeerd, 160 uitgesloten; alle 60 401-, 42 gecrawlde, 16 gevonden en 11 404-voorbeelden bekeken.
+- [x] Alle 105 live sitemap-URL's gecontroleerd; HTTP 200, juiste canonical, geen aangetroffen noindex.
+- [x] Sitemapverwerking bevestigd: Succesvol, 105 pagina's, laatst gelezen 10 september.
+- [x] Bestaande live-audits en zeven dev-redirectcontroles geslaagd.
+- [x] Kapotte/omleidende broodkruimellinks vervangen door directe bestaande bovenliggende pagina's.
+- [x] Dertien onderwijs-overzichten via Examenstof ontsloten; Leertips en Websites via footer.
+- [x] Tests, build, sitemapdekking en controle van alle gerenderde interne links geslaagd; preview visueel bekeken.
+- [ ] Navigatiewijzigingen publiceren en daarna productie opnieuw controleren.
 
 ## Uitgevoerd en lokaal gecontroleerd
 
@@ -33,8 +44,8 @@ De runtimecorrectie uit commit `10f7d71` is gepubliceerd. De Cloudflare Pages-ch
 - [x] Validaties voor 401, serverfouten en soft 404 gestart op 10 september; Search Console bevestigt voor alle drie **Validatie Gestart**.
 
 ## Open externe acties
-- [ ] Na Google's hercrawl de 401-, 404-, serverfout-, soft-404- en noindex-categorie opnieuw bekijken. Indexering is niet direct na deployment afgerond.
-- [ ] De 81 gecrawlde en 15 gevonden maar niet geïndexeerde URL's volgen. De groep bevat historische varianten, downloads en bestaande inhoud; geen algemene verwijder- of herschrijfopdracht.
+- [ ] Na Google's hercrawl de 401-, 404-, serverfout- en soft-404-categorie opnieuw bekijken. De noindex-validatie is op 17 september Voltooid. Indexering is niet direct na deployment afgerond.
+- [ ] De 42 gecrawlde en 16 gevonden maar niet geïndexeerde URL's volgen. De groep bevat historische varianten, downloads en bestaande inhoud; geen algemene verwijder- of herschrijfopdracht.
 - [ ] Enkele oude paden zonder bewezen vervanger inhoudelijk beoordelen, waaronder `/vraag/verzorgingsstaat/`, `/vraag/downloads/`, `/featured/politiekenbeleid/`, `/glossary-categories/criminaliteitenrechtsstaat/` en het afgebroken pad `/examenstof/politiekenbeleid-`. Geen generieke redirect naar de homepage toevoegen.
 
 ## Verificatie

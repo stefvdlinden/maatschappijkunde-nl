@@ -1,5 +1,42 @@
 # Search Console: beoordeling en acties
 
+## Hercontrole — 17 september 2026
+
+Rapportdatum 14 september 2026: **88 geïndexeerd, 160 niet geïndexeerd**. Op 4 september waren dat 88 en 199. De daling van 39 uitgesloten URL's is geen bewijs van 39 extra geïndexeerde pagina's: het geïndexeerde aantal bleef gelijk.
+
+| Reden | Aantal | Beoordeling op 17 september |
+|---|---:|---|
+| Pagina met omleiding | 21 | Bewuste redirects mogen uitgesloten blijven. Live redirectaudit: 21 checks geslaagd. |
+| Alternatief met correcte canonical | 4 | Geen nieuwe canonicalfout aangetoond; juiste voorkeurs-URL laten indexeren. |
+| Gecrawld, niet geïndexeerd | 42 | Was 81. Alle 42 voorbeelden bekeken: mix van PDFs, www/HTTP-varianten, begrippenredirects, feed, queryvarianten en inhoudspagina's. |
+| Gevonden, niet geïndexeerd | 16 | Alle voorbeelden bekeken. Daarvan missen vier categorieën, vijf tagoverzichten en Websites inkomende links; navigatie lokaal verbeterd. |
+| 401 | 60 | Alle 60 voorbeelden op dev.maatschappijkunde.nl; oude crawldatums. Validatie sinds 10 september loopt nog. |
+| 404 | 11 | Dezelfde elf oude URL's als hieronder; bestaande redirectoplossingen werken. Validatie loopt nog. |
+| 5xx | 4 | Validatie loopt nog; vier eerder vastgelegde dev-paden opnieuw getest: 301 naar productie, eindstatus 200. |
+| Soft 404 | 1 | Validatie loopt nog; oude dev-zoektemplate verwijst naar productie en eindigt op 200. |
+| noindex | 1 | Validatie staat nu op **Voltooid**. Het rapport toont nog één historische URL. |
+| Dubbel zonder gekozen canonical | 0 | Geen actie. |
+
+### Live verificatie
+
+- Sitemap in Search Console: **Succesvol**, ingediend én laatst gelezen op 10 september, **105 ontdekte pagina's**. Opnieuw indienen is nu niet nodig.
+- Alle 105 live sitemap-URL's gecontroleerd: HTTP 200 zonder redirect, juiste canonical, geen aangetroffen robots-meta/header met noindex.
+- Smoke-, redirect- en headeraudits: respectievelijk 17, 21 en 6 checks, geen fouten/waarschuwingen.
+- Zeven HTTPS-dev-URL's gecontroleerd, waaronder de vier historische serverfoutpaden en de zoektemplate: 301 naar productie en eindstatus 200.
+- Lopende validaties niet opnieuw gestart. Google's historische foutgroepen lopen achter op de actuele HTTP-responses.
+
+### Lokaal aangebrachte verbeteringen (nog niet gepubliceerd)
+
+- Broodkruimels van categorie-, tag- en kerndoeloverzichten wijzen rechtstreeks naar `/examenstof/`. Hiermee verdwijnt onder andere de kapotte link naar `/category/` en vervallen omleidingen via de oude indexpaden. Gestructureerde broodkruimeldata gebruikt dezelfde links.
+- Examenstof linkt nu naar zes bestaande onderwerpcategorieën en zeven niveau-/examenoverzichten. Deze dertien overzichten hadden geen inkomende contentlinks.
+- Leertips en Websites opgenomen in de footer; beide waren niet intern bereikbaar.
+- De generieke support-template, de oude planning uit 2017, `/category/featured/` en `/examenstof-2/` niet extra gepromoot. Inhoudelijk beoordelen voordat deze actief worden aangeboden of geconsolideerd. Geen pagina's verwijderd.
+- `npm test`, `npm run build` en `npm run audit:sitemap-urls` slagen. Alle interne links in de gerenderde 106 contentpagina's gecontroleerd: nul ontbrekende doelen. Nieuwe navigatie visueel gecontroleerd in lokale preview.
+
+De navigatieverbeteringen maken pagina's beter bereikbaar, maar bewijzen niet dat ontbrekende interne links de enige oorzaak van uitsluiting zijn. Indexering blijft een keuze van Google; zie [Google: pagina-indexeringsrapport](https://support.google.com/webmasters/answer/7440203?hl=nl).
+
+## Historische controle — 10 september 2026
+
 Bekeken op 10 september 2026 via de ingelogde browser voor de domeinproperty maatschappijkunde.nl. Indexeringsrapport bijgewerkt tot 4 september 2026: 88 geïndexeerd, 199 niet geïndexeerd. Deze aantallen zijn Google's momentopname, geen live-testuitslag.
 
 ## Beoordeling per categorie
