@@ -1,6 +1,56 @@
 # Werklijst
 
-Bijgewerkt: 17 september 2026.
+Bijgewerkt: 19 november 2026, op basis van de projectchats en lokale documentatie.
+
+## Geconsolideerde open werklijst
+
+Deze lijst bundelt de nog openstaande punten uit de drie gevonden projectchats. De oorspronkelijke septembercontroles hieronder blijven als historie behouden. De live website, Cloudflare, Analytics en Search Console zijn bij deze inventarisatie niet opnieuw gecontroleerd; historische aantallen zijn dus geen actuele meetresultaten. De volgorde is een voorgestelde prioritering.
+
+| Nr. | Prioriteit | Open actie | Gereed wanneer | Bron / laatst bekende status |
+|---|---|---|---|---|
+| 1 | Hoog | Livegang en werking van de cookiebanner controleren. Controleer zonder keuze, na weigeren, na akkoord, na herladen en na intrekken via “Cookie-instellingen”; controleer ook de privacyverklaring. | Cloudflare-publicatie van `6869bc3` of een opvolgende versie bevestigd; vóór akkoord geen Analytics-verzoeken; na akkoord een collect-verzoek met `gcs=G101`; na intrekken geen meting, beide GA-cookies op het echte domein verwijderd en keuze bewaard. | Chat “Werk cookiebanner en GA4-toestemming”: commit en push afgerond, alleen lokaal browseronderzoek; livegang expliciet niet gecontroleerd. |
+| 2 | Hoog | De eerdere GA4-melding “0% toestemming, 100% geweigerd” opnieuw bekijken. | Vastgelegd op welk signaal de melding betrekking heeft. Na akkoord moet `analytics_storage` toegestaan zijn; advertentietoestemmingen blijven bewust geweigerd. Bij blijvende statistiekweigering de oorzaak onderzoeken. | Dezelfde chat: hercontrole na 48–72 uur en nieuwe metingen genoemd; geen latere afronding gevonden. |
+| 3 | Hoog | Astro en transitieve afhankelijkheden actualiseren na een nieuwe afhankelijkhedencontrole. | Actuele bevindingen beoordeeld, passende update uitgevoerd en migratie, tests en build gecontroleerd. | Bestaande werklijst: op 10 september acht bevindingen (één kritisch, zes hoog, één laag); actuele aantallen niet vastgesteld. |
+| 4 | Normaal | De mislukte repositorycontrole uit de cookiebannerchat oplossen. | Historische verwijzingen in documentatie en ongewenste ontwikkelverwijzingen passend onderscheiden; de volledige `npm test` slaagt zonder de controle algemeen uit te schakelen. | Cookiebannerchat: laatste teststap struikelde over een bestaande ontwikkelhostverwijzing in `docs/SEARCH_CONSOLE_COVERAGE_ACTIONS.md`; die verwijzing en de brede controle zijn lokaal nog aanwezig. |
+| 5 | Normaal | Search Console-validaties voor 401, 404, serverfouten en soft 404 opnieuw beoordelen. | Recente rapportdatum, validatie-uitkomst en resterende voorbeelden vastgelegd; alleen nog werkelijk falende URL’s krijgen vervolgwerk. | Chats “Controleer Git en projectdocs” en “Verbeter pagina niet geïndexeerd”: validaties gestart op 10 september; op 17 september nog lopend. Noindex was toen voltooid. |
+| 6 | Normaal | Indexering van bestaande inhoud en effect van de nieuwe navigatie volgen. | Actuele sitemapverwerking en indexering vergeleken met 17 september; echte inhoudspagina’s gescheiden van redirects, downloads en historische varianten; gerichte vervolgacties bepaald. | Laatste rapport: 88 geïndexeerd, 42 gecrawld maar niet geïndexeerd en 16 gevonden maar niet geïndexeerd. Navigatie gepubliceerd, Examenstof-herindexering aangevraagd en sitemap opnieuw ingediend op 17 september. |
+| 7 | Normaal | Oude paden zonder bewezen vervanger inhoudelijk beoordelen: `/vraag/verzorgingsstaat/`, `/vraag/downloads/`, `/featured/politiekenbeleid/`, `/glossary-categories/criminaliteitenrechtsstaat/` en `/examenstof/politiekenbeleid-`. | Per pad een onderbouwd besluit over behouden, een passende redirect of een bewuste foutstatus vastgelegd. | Bestaande open werklijst; geen generieke homepage-redirect toevoegen. |
+| 8 | Later | De generieke support-template, planning uit 2017, `/category/featured/` en `/examenstof-2/` inhoudelijk beoordelen. | Vastgelegd of deze pagina’s bruikbaar zijn en moeten worden ontsloten, aangepast of geconsolideerd. Verwijderen of herschrijven vereist een expliciete inhoudelijke keuze. | Search Console-documentatie van 17 september: bewust niet extra gepromoot, beoordeling nog open. |
+| 9 | Normaal | De reeds aanwezige lokale sitemapwijziging beoordelen en afronden. | Toevoeging van `/privacyverklaring/` in `scripts/postbuild-seo.mjs` gecontroleerd op datum en sitemapdekking; bij een volgende publicatieronde vastgelegd en gepubliceerd. | Aanvullende lokale bevinding op 19 november: dit bestand was bij aanvang al gewijzigd en staat nog niet in een commit. Tijdens deze inventarisatie niet aangepast. |
+
+### Gecombineerde lijst met codes (stand 19 november 2026, avond)
+
+Dit is de samenvoeging van bovenstaande tabel met `WORKLIST_AANVULLING.md` (A01–A09). Codes: I inhoud, B begrippen, S Search Console en SEO, M meting en kwaliteit, O onderhoud, P projectafspraken, A administratie. Details van B1 en I2 staan in [BEGRIPPENLIJST_REVIEW.md](BEGRIPPENLIJST_REVIEW.md) en [OEFENMATERIALEN_INVENTARIS.md](OEFENMATERIALEN_INVENTARIS.md).
+
+| Code | Taak | Stand |
+|---|---|---|
+| S1 | Search Console-foutcategorieën opnieuw bekijken (401, 404, 5xx, soft 404) | **Deels.** Live audits slagen (smoke 17, redirects 21, headers 6); acht oude URL's geven 200. Rapport en validatiestatus niet opnieuw gemeten (Chrome niet verbonden). |
+| S2 | Gecrawld/gevonden maar niet geïndexeerd volgen | Open. Laatste bekende meting 23 oktober: 22 gecrawld, 19 gevonden, 89 geïndexeerd, 139 uitgesloten. |
+| S3 | Sitemapmetadata | **Gedaan**, commit `ea9fb67`: privacyverklaring toegevoegd (lastmod 2026-10-14). Besluit: homepage-lastmod blijft de WordPress-datum (2016). |
+| B1 | Begrippenlijst actualiseren | **Deels.** Review klaar; vier geverifieerde correcties doorgevoerd in `data/site/pages.json` (coalitie, jeugddetentie, EU-cijfers, beroepsbevolking). Overige rijen wachten op akkoord. |
+| B2 | Begrippen koppelen aan Schoolwoorden (termenlinker) | Aangehouden tot B1 en I1 klaar zijn. |
+| I1 | Examenstof actualiseren (dekkingsmatrix, syllabus 2027) | Niet gestart. Let op: dezelfde verouderde feiten staan ook in `politiekenbeleid-kerndoel2` (28 lidstaten, 751 zetels), `criminaliteitenrechtsstaat-kerndoel2` (tuchtschool) en `mensenwerk-kerndoel6` (beroepsbevolking 15–67, 12 uur). |
+| I2 | Oefenvragen en externe materialen | **Inventaris klaar.** Herstel wacht op eigenaar van formulier (politiekenbeleid-kerndoel3) en 403-presentatie (mensenwerk kerndoel 5/6); vijf presentaties met verdachte titel. |
+| I3 | Downloads beoordelen | Aangehouden tot I1. Alle 13 downloadlinks geven HTTP 200. |
+| I4 | Oude paden en templatepagina's (vraag/…, featured, contact-support, examenstof-2, planning) | Voorstel per pad nog te maken; besluit is aan de eigenaar. |
+| M1 | Gebruiks- en Analytics-controle | **Grotendeels gedaan** op de live site: geen keuze/weigeren = geen verzoeken of cookies; toestemming = één collect met `gcs=G101` en twee GA-cookies; intrekken verwijdert cookies. Mobiel geen horizontale overflow. Open: GA4-rapportage, tablet, echte toetsenbordtest. |
+| M2 | GA4-melding "0% toestemming, 100% geweigerd" opnieuw bekijken | Open; alleen in GA4 te beoordelen. |
+| O1 | Astro en dependencies actualiseren | Open; aparte branch met tests en preview. |
+| O2 | Cleanup uit de refactor-audit | Aangehouden. |
+| O3 | Mislukte repositorycontrole (dev-hostverwijzing in docs) | **Gedaan.** De controle slaat `docs/` over voor de dev-hostcheck; `npm test` slaagt volledig. |
+| P1 | Footer (Methode M) en `PROJECT_BRIEF.md` gelijk trekken | Beslissing van de eigenaar nog open. |
+| A1 | Werklijst bijwerken | Gedaan met deze sectie. |
+
+Momentopnames: Search Console op 7 november (rapport tot 23 oktober): 89 geïndexeerd, 139 uitgesloten, 22 gecrawld, 19 gevonden; sitemap op 3 november gelezen met 105 pagina's. Dit zijn historische meetwaarden, geen meting van 19 november.
+
+### Bronnen van de chatcontrole
+
+- “Controleer Git en projectdocs” — 10 september 2026, chat-ID `01a08b35-c500-7e50-a206-9a04b2803857`.
+- “Verbeter pagina niet geïndexeerd” — 17 september 2026, chat-ID `01a0adfa-2d51-7441-a5c0-9413cb825da5`.
+- “Werk cookiebanner en GA4-toestemming” — 14 oktober 2026, chat-ID `01a13983-1fb7-72e2-9d46-d43838ae28c4`.
+
+Latere antwoorden in dezelfde chats zijn meegewogen: de oude ontwikkelhost, redirectreparaties, septemberpublicatie, sitemapindiening en oktobercommit/push zijn afgerond. Die staan daarom niet opnieuw als uitvoerwerk open. De actieve en gearchiveerde Codex-chatlijsten zijn doorzocht op dit project en deze werkmap.
+
 
 ## Hercontrole indexering — gepubliceerd op 17 september 2026
 
@@ -44,15 +94,10 @@ De runtimecorrectie uit commit `10f7d71` is gepubliceerd. De Cloudflare Pages-ch
 - [x] Oude ontwikkelhost na expliciete toestemming doorverwezen naar productie: proxied A-record voor subdomein `dev` naar 80.69.67.10, met actieve Cloudflare-regel **Retire old development host**. De 301 behoudt pad en queryparameters. HTTP en HTTPS live gecontroleerd; de vier oude serverfoutpaden, een artikel en de zoektemplate-query komen uit op HTTP 200.
 - [x] Validaties voor 401, serverfouten en soft 404 gestart op 10 september; Search Console bevestigt voor alle drie **Validatie Gestart**.
 
-## Open externe acties
-- [ ] Na Google's hercrawl de 401-, 404-, serverfout- en soft-404-categorie opnieuw bekijken. De noindex-validatie is op 17 september Voltooid. Indexering is niet direct na deployment afgerond.
-- [ ] De 42 gecrawlde en 16 gevonden maar niet geïndexeerde URL's volgen. De groep bevat historische varianten, downloads en bestaande inhoud; geen algemene verwijder- of herschrijfopdracht.
-- [ ] Enkele oude paden zonder bewezen vervanger inhoudelijk beoordelen, waaronder `/vraag/verzorgingsstaat/`, `/vraag/downloads/`, `/featured/politiekenbeleid/`, `/glossary-categories/criminaliteitenrechtsstaat/` en het afgebroken pad `/examenstof/politiekenbeleid-`. Geen generieke redirect naar de homepage toevoegen.
-
 ## Verificatie
 
 `npm test`, `npm run build` en `npm run audit:sitemap-urls` slagen. De oorspronkelijke sitemapinventaris bevat 100 URL's: 97 pagina's, drie bewuste redirects, nul ontbrekend. De live sitemap bevat 105 URL's; alle URL's en canonicals zijn gecontroleerd.
 
-## Nieuw onderhoudspunt uit de buildlog
+## Historische onderhoudsbevinding
 
-- [ ] Astro en transitieve afhankelijkheden actualiseren. `npm audit` meldt op 10 september acht dependencybevindingen: één kritisch, zes hoog en één laag. npm noemt een Astro-major-upgrade als volledige oplossing. Dit is afzonderlijk onderhoud met migratie- en buildtests; er is geen ongecontroleerde `npm audit fix --force` uitgevoerd. De site wordt statisch gepubliceerd, maar de ontwikkel- en buildketen moet ook worden onderhouden.
+De afhankelijkhedenbevinding van 10 september is opgenomen als open actie 3. De toenmalige tests en buildresultaten hierboven dateren van september; de cookiebannerchat meldde later de mislukte repositorycontrole uit actie 4.
