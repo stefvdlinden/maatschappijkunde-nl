@@ -24,7 +24,7 @@ Dit is de samenvoeging van bovenstaande tabel met `WORKLIST_AANVULLING.md` (A01�
 
 | Code | Taak | Stand |
 |---|---|---|
-| S1 | Search Console-foutcategorieën opnieuw bekijken (401, 404, 5xx, soft 404) | **Deels.** Live audits slagen (smoke 17, redirects 21, headers 6); acht oude URL's geven 200. Rapport en validatiestatus niet opnieuw gemeten (Chrome niet verbonden). |
+| S1 | Search Console-foutcategorieën opnieuw bekijken (401, 404, 5xx, soft 404) | **Gedaan 19 nov** (rapport 16 nov: 91 geïndexeerd, 132 niet). 404-validatie **Mislukt** door `/begrippen/maatschap` (de andere acht URL's redirecten). 401 (52) en 5xx (4) staan op Gestart; Google heeft de dev-URL's nog niet opnieuw gecrawld. noindex en soft 404 Voltooid. Zie `SEARCH_CONSOLE_COVERAGE_ACTIONS.md`. |
 | S2 | Gecrawld/gevonden maar niet geïndexeerd volgen | Open. Laatste bekende meting 23 oktober: 22 gecrawld, 19 gevonden, 89 geïndexeerd, 139 uitgesloten. |
 | S3 | Sitemapmetadata | **Gedaan**, commit `ea9fb67`: privacyverklaring toegevoegd (lastmod 2026-10-14). Besluit: homepage-lastmod blijft de WordPress-datum (2016). |
 | B1 | Begrippenlijst actualiseren | **Gedaan** (commits `7145bb9`, `3d35c44`, `d5856d8`, live bevestigd): alle vijf secties van het review doorgevoerd. Rest: volledige spellingronde en controle van 50+ als partijvoorbeeld. De tekstuele afstemming met Schoolwoorden is niet vergeleken. |

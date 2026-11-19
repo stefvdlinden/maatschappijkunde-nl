@@ -1,5 +1,23 @@
 # Search Console: beoordeling en acties
 
+## Hercontrole: 19 november 2026
+
+Rapportdatum 16 november 2026: **91 geïndexeerd, 132 niet geïndexeerd** (acht redenen). Stand 23 oktober: 89 en 139. Stand 14 september: 88 en 160.
+
+| Reden | Aantal | Validatie | Beoordeling op 19 november |
+|---|---:|---|---|
+| Niet gevonden (404) | 9 | **Mislukt (7 nov)**, gestart 10 sept | Acht van de negen URL's geven nu 301 en eindstatus 200 (planning, kerndoelen, kerndoel-tags, twee begrippen, criminaliteit-typfout). **`/begrippen/maatschap`** (laatste crawl 4 nov) geeft 404: onvolledig pad zonder interne verwijzing. Waarschijnlijk de oorzaak van "Mislukt". |
+| Pagina met omleiding | 23 | Niet gestart | Bewuste redirects; geen actie. |
+| Alternatieve pagina met correcte canonical | 4 | Niet gestart | Geen actie. |
+| Gecrawld, niet geïndexeerd | 21 | Niet gestart | Was 42 (sept), 22 (okt). Nog te beoordelen per URL (S2). |
+| Gevonden, niet geïndexeerd | 18 | Niet gestart | Was 16 (sept), 19 (okt). Zie S2. |
+| 401 | 52 | Gestart (10 sept) | Was 60. Alle voorbeelden op de oude ontwikkelhost met crawldatums van juni 2026; zes live gecontroleerd: 301 naar productie, eindstatus 200. Google heeft ze nog niet opnieuw gecrawld. |
+| Serverfout (5xx) | 4 | Gestart (10 sept) | Nog niet opnieuw beoordeeld; de vier dev-paden zijn eerder gecontroleerd (301, eindstatus 200). |
+| noindex | 1 | **Voltooid** | Eén historische URL blijft in het rapport. |
+| Soft 404 | 0 | **Voltooid** | Opgelost. |
+
+Open beslissing: `/begrippen/maatschap` laten 404 geven (aanbevolen, geen betekenisvolle bestemming) en daarna de 404-validatie opnieuw starten, of een gerichte redirect kiezen.
+
 ## Hercontrole — 17 september 2026
 
 Rapportdatum 14 september 2026: **88 geïndexeerd, 160 niet geïndexeerd**. Op 4 september waren dat 88 en 199. De daling van 39 uitgesloten URL's is geen bewijs van 39 extra geïndexeerde pagina's: het geïndexeerde aantal bleef gelijk.
