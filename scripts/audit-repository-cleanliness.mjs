@@ -59,7 +59,8 @@ for (const rel of gitFiles.stdout.split(/\r?\n/).filter(Boolean)) {
     if (/^(<<<<<<<|=======|>>>>>>>)($| )/m.test(content)) {
       addIssue('merge_conflict_marker', file);
     }
-    if (/dev\.maatschappijkunde\.nl/i.test(content)) {
+    // Documentation may describe the retired dev host historically; code, content and config may not reference it.
+    if (!rel.startsWith('docs/') && /dev\.maatschappijkunde\.nl/i.test(content)) {
       addIssue('dev_origin_reference', file);
     }
   }
