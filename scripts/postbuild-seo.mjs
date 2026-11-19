@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { seoRedirects } from '../lib/seo-redirects.js';
+import { canonicalOverrides } from '../lib/canonical-overrides.js';
 
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, 'dist');
@@ -48,6 +49,7 @@ const urls = pages
   .filter((page) => page && typeof page.url === 'string')
   .filter((page) => !redirectSources.has(page.url))
   .filter((page) => !page.url.includes('/feed/'))
+  .filter((page) => !(page.url in canonicalOverrides))
   .map((page) => ({
     loc: absoluteUrl(page.url),
     lastmod: toDate(page.modified || page.date || '')

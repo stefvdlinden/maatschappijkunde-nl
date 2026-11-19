@@ -18,6 +18,43 @@ Rapportdatum 16 november 2026: **91 geïndexeerd, 132 niet geïndexeerd** (acht 
 
 Open beslissing: `/begrippen/maatschap` laten 404 geven (aanbevolen, geen betekenisvolle bestemming) en daarna de 404-validatie opnieuw starten, of een gerichte redirect kiezen.
 
+### S2: gecrawld en gevonden maar niet geïndexeerd (19 november 2026)
+
+Alle 21 "gecrawld" en 18 "gevonden" URL's uit het rapport van 16 november zijn live gecontroleerd (status, redirects, canonical, robots, sitemap en inkomende links in de gerenderde site). Geen enkele URL heeft noindex of een afwijkende canonical, en alle eindstatussen zijn 200.
+
+**Gecrawld, niet geïndexeerd (21)**
+
+| Groep | URL's | Beoordeling |
+|---|---:|---|
+| PDF-leerteksten (www- en apexvarianten) | 12 | Redirect van www naar apex werkt. PDF's worden zelden geïndexeerd; geen actie. Inhoudelijke beoordeling hoort bij I3. |
+| Oude begrippen-URL's (`arbeidsvoorwaarden` x2, `referendum`) | 3 | Redirecten via 2–3 hops naar Schoolwoorden. Niet-geïndexeerd is juist. Optioneel: de hopketen http→www→apex→Schoolwoorden inkorten. |
+| Dev-zoektemplate `?s={search_term_string}` | 1 | Canonical naar homepage; verwacht gedrag. |
+| **Echte contentpagina's** | 5 | `/ml2-k-6-4-culturele-differentiatie/` (dubbel, zie S4), `/kerndoelen/macht-en-zeggenschap/` (157 woorden), `/category/multiculti/` (207, 1 inkomende link), `/leertips/` (206 woorden, 107 inkomende links), `/examenstof/mensenwerk-kerndoel2/` (701 woorden, laatst gecrawld 29 mei, vóór de navigatiewijziging). |
+
+**Gevonden, niet geïndexeerd (18)**
+
+| Groep | URL's | Beoordeling |
+|---|---:|---|
+| Categorieoverzichten (`/category/amv|criminaliteitenrechtsstaat|massamedia|mens-en-werk/`) | 4 | Dunne overzichten (180–210 woorden), nu gelinkt vanaf `/examenstof/`. Wachten op hercrawl. |
+| Tagoverzichten (`/kerndoel-tags/cse|havo|leerjaar-3|leerjaar-4|vmbo/`) | 5 | Idem, dunne overzichten, één inkomende link. |
+| Examenstofoverzichten (`/examenstof/criminaliteit-en-rechtsstaat|mens-en-werk|politiekenbeleid/`) | 3 | Alleen gelinkt vanaf `/category/featured/` en `/contact-support/`, de twee pagina's die bewust niet worden gepromoot. Zwakke interne routering. |
+| Kerndoel-/examenpagina's met veel inkomende links | 4 | `/kerndoelen/domein-b-rechtsstaat/`, `/kerndoelen/sociale-verschillen/`, `/examenstof/machtenzeggenschap-kerndoel2/`, `/examenstof/socialeverschillen-kerndoel1/`: goed gelinkt, dus wachten op Google. |
+| **Weesjes** | 2 | `/leerjaar-3-versneld/` (planning 2017/X11, 0 inkomende links, wel in sitemap) en `/contact-support/` (Engelse template, 0 inkomende links, wel in sitemap). Zie I4. |
+
+**Belangrijkste vondst (nieuwe taak S4): vijf dubbele pagina's.** Vijf WordPress-berichten zijn woord voor woord gelijk aan hun examenstofpagina, allemaal in de sitemap en met eigen canonical:
+
+| Bericht | Examenstofpagina |
+|---|---|
+| `/multiculturelemsamenleving-kerndoel-1/` | `/examenstof/multiculturelemsamenleving-kerndoel-1/` |
+| `/ml2-k-6-2-het-overheidsbeleid/` | `/examenstof/multiculturelesamenleving-kerndoel2/` |
+| `/ml2-k-6-3-sociaaleconomische-positie-allochtonen/` | `/examenstof/multiculturelesamenleving-kerndoel3/` |
+| `/ml2-k-6-4-culturele-differentiatie/` | `/examenstof/multiculturelesamenleving-kerndoel4/` |
+| `/ml2-k-6-5-vooroordelen-stereotypen-en-discriminatie/` | `/examenstof/multiculturelesamenleving-kerndoel5/` |
+
+Dit is de aannemelijkste verklaring voor een deel van "gecrawld, niet geïndexeerd" (Google kiest één van twee gelijke pagina's).
+
+**Besluit en uitvoering (19 november 2026):** canonical, geen redirect. De vijf berichten blijven bereikbaar op hun eigen URL, maar `rel=canonical` en `og:url` wijzen naar de examenstofversie en ze zijn uit de sitemap gehaald (106 naar 101 URL's). De koppeling staat in `lib/canonical-overrides.js` en wordt door de layout en `scripts/postbuild-seo.mjs` gebruikt. `scripts/test-canonical-overrides.mjs` (onderdeel van `npm test`) bewaakt dat bron en doel bestaan, dat er geen ketens zijn en dat de bronpagina's niet in de sitemap staan. Na publicatie: live canonical controleren en bij Search Console de sitemap opnieuw laten verwerken; Google kiest zelf wanneer de duplicaten verdwijnen.
+
 ## Hercontrole — 17 september 2026
 
 Rapportdatum 14 september 2026: **88 geïndexeerd, 160 niet geïndexeerd**. Op 4 september waren dat 88 en 199. De daling van 39 uitgesloten URL's is geen bewijs van 39 extra geïndexeerde pagina's: het geïndexeerde aantal bleef gelijk.

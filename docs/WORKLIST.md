@@ -25,7 +25,8 @@ Dit is de samenvoeging van bovenstaande tabel met `WORKLIST_AANVULLING.md` (A01�
 | Code | Taak | Stand |
 |---|---|---|
 | S1 | Search Console-foutcategorieën opnieuw bekijken (401, 404, 5xx, soft 404) | **Gedaan 19 nov** (rapport 16 nov: 91 geïndexeerd, 132 niet). 404-validatie **Mislukt** door `/begrippen/maatschap` (de andere acht URL's redirecten). 401 (52) en 5xx (4) staan op Gestart; Google heeft de dev-URL's nog niet opnieuw gecrawld. noindex en soft 404 Voltooid. Zie `SEARCH_CONSOLE_COVERAGE_ACTIONS.md`. |
-| S2 | Gecrawld/gevonden maar niet geïndexeerd volgen | Open. Laatste bekende meting 23 oktober: 22 gecrawld, 19 gevonden, 89 geïndexeerd, 139 uitgesloten. |
+| S2 | Gecrawld/gevonden maar niet geïndexeerd volgen | **Onderzocht 19 nov** (21 + 18 URL's, alle 200, geen noindex). Overwegend verwacht gedrag (PDF's, redirects, dunne overzichten). Twee concrete problemen: vijf dubbele pagina's (zie S4) en twee weesjes in de sitemap. Details in `SEARCH_CONSOLE_COVERAGE_ACTIONS.md`. |
+| S4 | Vijf dubbele WordPress-berichten naast hun examenstofpagina | **Opgelost in code (19 nov), nog te publiceren**: canonical naar de examenstofversie, uit de sitemap (nu 101 URL's), regressietest toegevoegd. Daarna live controleren. |
 | S3 | Sitemapmetadata | **Gedaan**, commit `ea9fb67`: privacyverklaring toegevoegd (lastmod 2026-10-14). Besluit: homepage-lastmod blijft de WordPress-datum (2016). |
 | B1 | Begrippenlijst actualiseren | **Gedaan** (commits `7145bb9`, `3d35c44`, `d5856d8`, live bevestigd): alle vijf secties van het review doorgevoerd. Rest: volledige spellingronde en controle van 50+ als partijvoorbeeld. De tekstuele afstemming met Schoolwoorden is niet vergeleken. |
 | B2 | Begrippen koppelen aan Schoolwoorden (termenlinker) | Aangehouden tot B1 en I1 klaar zijn. |

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import pages from '../../data/site/pages.json';
+import { canonicalOverrides } from '../../lib/canonical-overrides.js';
 
 export function getStaticPaths() {
   return pages.map((page) => ({
@@ -53,7 +54,7 @@ const buildBreadcrumbs = (currentPage) => {
 
 const breadcrumbs = buildBreadcrumbs(page);
 ---
-<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs} canonicalPath={canonicalOverrides[page.url]}>
   {isHome ? (
     <div class="home-page" set:html={page.html} />
   ) : (

@@ -2,7 +2,8 @@
 const {
   title = 'Maatschappijkunde.nl',
   description = 'Alle examenstof van het VMBO examenvak maatschappijkunde.',
-  breadcrumbs = []
+  breadcrumbs = [],
+  canonicalPath = undefined
 } = Astro.props;
 
 const navItems = [
@@ -12,7 +13,7 @@ const navItems = [
 ];
 
 const siteUrl = Astro.site ?? new URL('https://maatschappijkunde.nl');
-const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const canonicalUrl = new URL(canonicalPath ?? Astro.url.pathname, siteUrl).toString();
 const logoUrl = new URL('/wp-content/uploads/2018/04/cropped-MASK-logo-1000x1000.png', siteUrl).toString();
 const structuredData = [
   {
