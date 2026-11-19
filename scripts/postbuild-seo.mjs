@@ -54,6 +54,17 @@ const urls = pages
   }))
   .sort((a, b) => a.loc.localeCompare(b.loc));
 
+// Astro-only pages that are not part of pages.json but are indexable.
+// lastmod is the date of the last substantive content change (commit 6869bc3).
+const extraPages = [{ url: '/privacyverklaring/', lastmod: '2026-10-14' }];
+for (const page of extraPages) {
+  const loc = absoluteUrl(page.url);
+  if (!urls.some((item) => item.loc === loc)) {
+    urls.push({ loc, lastmod: page.lastmod });
+  }
+}
+urls.sort((a, b) => a.loc.localeCompare(b.loc));
+
 const urlset = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
