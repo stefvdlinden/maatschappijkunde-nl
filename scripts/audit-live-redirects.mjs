@@ -21,8 +21,8 @@ const checks = [
     ['/examenstof-2/', '/examenstof/'],
     ['/category/featured/', '/examenstof/'],
     ['/leerjaar-3-versneld/', '/examenstof/'],
-    ['/begrippen/maatschappelijke-positie', 'https://schoolwoorden.nl/begrip/maatschappelijke-positie/'],
-    ['/begrippen/sociale-mobiliteit/', 'https://schoolwoorden.nl/begrip/sociale-mobiliteit/'],
+    ['/begrippen/maatschappelijke-positie', 'https://schoolwoorden.nl/begrip/maatschappelijke-positie'],
+    ['/begrippen/sociale-mobiliteit/', 'https://schoolwoorden.nl/begrip/sociale-mobiliteit'],
     ['/examenstof/politiekenbeleid-kerndoel1-2/feed/', '/examenstof/politiekenbeleid-kerndoel1-2/'],
     ['/examenstof/criminaliteitenrechtsstaat-kerndoel2/feed/', '/examenstof/criminaliteitenrechtsstaat-kerndoel2/'],
     ['/examenstof/multiculturelemsamenleving-kerndoel-1/feed/', '/examenstof/multiculturelemsamenleving-kerndoel-1/'],
@@ -31,17 +31,17 @@ const checks = [
   {
     path: '/begrippen/tweede-kamer/',
     expectedStatus: 301,
-    expectedLocation: 'https://schoolwoorden.nl/begrip/tweede-kamer/'
+    expectedLocation: 'https://schoolwoorden.nl/begrip/tweede-kamer'
   },
   {
     path: '/begrippen/parlement/',
     expectedStatus: 301,
-    expectedLocation: 'https://schoolwoorden.nl/begrip/parlement/'
+    expectedLocation: 'https://schoolwoorden.nl/begrip/parlement'
   },
   {
     path: '/begrippen/reageerakkoord/',
     expectedStatus: 301,
-    expectedLocation: 'https://schoolwoorden.nl/begrip/regeerakkoord/'
+    expectedLocation: 'https://schoolwoorden.nl/begrip/regeerakkoord'
   },
   {
     path: '/politiekenbeleid-kerndoel1-1/',

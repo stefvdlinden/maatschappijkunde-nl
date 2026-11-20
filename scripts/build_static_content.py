@@ -927,6 +927,9 @@ def main():
     redirects = read_csv(GENERATED / "redirects.csv")
     for redirect in redirects:
         redirect["target"] = canonicalize_schoolwoorden_url(redirect.get("target") or "")
+        # schoolwoorden.nl verwijst zelf door naar de variant zonder eindslash; direct naar het eindadres voorkomt een extra stap
+        if redirect["target"].startswith("https://schoolwoorden.nl/begrip/"):
+            redirect["target"] = redirect["target"].rstrip("/")
     known_redirect_sources = {redirect["source"] for redirect in redirects}
     redirects.extend(
         redirect for redirect in EXTRA_REDIRECTS

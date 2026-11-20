@@ -23,17 +23,17 @@ const redirectChecks = [
   {
     path: '/begrippen/tweede-kamer/',
     expectedStatus: 301,
-    expectedLocation: 'https://schoolwoorden.nl/begrip/tweede-kamer/'
+    expectedLocation: 'https://schoolwoorden.nl/begrip/tweede-kamer'
   },
   {
     path: '/begrippen/parlement/',
     expectedStatus: 301,
-    expectedLocation: 'https://schoolwoorden.nl/begrip/parlement/'
+    expectedLocation: 'https://schoolwoorden.nl/begrip/parlement'
   },
   {
     path: '/begrippen/reageerakkoord/',
     expectedStatus: 301,
-    expectedLocation: 'https://schoolwoorden.nl/begrip/regeerakkoord/'
+    expectedLocation: 'https://schoolwoorden.nl/begrip/regeerakkoord'
   },
   {
     path: '/kerndoelen/',
