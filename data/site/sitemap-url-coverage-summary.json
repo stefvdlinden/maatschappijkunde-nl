@@ -1,7 +1,7 @@
 {
   "total_sitemap_urls": 100,
-  "pages": 97,
-  "redirects": 3,
+  "pages": 94,
+  "redirects": 6,
   "missing": 0,
   "by_sitemap": [
     {
@@ -35,8 +35,8 @@
     {
       "sitemap": "page-sitemap.xml",
       "total": 17,
-      "pages": 14,
-      "redirects": 3,
+      "pages": 11,
+      "redirects": 6,
       "missing": 0
     },
     {
@@ -64,6 +64,24 @@
     {
       "sitemap": "page-sitemap.xml",
       "path": "/planning/leerjaar4/",
+      "target": "/examenstof/",
+      "status": "301"
+    },
+    {
+      "sitemap": "page-sitemap.xml",
+      "path": "/leerjaar-3-versneld/",
+      "target": "/examenstof/",
+      "status": "301"
+    },
+    {
+      "sitemap": "page-sitemap.xml",
+      "path": "/contact-support/",
+      "target": "/examenstof/",
+      "status": "301"
+    },
+    {
+      "sitemap": "page-sitemap.xml",
+      "path": "/examenstof-2/",
       "target": "/examenstof/",
       "status": "301"
     }

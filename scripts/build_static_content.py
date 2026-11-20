@@ -100,6 +100,30 @@ EXTRA_REDIRECTS = [
         "target": "/examenstof/"
     },
     {
+        "line": "extra:removed-template-pages",
+        "status": "301",
+        "source": "/contact-support/",
+        "target": "/examenstof/"
+    },
+    {
+        "line": "extra:removed-template-pages",
+        "status": "301",
+        "source": "/examenstof-2/",
+        "target": "/examenstof/"
+    },
+    {
+        "line": "extra:removed-template-pages",
+        "status": "301",
+        "source": "/category/featured/",
+        "target": "/examenstof/"
+    },
+    {
+        "line": "extra:removed-template-pages",
+        "status": "301",
+        "source": "/leerjaar-3-versneld/",
+        "target": "/examenstof/"
+    },
+    {
         "line": "extra:removed-kerndoelen-index",
         "status": "301",
         "source": "/kerndoelen/",
