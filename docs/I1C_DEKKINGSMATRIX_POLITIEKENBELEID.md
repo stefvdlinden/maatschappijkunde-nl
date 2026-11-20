@@ -1,6 +1,8 @@
 # I1c: dekkingsmatrix Politiek en beleid (kerndoel 1.2–1.4 en 2–5) tegen de syllabus 2027
 
-Datum: 20 november 2026. Status: **de negen onjuistheden (⚠ 1–9) zijn doorgevoerd op 20 november 2026**; de overige gaten staan nog open voor beoordeling. Vervolg op [I1a](I1A_DEKKINGSMATRIX_KERNDOEL1-1.md) (kerndoel 1.1).
+Datum: 20 november 2026. Status: **volledig doorgevoerd op 20 november 2026**: de negen onjuistheden (⚠ 1–9), kerndoel 5 (I1c-2) en de overige aanvullingen op kerndoel 1.2–4 (I1c-3). Open blijft alleen de afstemming op de niveaus (GT-punten) en de inhoud van de presentaties.
+
+Naar aanleiding van kerndoel 5: de pagina kent nu secties Politieke partijen, Links en rechts/progressief en conservatief, Nationalistisch, Populisme en Extremisme, een bijgewerkte partijlijst (bron: [tweedekamer.nl, fracties](https://www.tweedekamer.nl/kamerleden_en_commissies/fracties)) en een regel over BBB en Volt, die niet zijn ingedeeld. De indeling van PVV, FvD en JA21 onder Nationalistisch is mijn keuze op basis van de syllabuscriteria; controleren door de vakinhoudelijke eigenaar. Vervolg op [I1a](I1A_DEKKINGSMATRIX_KERNDOEL1-1.md) (kerndoel 1.1).
 
 Bron: [Syllabus maatschappijkunde vmbo, centraal examen 2027, versie 2](https://www.examenblad.nl/2027/vmbo-kb/documenten/syllabus-maatschappijkunde-vmbo-2027), domein ML2/K/4. De niveaus (BB, KB, GT) per eindterm zijn uit de tekstlayout van de PDF afgeleid; een alleen-GT-markering is dus aannemelijk maar niet gecontroleerd in de PDF zelf. Alle pagina's zijn voor het laatst gewijzigd in 2017–2018.
 
