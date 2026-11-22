@@ -1,6 +1,6 @@
 # I1e Dekkingsmatrix: oude domeinen (Maatschappijleer en Maatschappijwetenschappen)
 
-Datum: 20 november 2026. Status: **matrix opgesteld; correctieronde (VZ1, VZ2, VZ3, VZ5, PL3, PL4, PL5, MV1, MV2) doorgevoerd op 22 november 2026.** Open: PL1, PL2, VZ4, VZ6, PL6, RS1, MV3. Vervolg op [I1d](I1D_DEKKINGSMATRIX_CRIMINALITEIT_MASSAMEDIA_AMV.md).
+Datum: 20 november 2026. Status: **matrix opgesteld; correctieronde (VZ1, VZ2, VZ3, VZ5, PL3, PL4, PL5, MV1, MV2) doorgevoerd op 22 november 2026.** **PL1 en PL2 doorgevoerd op 22 november 2026** (PL1 herschreven zonder stereotyperende generalisaties; PL2: verouderde afbeelding vervangen door een neutrale tekst over actuele verkiezingsprogramma's). Open: VZ4, VZ6, PL6, RS1, MV3. Vervolg op [I1d](I1D_DEKKINGSMATRIX_CRIMINALITEIT_MASSAMEDIA_AMV.md).
 
 ## Wat deze pagina's zijn
 
@@ -31,7 +31,7 @@ Geen van deze domeinen komt voor in de syllabus maatschappijkunde vmbo CE 2027 (
 | Nr. | Pagina | Bevinding | Voorstel |
 |---|---|---|---|
 | PL1 | kerndoel 3 | Zes stellige generalisaties over "niet-westerse allochtonen" (wij-cultuur, islamitisch, rolverdeling, tegen homoseksualiteit, kapitalistisch). Dit is stereotypering zonder bron en gebruikt terminologie die het CBS niet meer hanteert | Herschrijven met nuance en bron (SCP/CBS), of schrappen. Dit is een inhoudelijke keuze. |
-| PL2 | kerndoel 3 | "Standpunten politieke partijen: In het kort denken de grootste partijen als volgt ..." en daarna niets: de lijst is bij een eerdere conversie verloren gegaan | Lijst herstellen (korte stand per partij, bron: verkiezingsprogramma's 2025) of de lege inleiding schrappen. |
+| PL2 | kerndoel 3 | "Standpunten politieke partijen": de lijst staat als afbeelding uit 2017 (kinderpardon, VNL, PvdA; verouderd). Eerder foutief beschreven als verloren gegaan | Lijst herstellen (korte stand per partij, bron: verkiezingsprogramma's 2025) of de lege inleiding schrappen. |
 | PL3 | kerndoel 2 | "Plichten ... zoals **dienstplicht**": de dienstplicht is sinds 1997 opgeschort | Voorbeeld vervangen door leerplicht of belasting betalen. |
 | PL4 | kerndoel 4 | "sinds de oprichting in **1992** in de Europese Unie": het verdrag van Maastricht is van 1992, de EU bestaat sinds de inwerkingtreding op 1 november 1993; "gedoogbeleid onder druk" is niet bijgewerkt | Jaartal corrigeren, gedoogvoorbeeld controleren of vervangen. |
 | PL5 | kerndoel 1 | Typefouten ("intergratiebeleid", "LQBTQ"); "Nederlandse burgers" heeft dezelfde tekst als "Maatschappelijke organisaties" (kopie) | Verbeteren; tekst bij burgers herschrijven. |

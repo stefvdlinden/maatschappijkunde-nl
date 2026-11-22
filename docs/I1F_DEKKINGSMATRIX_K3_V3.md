@@ -1,6 +1,6 @@
 # I1f Dekkingsmatrix: K/3 Leervaardigheden en V/3 Vaardigheden in samenhang
 
-Datum: 22 november 2026. Status: **matrix opgesteld, nog geen pagina's toegevoegd.**
+Datum: 22 november 2026. Status: **matrix opgesteld; voorstel 1 en 2 doorgevoerd op 22 november 2026** (pagina `/examenstof/leervaardigheden/` en een zin bij AMV kerndoel 1).
 
 Bron: [syllabus centraal examen 2027, versie 2](https://www.examenblad.nl/2027/vmbo-gl/documenten/syllabus-maatschappijkunde-vmbo-2027) (PDF, 43 pagina's). Vervolg op [I1d](I1D_DEKKINGSMATRIX_CRIMINALITEIT_MASSAMEDIA_AMV.md).
 
