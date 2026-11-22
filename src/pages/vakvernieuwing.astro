@@ -1,0 +1,247 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const problems = [
+  {
+    icon: '🕰️',
+    title: 'Het programma is verouderd',
+    short: 'Maatschappijkunde dateert uit 1999; de eindtermen uit 2007 zijn in de kern niet veranderd.',
+    more: 'Sinds 1999 (start vernieuwd vmbo) bestaat het programma. In 2007 zijn de eindtermen globaal geformuleerd, maar in de kern niet gewijzigd. De notitie noemt het programma “sterk verouderd”. Al in 2016 vroeg de vakvereniging NVLM het ministerie om herziening. Maatschappijwetenschappen kreeg in 2017 al een volledig nieuw programma.'
+  },
+  {
+    icon: '🧩',
+    title: 'Vakken sluiten slecht op elkaar aan',
+    short: 'Maatschappijleer, maatschappijkunde en maatschappijwetenschappen zijn onvoldoende op elkaar afgestemd.',
+    more: 'Maatschappijleer maakt deel uit van het gemeenschappelijk deel; in het conceptexamenprogramma (2024) hebben burgerschap en digitale geletterdheid een nadrukkelijker plek gekregen. Maatschappijkunde en maatschappijwetenschappen zijn keuzevakken die daarop voortbouwen. Onderzoek (Kampman e.a., 2025) laat zien dat de overlap met maatschappijleer groter is voor maatschappijkunde dan voor maatschappijwetenschappen. De vraag is welke begrippen en vaardigheden in alle vakken horen en wat verdiept moet worden. Ook de naam van de vakken wordt opnieuw bekeken.'
+  },
+  {
+    icon: '🎓',
+    title: 'Beperkte doorstroomrelevantie',
+    short: 'Het vak bereidt nog te weinig voor op mbo en op havo 4.',
+    more: 'Een focusgroep vond maatschappijkunde onvoldoende doorstroomrelevant. Het vak kan meer aansluiten op wat belangrijk is in het mbo, bijvoorbeeld in zorg en welzijn, sociaaljuridische dienstverlening, veiligheid en media. Ook stroomt een behoorlijk aantal leerlingen vanuit vmbo-gt door naar havo 4.'
+  },
+  {
+    icon: '📖',
+    title: 'Te veel kennis, te weinig vaardigheden',
+    short: 'Het huidige examen vraagt vooral reproductie; begrijpen, toepassen, analyseren en evalueren komen nauwelijks aan bod.',
+    more: 'Het verouderde maatschappijkunde is tamelijk kennisgericht. Vaardigheden als begrijpen, toepassen, analyseren en evalueren worden nauwelijks onderwezen en getoetst. Het schoolexamen is vaak vooral een oefening voor het centraal examen. Daarbij komt dat veel leerlingen onvoldoende leesvaardig zijn, met name in het vmbo (PISA 2018 en 2022), wat zwaar telt bij vakken met complexe teksten.'
+  },
+  {
+    icon: '❓',
+    title: 'Weinig bekend over de praktijk',
+    short: 'Er is geen onderzoek naar de tevredenheid van docenten en leerlingen met maatschappijkunde.',
+    more: 'Voor maatschappijwetenschappen is dat wel onderzocht: leerlingen en docenten zijn redelijk tevreden, al zijn er kritische geluiden over de concepten. Voor maatschappijkunde zijn er geen onderzoeksgegevens. De leeropbrengsten van de schoolexamens zijn niet op landelijk niveau in kaart gebracht.'
+  }
+];
+
+const developments = [
+  { icon: '🌍', title: 'Internationale machtspolitiek', text: 'Democratie onder druk, populisme, dalend politiek vertrouwen, desinformatie en buitenlandse inmenging. Bondgenootschappen en de wereldorde veranderen.' },
+  { icon: '🌡️', title: 'Ecologie en planeet', text: 'Opwarming van de aarde en minder biodiversiteit beïnvloeden steeds meer de politieke besluitvorming. Hoe en hoe snel handelen we?' },
+  { icon: '⚖️', title: 'Ongelijkheid en cohesie', text: 'Een groeiende groep heeft minder kans op sociale stijging en minder vertrouwen in elkaar, de politiek en de overheid. Dat zet de samenhang in de samenleving onder druk.' },
+  { icon: '🚢', title: 'Globalisering en deglobalisering', text: 'Positieve én negatieve gevolgen. Machtsblokken proberen de negatieve gevolgen te beheersen.' },
+  { icon: '🤝', title: 'Diversiteit, representatie, inclusie', text: 'Identiteit en individualisering: welke verhalen worden verteld, welke stemmen gehoord? Ook socialisatie en persoonsvorming komen aan bod.' },
+  { icon: '🤖', title: 'Technologie en digitalisering', text: 'Nepnieuws, echokamers en framing, meer afhankelijkheid van technologie en nieuwe machtsverschillen. Omgaan met veel digitale informatie.' }
+];
+
+const directions = [
+  { n: 1, title: 'Eigen plek naast maatschappijleer en maatschappijwetenschappen', text: 'Maatschappijleer kijkt vooral vanuit burgerschap. Maatschappijwetenschappen laat leerlingen als onderzoeker of journalist analyseren. Maatschappijkunde kiest thema’s en onderwerpen die een fundament leggen voor vervolgonderwijs en beroep, en kan doorstroomrelevanter worden.' },
+  { n: 2, title: 'Dichter bij de leefwereld van leerlingen', text: 'Leerlingen hebben praktische behoeften, bijvoorbeeld bij werk en zelfstandig wonen. Denk aan het belastingstelsel, de woningmarkt en de politieke standpunten daarover. Dat sluit aan op burgerschap in het mbo.' },
+  { n: 3, title: 'Doorlopende leerlijnen', text: 'De programma’s moeten aansluiten op de kerndoelen burgerschap en mens en maatschappij in de onderbouw, en op de andere mens-en-maatschappijvakken. SLO adviseert om zicht te krijgen op gezamenlijke en vakoverstijgende begrippen, concepten en vaardigheden.' },
+  { n: 4, title: 'Meer vaardigheden, andere verdeling schoolexamen en centraal examen', text: 'De nadruk op het meetbare centraal schriftelijk eindexamen vraagt om een nieuwe afweging. Vaardigheden die slecht in een CSE te toetsen zijn, kunnen beter in het schoolexamen tot hun recht komen.' },
+  { n: 5, title: 'Differentiatie en niet te veel stof', text: 'De programma’s voor vmbo-bb en -kb mogen geen “verdunde” versie van vmbo-gt zijn. Hetzelfde geldt voor havo ten opzichte van vwo. Overladenheid van de programma’s moet tegengegaan worden, vooral op de havo.' },
+  { n: 6, title: 'Meerdere perspectieven', text: 'Sommige mens-en-maatschappijprogramma’s zijn vanuit één perspectief opgesteld. De uitdaging is een inclusiever curriculum met meerdere perspectieven, waarin ook de grote maatschappelijke vraagstukken terugkomen.' }
+];
+
+const kerndelen = [
+  { code: 'K1', label: 'Oriëntatie op leren en werken', ce: false },
+  { code: 'K2', label: 'Basisvaardigheden', ce: false },
+  { code: 'K3', label: 'Leervaardigheden in het vak maatschappijkunde', ce: true },
+  { code: 'K4', label: 'Politiek en beleid', ce: true, href: '/kerndoelen/politiekenbeleid/' },
+  { code: 'K5', label: 'Mens en werk', ce: false, href: '/kerndoelen/mensenwerk/' },
+  { code: 'K6', label: 'De multiculturele samenleving', ce: false, href: '/kerndoelen/multiculturelesamenleving/' },
+  { code: 'K7', label: 'Massamedia', ce: false, href: '/kerndoelen/massamedia/' },
+  { code: 'K8', label: 'Criminaliteit en rechtsstaat', ce: true, href: '/kerndoelen/criminaliteit-en-rechtsstaat/' },
+  { code: 'V1', label: 'Analyse maatschappelijk vraagstuk', ce: true, href: '/kerndoelen/amv/' },
+  { code: 'V2', label: 'Verwerven, verwerken en verstrekken van informatie', ce: false },
+  { code: 'V3', label: 'Vaardigheden in samenhang', ce: true }
+];
+---
+<BaseLayout
+  title="Vakvernieuwing maatschappijkunde — Maatschappijkunde.nl"
+  description="Wat gaat er veranderen aan het vak maatschappijkunde? Een overzicht voor docenten van de SLO-startnotitie van juni 2025: waarom, welke ontwikkelingen en welke richtingen."
+  breadcrumbs={[{ href: '/', label: 'Home' }, { label: 'Vakvernieuwing' }]}
+>
+  <article class="vv">
+    <header class="vv-hero">
+      <p class="vv-eyebrow">Voor docenten maatschappijkunde</p>
+      <h1>Vakvernieuwing</h1>
+      <p class="vv-lead">Maatschappijkunde (vmbo) en maatschappijwetenschappen (havo/vwo) krijgen nieuwe examenprogramma’s. Dit is wat er volgens de startnotitie van SLO (juni 2025) speelt: waarom, welke ontwikkelingen en welke richtingen.</p>
+      <ul class="vv-facts" aria-label="Kerngegevens">
+        <li><strong>1999</strong><span>jaar waarin het huidige programma maatschappijkunde startte</span></li>
+        <li><strong>11.323</strong><span>examenkandidaten maatschappijkunde in 2024 (11,7% van het vmbo)</span></li>
+        <li><strong>2017</strong><span>jaar waarin het huidige programma maatschappijwetenschappen werd ingevoerd</span></li>
+      </ul>
+      <nav class="vv-jump" aria-label="Op deze pagina">
+        <a href="#status">Waar staan we?</a>
+        <a href="#waarom">Waarom vernieuwen?</a>
+        <a href="#ontwikkelingen">Zes ontwikkelingen</a>
+        <a href="#richtingen">Richtingen</a>
+        <a href="#nu">Het huidige programma</a>
+      </nav>
+    </header>
+
+    <section id="status" class="vv-section" aria-labelledby="status-h">
+      <h2 id="status-h">Waar staan we?</h2>
+      <ol class="vv-steps">
+        <li class="is-done">
+          <span class="vv-step__tag">Nu</span>
+          <h3>Startnotitie</h3>
+          <p>SLO brengt in juni 2025 de ontwikkelingen in beleid, onderzoek, onderwijspraktijk en samenleving in kaart. Dit is de basis onder het ontwikkelwerk.</p>
+        </li>
+        <li>
+          <span class="vv-step__tag">Volgt</span>
+          <h3>Ontwikkelwerk</h3>
+          <p>Uitwerking in nieuwe examenprogramma’s, met de werkopdracht van het ministerie van OCW als kader.</p>
+        </li>
+      </ol>
+      <p class="vv-note"><strong>Let op:</strong> de startnotitie is geen nieuw examenprogramma. Er staan geen eindtermen in, geen besluiten en geen invoeringsdatum. Tot nieuwe programma’s zijn vastgesteld blijft het huidige programma de basis.</p>
+    </section>
+
+    <section id="waarom" class="vv-section" aria-labelledby="waarom-h">
+      <h2 id="waarom-h">Waarom vernieuwen?</h2>
+      <p class="vv-intro">Vijf knelpunten uit de probleemanalyse. Klap een kaart open voor de uitleg.</p>
+      <div class="vv-grid vv-grid--2">
+        {problems.map((p) => (
+          <details class="vv-card">
+            <summary>
+              <span class="vv-icon" aria-hidden="true">{p.icon}</span>
+              <span><strong>{p.title}</strong><span class="vv-short">{p.short}</span></span>
+            </summary>
+            <p>{p.more}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section id="ontwikkelingen" class="vv-section" aria-labelledby="ontw-h">
+      <h2 id="ontw-h">Zes maatschappelijke ontwikkelingen</h2>
+      <p class="vv-intro">De notitie noemt deze ontwikkelingen als relevant voor beide vakken: thema’s die sociaalwetenschappelijk en politicologisch geanalyseerd kunnen worden.</p>
+      <div class="vv-grid vv-grid--3">
+        {developments.map((d) => (
+          <div class="vv-tile">
+            <span class="vv-icon" aria-hidden="true">{d.icon}</span>
+            <h3>{d.title}</h3>
+            <p>{d.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="richtingen" class="vv-section" aria-labelledby="richt-h">
+      <h2 id="richt-h">Waar wordt over nagedacht?</h2>
+      <p class="vv-intro">Curriculaire uitdagingen: dit zijn vragen en richtingen, nog geen besluiten.</p>
+      <ol class="vv-list">
+        {directions.map((d) => (
+          <li>
+            <span class="vv-num" aria-hidden="true">{d.n}</span>
+            <div><h3>{d.title}</h3><p>{d.text}</p></div>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section id="nu" class="vv-section" aria-labelledby="nu-h">
+      <h2 id="nu-h">Het huidige programma in één blik</h2>
+      <p class="vv-intro">Kerndelen (K) en verrijkingsdelen (V) van maatschappijkunde, elk met één eindterm. Onderdelen met <span class="vv-badge">CE</span> komen in het centraal examen. Voor vmbo-bb en vmbo-kb/gl-tl is er differentiatie; de V-delen gelden voor vmbo-gt.</p>
+      <ul class="vv-kern">
+        {kerndelen.map((k) => (
+          <li class:list={[{ 'is-ce': k.ce }]}>
+            <span class="vv-code">{k.code}</span>
+            {k.href ? <a href={k.href}>{k.label}</a> : <span>{k.label}</span>}
+            {k.ce && <span class="vv-badge">CE</span>}
+          </li>
+        ))}
+      </ul>
+      <p class="vv-cta"><a class="button-link" href="/examenstof/">Naar de examenstof</a> <a class="button-link secondary" href="/begrippen/">Naar de begrippen</a></p>
+    </section>
+
+    <footer class="vv-source">
+      <p><strong>Bron:</strong> SLO, <em>Startnotitie maatschappijkunde en maatschappijwetenschappen, bovenbouw voortgezet onderwijs</em>, juni 2025 (auteurs Lars van der Bruggen en Han Noordink), CC BY. Deze pagina is een samenvatting door Maatschappijkunde.nl en geen officieel SLO-document; de cijfers komen uit de notitie (CvTE, 2024). Meer informatie op <a href="https://www.slo.nl">slo.nl</a>.</p>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .vv { --vv-ink: #12233f; --vv-deep: #0f4f8c; --vv-sky: #4593e5; --vv-mint: #16806a; --vv-sun: #f2b134; --vv-soft: #f1f7fe; max-width: 1040px; margin: 0 auto; }
+  .vv h1, .vv h2, .vv h3, .vv p { margin: 0; }
+  .vv-hero { position: relative; padding: 40px 36px 28px; border-radius: 16px; color: #fff; background: linear-gradient(135deg, var(--vv-deep) 0%, #1b73c9 55%, var(--vv-sky) 100%); overflow: hidden; }
+  .vv-hero::after { content: ""; position: absolute; right: -60px; top: -60px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(242, 177, 52, 0.55), rgba(242, 177, 52, 0) 70%); pointer-events: none; }
+  .vv-eyebrow { font-size: 0.82rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #cfe6ff; margin-bottom: 8px !important; }
+  .vv-hero h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.1; }
+  .vv-lead { max-width: 680px; margin-top: 14px !important; font-size: 1.15rem; line-height: 1.55; color: #eef6ff; }
+  .vv-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 26px 0 0; padding: 0; list-style: none; position: relative; z-index: 1; }
+  .vv-facts li { padding: 14px 16px; border-radius: 12px; background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.28); }
+  .vv-facts strong { display: block; font-size: 1.9rem; line-height: 1.1; color: #fff; }
+  .vv-facts span { display: block; margin-top: 4px; font-size: 0.92rem; line-height: 1.4; color: #e3f0ff; }
+  .vv-jump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; position: relative; z-index: 1; }
+  .vv-jump a { padding: 7px 14px; border-radius: 999px; background: #fff; color: var(--vv-deep); font-weight: 700; font-size: 0.92rem; text-decoration: none; }
+  .vv-jump a:hover, .vv-jump a:focus-visible { background: var(--vv-sun); color: var(--vv-ink); outline: none; }
+
+  .vv-section { margin-top: 48px; scroll-margin-top: 16px; }
+  .vv-section h2 { font-size: 1.6rem; line-height: 1.2; color: var(--vv-ink); padding-left: 14px; border-left: 6px solid var(--vv-sun); }
+  .vv-intro { margin-top: 10px !important; color: var(--muted); max-width: 720px; }
+  .vv-note { max-width: none; margin-top: 18px !important; padding: 14px 18px; border-radius: 10px; background: #fff7e3; border: 1px solid #f0d58a; color: #5a4300; }
+
+  .vv-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 18px 0 0; padding: 0; list-style: none; counter-reset: s; }
+  .vv-steps li { position: relative; padding: 18px 20px; border-radius: 12px; border: 1px dashed #9fb6d1; background: #fff; }
+  .vv-steps li.is-done { border: 1px solid var(--vv-mint); background: #eefaf6; }
+  .vv-step__tag { display: inline-block; margin-bottom: 6px; padding: 2px 10px; border-radius: 999px; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; background: #e4ebf4; color: #44566f; }
+  .is-done .vv-step__tag { background: var(--vv-mint); color: #fff; }
+  .vv-steps h3 { font-size: 1.15rem; }
+  .vv-steps p { margin-top: 6px !important; color: var(--muted); }
+
+  .vv-grid { display: grid; gap: 16px; margin-top: 18px; }
+  .vv-grid--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+  .vv-grid--3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .vv-card, .vv-tile { border: 1px solid var(--line); border-radius: 12px; background: #fff; box-shadow: 0 6px 18px rgba(18, 35, 63, 0.06); }
+  .vv-card { padding: 0; align-self: start; }
+  .vv-card summary { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; cursor: pointer; list-style: none; }
+  .vv-card summary::-webkit-details-marker { display: none; }
+  .vv-card summary::after { content: "+"; margin-left: auto; font-size: 1.4rem; line-height: 1; color: var(--vv-deep); font-weight: 700; }
+  .vv-card[open] summary::after { content: "–"; }
+  .vv-card summary:focus-visible { outline: 3px solid var(--vv-sun); outline-offset: -3px; border-radius: 12px; }
+  .vv-card summary strong { display: block; color: var(--vv-ink); }
+  .vv-short { display: block; margin-top: 4px; color: var(--muted); font-size: 0.95rem; line-height: 1.45; }
+  .vv-card p { padding: 0 18px 18px 70px; color: var(--text); font-size: 0.97rem; }
+  .vv-icon { flex: none; display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; background: var(--vv-soft); font-size: 1.3rem; }
+  .vv-tile { padding: 18px; }
+  .vv-tile h3 { margin-top: 10px; font-size: 1.05rem; color: var(--vv-ink); }
+  .vv-tile p { margin-top: 6px; color: var(--muted); font-size: 0.97rem; line-height: 1.5; }
+
+  .vv-list { display: grid; gap: 12px; margin: 18px 0 0; padding: 0; list-style: none; }
+  .vv-list li { display: flex; gap: 16px; padding: 16px 18px; border-radius: 12px; background: var(--vv-soft); border: 1px solid #d6e6f8; }
+  .vv-num { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--vv-deep); color: #fff; font-weight: 800; }
+  .vv-list h3 { font-size: 1.05rem; color: var(--vv-ink); }
+  .vv-list p { margin-top: 4px; color: var(--text); font-size: 0.97rem; line-height: 1.55; }
+
+  .vv-kern { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; margin: 18px 0 0; padding: 0; list-style: none; }
+  .vv-kern li { display: flex; gap: 10px; align-items: center; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--line); background: #fff; }
+  .vv-kern li.is-ce { border-color: var(--vv-deep); background: #f3f8ff; }
+  .vv-code { flex: none; min-width: 34px; padding: 2px 6px; border-radius: 6px; text-align: center; font-weight: 800; font-size: 0.85rem; background: #e4ebf4; color: var(--vv-ink); }
+  .is-ce .vv-code { background: var(--vv-deep); color: #fff; }
+  .vv-badge { margin-left: auto; padding: 1px 8px; border-radius: 999px; font-size: 0.75rem; font-weight: 800; background: var(--vv-sun); color: var(--vv-ink); }
+  .vv-intro .vv-badge { margin-left: 0; }
+  .vv-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px !important; }
+  .vv-source { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; }
+
+  @media (max-width: 600px) {
+    .vv-hero { padding: 28px 20px 22px; border-radius: 12px; }
+    .vv-card p { padding-left: 18px; }
+    .vv-list li { padding: 14px; }
+  }
+  @media print {
+    .vv-hero { background: #fff; color: #000; border: 1px solid #999; }
+    .vv-hero * { color: #000 !important; }
+    .vv-jump { display: none; }
+  }
+</style>

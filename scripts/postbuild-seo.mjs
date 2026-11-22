@@ -58,7 +58,10 @@ const urls = pages
 
 // Astro-only pages that are not part of pages.json but are indexable.
 // lastmod is the date of the last substantive content change (commit 6869bc3).
-const extraPages = [{ url: '/privacyverklaring/', lastmod: '2026-10-14' }];
+const extraPages = [
+  { url: '/privacyverklaring/', lastmod: '2026-10-14' },
+  { url: '/vakvernieuwing/', lastmod: '2026-11-22' }
+];
 for (const page of extraPages) {
   const loc = absoluteUrl(page.url);
   if (!urls.some((item) => item.loc === loc)) {
