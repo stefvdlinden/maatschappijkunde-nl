@@ -51,6 +51,10 @@ for (const path of gone.paths) {
   }
 }
 
+const headGone = await onRequest({ request: new Request(`${origin}${gone.paths[0]}`, { method: 'HEAD' }), next: async () => new Response('static asset') });
+assert.equal(headGone.status, 410, 'HEAD on a gone path');
+assert.equal(await headGone.text(), '', 'HEAD answer has no body');
+
 for (const path of ['/', '/examenstof/', '/unknown-page/', '/_redirects', '/wp-content/uploads/example.pdf']) {
   const response = await request(`${origin}${path}`);
   assert.equal(await response.text(), 'static asset', path);

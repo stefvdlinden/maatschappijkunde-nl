@@ -21,7 +21,8 @@ assert(out.includes('>Eerste&nbsp;Kamer</a>'), 'first occurrence with nbsp is li
 assert(out.includes('<a href="/x/">coalitie</a>'), 'existing links stay untouched');
 assert(!out.includes('>Kamerlidmaatschap'), 'partial words are not linked');
 assert(out.includes('<script>coalitie</script>'), 'script content is untouched');
-assert.equal(linkTerms(out, sample).match(/class="term-link"/g).length >= 3, true);
+assert.equal(linkTerms(out, sample), out, 'linking twice must not change the output');
+assert(!linkTerms('<p>FNV Media en Cultuur en de Vreemdelingenzaken en Integratie.</p>', [{ term: 'Cultuur', href: 'https://schoolwoorden.nl/begrip/cultuur' }, { term: 'Integratie', href: 'https://schoolwoorden.nl/begrip/integratie' }]).includes('term-link'), 'protected names are not linked');
 
 // Elke echte pagina: ten hoogste acht koppelingen, geen koppelingen in koppen of bestaande links.
 let total = 0;
@@ -29,8 +30,20 @@ for (const page of pages.filter((item) => item.url.startsWith('/examenstof/') &&
   const linked = linkTerms(page.html, terms);
   const count = (linked.match(/class="term-link"/g) || []).length;
   assert(count <= 8, `${page.url} has ${count} links`);
-  assert(!/<h[1-6][^>]*>[^<]*<a class="term-link"/.test(linked), `${page.url}: link inside heading`);
-  assert(!/<a [^>]*>[^<]*<a class="term-link"/.test(linked), `${page.url}: link inside link`);
+  // Tel open koppen en open koppelingen mee: een term-link mag nooit in een kop of in een andere link staan.
+  let headingDepth = 0;
+  let linkDepth = 0;
+  for (const tag of linked.match(/<\/?[a-zA-Z][^>]*>/g) || []) {
+    const name = /^<\/?([a-zA-Z][a-zA-Z0-9]*)/.exec(tag)[1].toLowerCase();
+    const closing = tag.startsWith('</');
+    if (/^h[1-6]$/.test(name)) headingDepth = Math.max(0, headingDepth + (closing ? -1 : 1));
+    if (name === 'a') {
+      if (!closing) {
+        assert(!(tag.includes('class="term-link"') && (headingDepth > 0 || linkDepth > 0)), `${page.url}: term-link inside heading or link`);
+        linkDepth += 1;
+      } else linkDepth = Math.max(0, linkDepth - 1);
+    }
+  }
   total += count;
 }
 console.log(`Term linker ok: ${terms.length} terms, ${total} links over examenstof pages`);
