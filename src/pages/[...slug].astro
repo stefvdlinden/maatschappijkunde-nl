@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import pages from '../../data/site/pages.json';
 import { canonicalOverrides } from '../../lib/canonical-overrides.js';
+import { extractTerms, linkTerms } from '../../lib/term-linker.js';
 
 export function getStaticPaths() {
   return pages.map((page) => ({
@@ -11,6 +12,11 @@ export function getStaticPaths() {
 }
 
 const { page } = Astro.props;
+// Begrippen in de lopende tekst van de examenstof verwijzen naar de uitleg op Schoolwoorden.nl.
+const glossaryTerms = extractTerms(pages.find((item) => item.url === '/begrippen/')?.html || '');
+const isExamPage = page.type === 'ht_kb' && page.url.startsWith('/examenstof/');
+const bodyHtml = isExamPage ? linkTerms(page.html, glossaryTerms) : page.html;
+const hasTermLinks = isExamPage && bodyHtml.includes('class="term-link"');
 const title = page.seoTitle || page.title || 'Maatschappijkunde.nl';
 const description = page.description || undefined;
 const isHome = page.url === '/';
@@ -62,7 +68,8 @@ const breadcrumbs = buildBreadcrumbs(page);
       <p class="content-page__type">{page.typeLabel}</p>
       <h1>{page.title}</h1>
       {showIntro && <p class="content-page__intro">{description}</p>}
-      {page.html && <div class="content-body" set:html={page.html} />}
+      {bodyHtml && <div class="content-body" set:html={bodyHtml} />}
+      {hasTermLinks && <p class="term-note">Onderstreepte begrippen (stippellijn) leggen we uit op <a href="https://schoolwoorden.nl/" rel="noopener" target="_blank">Schoolwoorden.nl</a>.</p>}
       {page.url === '/examenstof/' && (
         <nav aria-label="Meer examenstofoverzichten" class="subject-grid">
           {overviewGroups.map((group) => (
