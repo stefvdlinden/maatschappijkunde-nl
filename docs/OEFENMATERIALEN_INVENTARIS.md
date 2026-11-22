@@ -34,3 +34,22 @@ Opmerking: Mens en Werk kerndoel 6 gebruikt naast zijn eigen presentatie ook twe
 1. **Jij**: vaststellen wie eigenaar is van het formulier en de 403-presentatie (waarschijnlijk jouw eigen Google-account of dat van een oud collega-account).
 2. Na akkoord: voor de 403-presentatie een nieuw openbaar deelbare kopie of vervanging aanwijzen en de embed vervangen.
 3. Verkeerde presentaties (4, 5, 7) per pagina aanwijzen; ik zoek de juiste ID's niet zelf: de correcte presentatie moet jij aanleveren.
+
+## Hercontrole en voorstel (22 november 2026)
+
+### I2: oefenvragen en externe materialen
+
+- De presentatie `1QXp1TIEyLK7sV8jfVoHiX_xjlmCccuyK_q88wcR5Td0` (Mens en Werk kerndoel 5 en 6) geeft nog steeds **HTTP 403**. Een controlevoorbeeld, de AMV-presentatie, geeft 200.
+- Herstel vraagt de eigenaar van het Google-account. Zonder toegang kan ik de deelinstelling niet wijzigen. Voorstel: deel de presentatie met "iedereen met de link" of maak een nieuwe kopie en geef me het nieuwe id; ik vervang dan de drie embeds.
+- Het formulier "Politiek en Beleid: Kerndoel 3" blijft een besluit voor de eigenaar: verplichte velden Naam en Wachtwoord horen niet bij een oefenformulier. Voorstel: velden niet-verplicht maken, "Wachtwoord" schrappen of het formulier vervangen door een link naar de oefenvragen op de pagina zelf.
+- Niets is ingevuld of gewijzigd.
+
+### I3: downloads
+
+- Alle 14 downloadlinks op `/downloads/` geven live HTTP 200 (13 bestanden plus het schema van de parlementaire democratie).
+- Inhoudelijk zijn de PDF's momentopnamen uit 2016 tot 2020 en lopen ze achter op de webpagina's:
+  - Mens en Werk (2016 en 2018), Multiculturele samenleving (2016 en 2018): bevatten "allochtonen" (4, 33) en "niet-westers" (3, 15), de oude terminologie.
+  - Politiek en Beleid (2018): noemt 2015 en 2016 als recente jaren.
+  - Checklists "Check CSE Maatschappijleer 2017" en "Checklist CSE Maatschappijkunde 2018": titels verwijzen naar een oud examenjaar.
+- Er zijn dubbele versies per thema (Mens en Werk, Multiculturele samenleving, Analyse maatschappelijk vraagstuk, Criminaliteit en Rechtsstaat, Massamedia): de oudere en de nieuwere staan allebei op de pagina.
+- Voorstel, op akkoord: (1) de oudere duplicaten van de downloadpagina halen en de 2016-bestanden laten staan voor bestaande links; (2) boven de lijst een zin "Deze leerteksten zijn momentopnamen; de webpagina's zijn actueler"; (3) de leerteksten opnieuw genereren kan alleen met de bronbestanden, die ik niet heb.
