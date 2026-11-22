@@ -1,5 +1,7 @@
 # I1e Dekkingsmatrix: oude domeinen (Maatschappijleer en Maatschappijwetenschappen)
 
+> **Update 22 november 2026: de HAVO-domeinen (Maatschappijleer B–E: Rechtsstaat, Verzorgingsstaat, Pluriforme samenleving en het overzicht Parlementaire democratie) zijn verwijderd.** 17 URL's (11 pagina's, 5 overzichten en de tag `havo`) staan in `data/site/gone.json` en geven HTTP 410. De bevindingen VZ1–VZ6, PL1–PL6 en RS1 hieronder zijn daarmee vervallen. Blijven staan: de 13 VMBO-pagina's (Macht en zeggenschap, Sociale verschillen, Cultuur en socialisatie, Beeldvorming en stereotypering) met MV1–MV3. De onder "Maatschappijwetenschappen" getoonde groep op Examenstof was een dubbele lijst van diezelfde VMBO-pagina's en is uit het overzicht gehaald.
+
 Datum: 20 november 2026. Status: **matrix opgesteld; correctieronde (VZ1, VZ2, VZ3, VZ5, PL3, PL4, PL5, MV1, MV2) doorgevoerd op 22 november 2026.** **PL1 en PL2 doorgevoerd op 22 november 2026** (PL1 herschreven zonder stereotyperende generalisaties; PL2: verouderde afbeelding vervangen door een neutrale tekst over actuele verkiezingsprogramma's). Open: VZ4, VZ6, PL6, RS1, MV3. Vervolg op [I1d](I1D_DEKKINGSMATRIX_CRIMINALITEIT_MASSAMEDIA_AMV.md).
 
 ## Wat deze pagina's zijn

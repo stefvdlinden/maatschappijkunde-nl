@@ -53,9 +53,10 @@ const pages = JSON.parse(readFileSync(join(root, 'data/site/pages.json'), 'utf8'
 const redirects = JSON.parse(readFileSync(join(root, 'data/site/redirects.json'), 'utf8'));
 const pageUrls = new Set(pages.map((page) => page.url));
 const redirectSources = new Set(redirects.map((redirect) => redirect.source));
+const gonePaths = new Set(JSON.parse(readFileSync(new URL('../data/site/gone.json', import.meta.url), 'utf8')).paths);
 const gaps = rows
   .filter((row) => row.advice.startsWith('investigate'))
-  .filter((row) => !pageUrls.has(row.url) && !redirectSources.has(row.url))
+  .filter((row) => !pageUrls.has(row.url) && !redirectSources.has(row.url) && !gonePaths.has(row.url))
   .sort((a, b) => Number(b.analytics_views || 0) - Number(a.analytics_views || 0));
 
 const fields = ['url', 'in_sitemap', 'sitemap', 'lastmod', 'analytics_rank', 'analytics_views', 'advice'];

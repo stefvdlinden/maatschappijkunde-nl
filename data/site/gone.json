@@ -1,0 +1,22 @@
+{
+  "description": "Verwijderde pagina's (HAVO-domeinen Maatschappijleer). Deze URL's geven HTTP 410 (Gone).",
+  "paths": [
+    "/examenstof/pluriformesamenleving-kerndoel1/",
+    "/examenstof/pluriformesamenleving-kerndoel2/",
+    "/examenstof/pluriformesamenleving-kerndoel3/",
+    "/examenstof/pluriformesamenleving-kerndoel4/",
+    "/examenstof/verzorgingsstaat-kerndoel1/",
+    "/examenstof/verzorgingsstaat-kerndoel2/",
+    "/examenstof/verzorgingsstaat-kerndoel3-2/",
+    "/examenstof/verzorgingsstaat-kerndoel4/",
+    "/examenstof/rechtsstaat-kerndoel1/",
+    "/examenstof/rechtsstaat-kerndoel2/",
+    "/examenstof/rechtsstaat-kerndoel3/",
+    "/kerndoelen/maatschappijleer/",
+    "/kerndoelen/domein-b-rechtsstaat/",
+    "/kerndoelen/domein-c-parlementaire-democratie/",
+    "/kerndoelen/domein-d-verzorgingsstaat/",
+    "/kerndoelen/domien-e-pluriforme-samenleving/",
+    "/kerndoel-tags/havo/"
+  ]
+}

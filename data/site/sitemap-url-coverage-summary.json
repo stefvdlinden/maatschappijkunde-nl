@@ -1,7 +1,8 @@
 {
   "total_sitemap_urls": 100,
-  "pages": 94,
+  "pages": 78,
   "redirects": 6,
+  "gone": 16,
   "missing": 0,
   "by_sitemap": [
     {
@@ -9,27 +10,31 @@
       "total": 2,
       "pages": 2,
       "redirects": 0,
+      "gone": 0,
       "missing": 0
     },
     {
       "sitemap": "ht_kb_category-sitemap.xml",
       "total": 15,
-      "pages": 15,
+      "pages": 11,
       "redirects": 0,
+      "gone": 4,
       "missing": 0
     },
     {
       "sitemap": "ht_kb_tag-sitemap.xml",
       "total": 5,
-      "pages": 5,
+      "pages": 4,
       "redirects": 0,
+      "gone": 1,
       "missing": 0
     },
     {
       "sitemap": "ht_kb-sitemap.xml",
       "total": 55,
-      "pages": 55,
+      "pages": 44,
       "redirects": 0,
+      "gone": 11,
       "missing": 0
     },
     {
@@ -37,6 +42,7 @@
       "total": 17,
       "pages": 11,
       "redirects": 6,
+      "gone": 0,
       "missing": 0
     },
     {
@@ -44,6 +50,7 @@
       "total": 6,
       "pages": 6,
       "redirects": 0,
+      "gone": 0,
       "missing": 0
     }
   ],

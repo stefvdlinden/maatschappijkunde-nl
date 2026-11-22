@@ -54,13 +54,14 @@ const sitemapRows = readCsv(join(root, 'data/generated/sitemap-urls.csv'));
 const pages = JSON.parse(readFileSync(join(root, 'data/site/pages.json'), 'utf8'));
 const redirects = JSON.parse(readFileSync(join(root, 'data/site/redirects.json'), 'utf8'));
 
+const gonePaths = new Set(JSON.parse(readFileSync(join(root, 'data/site/gone.json'), 'utf8')).paths);
 const pagesByUrl = new Map(pages.map((page) => [page.url, page]));
 const redirectsBySource = new Map(redirects.map((redirect) => [redirect.source, redirect]));
 
 const rows = sitemapRows.map((row) => {
   const page = pagesByUrl.get(row.path);
   const redirect = redirectsBySource.get(row.path);
-  const status = page ? 'page' : redirect ? 'redirect' : 'missing';
+  const status = page ? 'page' : redirect ? 'redirect' : gonePaths.has(row.path) ? 'gone' : 'missing';
   return {
     sitemap: row.sitemap,
     url: row.url,
@@ -81,11 +82,13 @@ for (const row of rows) {
     total: 0,
     pages: 0,
     redirects: 0,
+    gone: 0,
     missing: 0
   };
   bucket.total += 1;
   if (row.status === 'page') bucket.pages += 1;
   if (row.status === 'redirect') bucket.redirects += 1;
+  if (row.status === 'gone') bucket.gone += 1;
   if (row.status === 'missing') bucket.missing += 1;
   bySitemap.set(row.sitemap, bucket);
 }
@@ -97,6 +100,7 @@ const summary = {
   total_sitemap_urls: rows.length,
   pages: rows.filter((row) => row.status === 'page').length,
   redirects: rows.filter((row) => row.status === 'redirect').length,
+  gone: rows.filter((row) => row.status === 'gone').length,
   missing: rows.filter((row) => row.status === 'missing').length,
   by_sitemap: [...bySitemap.values()].sort((a, b) => a.sitemap.localeCompare(b.sitemap)),
   missing_urls: rows
@@ -118,4 +122,4 @@ if (summary.missing > 0) {
   throw new Error(`Sitemap URL coverage found ${summary.missing} missing URL(s). See data/site/sitemap-url-coverage.csv`);
 }
 
-console.log(`Sitemap URL coverage ok: ${summary.total_sitemap_urls} sitemap URLs, ${summary.pages} pages, ${summary.redirects} redirects, 0 missing`);
+console.log(`Sitemap URL coverage ok: ${summary.total_sitemap_urls} sitemap URLs, ${summary.pages} pages, ${summary.redirects} redirects, ${summary.gone} gone, 0 missing`);

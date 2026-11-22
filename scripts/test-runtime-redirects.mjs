@@ -3,7 +3,8 @@ import { readFileSync } from 'node:fs';
 import { createRedirectMiddleware } from '../lib/redirect-middleware.js';
 
 const redirects = JSON.parse(readFileSync(new URL('../data/site/redirects.json', import.meta.url)));
-const onRequest = createRedirectMiddleware(redirects);
+const gone = JSON.parse(readFileSync(new URL('../data/site/gone.json', import.meta.url)));
+const onRequest = createRedirectMiddleware(redirects, gone.paths);
 const origin = 'https://maatschappijkunde.nl';
 const request = (url) => onRequest({
   request: new Request(url),
@@ -38,10 +39,22 @@ for (const [path, target] of [
   assert.equal(response.headers.get('location'), `${origin}${target}`, path);
 }
 
+for (const path of gone.paths) {
+  const sourceSet = new Set(redirects.map((redirect) => redirect.source));
+  assert(!sourceSet.has(path), `Gone path ${path} must not also be a redirect`);
+  for (const variant of [path, path.replace(/\/$/, ''), `${path}feed/`]) {
+    for (const host of [origin, 'https://www.maatschappijkunde.nl']) {
+      const response = await request(`${host}${variant}`);
+      assert.equal(response.status, 410, `${host}${variant}`);
+      assert.match(await response.text(), /verwijderd/, `${host}${variant}`);
+    }
+  }
+}
+
 for (const path of ['/', '/examenstof/', '/unknown-page/', '/_redirects', '/wp-content/uploads/example.pdf']) {
   const response = await request(`${origin}${path}`);
   assert.equal(await response.text(), 'static asset', path);
 }
 const www = await request('http://www.maatschappijkunde.nl/downloads/?source=test');
 assert.equal(www.headers.get('location'), `${origin}/downloads/?source=test`);
-console.log(`Runtime redirects ok: ${redirects.length} rules with slash, host and query variants; feeds and passthrough checked`);
+console.log(`Runtime redirects ok: ${redirects.length} rules and ${gone.paths.length} gone paths with slash, host and query variants; feeds and passthrough checked`);
