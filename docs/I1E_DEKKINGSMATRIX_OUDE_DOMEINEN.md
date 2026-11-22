@@ -1,6 +1,6 @@
 # I1e Dekkingsmatrix: oude domeinen (Maatschappijleer en Maatschappijwetenschappen)
 
-Datum: 20 november 2026. Status: **matrix opgesteld, nog niets doorgevoerd.** Vervolg op [I1d](I1D_DEKKINGSMATRIX_CRIMINALITEIT_MASSAMEDIA_AMV.md).
+Datum: 20 november 2026. Status: **matrix opgesteld; correctieronde (VZ1, VZ2, VZ3, VZ5, PL3, PL4, PL5, MV1, MV2) doorgevoerd op 22 november 2026.** Open: PL1, PL2, VZ4, VZ6, PL6, RS1, MV3. Vervolg op [I1d](I1D_DEKKINGSMATRIX_CRIMINALITEIT_MASSAMEDIA_AMV.md).
 
 ## Wat deze pagina's zijn
 

@@ -6,7 +6,9 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const pages = JSON.parse(readFileSync(join(root, 'data/site/pages.json'), 'utf8'));
 const redirects = JSON.parse(readFileSync(join(root, 'data/site/redirects.json'), 'utf8'));
 
-const pageUrls = new Set(pages.map((page) => page.url));
+// Pagina's die alleen als Astro-bestand bestaan (src/pages/*.astro) en niet in pages.json staan.
+const astroOnlyPages = ['/privacyverklaring/', '/vakvernieuwing/'];
+const pageUrls = new Set([...pages.map((page) => page.url), ...astroOnlyPages]);
 const redirectSources = new Set(redirects.map((redirect) => redirect.source));
 
 const normalizePath = (raw) => {

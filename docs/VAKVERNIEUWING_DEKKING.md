@@ -25,14 +25,14 @@ De huidige examenstof is gecontroleerd tegen de syllabus centraal examen 2027 (z
 |---|---|
 | Doorstroomrelevantie (mbo, havo 4) | Niet aanwezig: geen verwijzing naar vervolgopleidingen of beroepscontexten |
 | Meer vaardigheden, minder reproductie | De site is vrijwel geheel kennisgericht (leerdoelen, begrippen, feiten). AMV (V1) is de enige vaardighedensectie |
-| Eigen programma's voor kerndelen K1 (oriëntatie), K2 (basisvaardigheden), K3 (leervaardigheden, CE), V2 en V3 (vaardigheden in samenhang, CE) | Geen eigen pagina's. Of de syllabus 2027 K3 en V3 uitwerkt en wat daaruit ontbreekt, is in deze sessie niet gecontroleerd |
+| Eigen programma's voor kerndelen K1 (oriëntatie), K2 (basisvaardigheden), K3 (leervaardigheden, CE), V2 en V3 (vaardigheden in samenhang, CE) | Geen eigen pagina's. K3 deels gedekt via AMV; V3 heeft geen uitwerking in de syllabus 2027 (zie I1f) |
 | Eigen perspectief naast maatschappijleer en maatschappijwetenschappen | De oude domeinen Maatschappijleer en Maatschappijwetenschappen staan naast maatschappijkunde op `/examenstof/` (zie I1e) |
 | Leefwereld (belasting, woningmarkt) | Nauwelijks (belasting alleen bij AMV en Criminaliteit) |
 
 ## Stappen
 
-1. **Nu doen (los van de vernieuwing):** pagina "Vakvernieuwing" publiceren en vanaf Examenstof of de homepage linken (keuze eigenaar).
-2. **Nu de lacunes dichten waar de huidige syllabus ze al vraagt:** K3 en V3 controleren tegen de syllabus 2027 en zo nodig pagina's toevoegen.
+1. **Gedaan (22 nov):** pagina "Vakvernieuwing" gepubliceerd en gelinkt vanaf de homepage en Examenstof.
+2. **K3 en V3 gecontroleerd (22 nov, zie `I1F_DEKKINGSMATRIX_K3_V3.md`):** de kennis van K/3 staat via AMV op de site, de vaardigheden zelf niet; V/3 heeft geen uitwerking in de syllabus. Voorstel: één pagina "Leervaardigheden".
 3. **Voorbereiden op de nieuwe programma's (pas bij een concept-examenprogramma):** een dekkingsmatrix per nieuw eindterm, zoals I1a–I1e. Zonder concept heeft die matrix geen vergelijkingsmaatstaf.
 4. **Eventueel alvast:** korte verdiepingspagina's over klimaat, internationale machtspolitiek en globalisering (hoofdstuk 4). Alleen als je die thema's los van het examen wilt aanbieden; ze staan niet in het huidige programma.
 5. **Volgen:** nieuwe publicaties van SLO en het ministerie van OCW (werkopdracht, concept-examenprogramma's). De notitie noemt geen data.
