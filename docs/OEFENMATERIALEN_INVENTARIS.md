@@ -53,3 +53,10 @@ Opmerking: Mens en Werk kerndoel 6 gebruikt naast zijn eigen presentatie ook twe
   - Checklists "Check CSE Maatschappijleer 2017" en "Checklist CSE Maatschappijkunde 2018": titels verwijzen naar een oud examenjaar.
 - Er zijn dubbele versies per thema (Mens en Werk, Multiculturele samenleving, Analyse maatschappelijk vraagstuk, Criminaliteit en Rechtsstaat, Massamedia): de oudere en de nieuwere staan allebei op de pagina.
 - Voorstel, op akkoord: (1) de oudere duplicaten van de downloadpagina halen en de 2016-bestanden laten staan voor bestaande links; (2) boven de lijst een zin "Deze leerteksten zijn momentopnamen; de webpagina's zijn actueler"; (3) de leerteksten opnieuw genereren kan alleen met de bronbestanden, die ik niet heb.
+
+### Besluiten van 23 november 2026
+
+- **403-presentatie:** embeds verwijderd (5 op Mens en Werk kerndoel 5 en 6).
+- **Formulier Politiek en Beleid kerndoel 3:** blok met formulierlink verwijderd (4 keer op de pagina).
+- **Downloads:** alle leerteksten van `/downloads/` gehaald; schema en checklists blijven.
+- **Aanvulling na review:** de inventaris telde alleen `docs.google.com/forms`-links. Daarnaast staan er 5 verschillende `goo.gl/forms/...`-links (30 vermeldingen op Politiek en beleid 1.1 t/m 1.4 en kerndoel 2). Ze geven alle vijf live HTTP 200 en wijzen naar werkende Google Formulieren. Ze zijn niet verwijderd: het besluit van 23 november ging over het formulier met de verplichte velden Naam en Wachtwoord.

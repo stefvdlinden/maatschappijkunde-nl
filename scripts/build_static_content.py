@@ -161,20 +161,9 @@ SCHOOLWOORDEN_CANONICAL_SLUGS = {
     "zwevende-kiezer": "zwevende-kiezers",
 }
 DOWNLOAD_ITEMS = [
-    {"title": "Leertekst Mens en Werk", "kind": "Leertekst", "theme": "Mens en Werk", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2016/12/Mens-en-Werk-Kerndoel-1-tm-6-leertekst.pdf", "thumb": "/wp-content/uploads/2016/12/Mens-en-Werk-212x300.png"},
-    {"title": "Leertekst Multiculturele Samenleving", "kind": "Leertekst", "theme": "Multiculturele Samenleving", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2016/12/Multiculturele-Samenleving-Kerndoel-1-tm-5-leertekst.pdf", "thumb": "/wp-content/uploads/2016/12/Multiculturele-Samenleving-leertekst-212x300.jpg"},
-    {"title": "Leertekst Massamedia", "kind": "Leertekst", "theme": "Massamedia", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2017/06/Massamedia-Kerndoel-1-tm-4-leertekst.pdf", "thumb": "/wp-content/uploads/2017/06/Massamedia-Kerndoel-1-tm-4-leertekst-pdf-212x300.jpg"},
-    {"title": "Leertekst Politiek en Beleid", "kind": "Leertekst", "theme": "Politiek en Beleid", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2018/04/Politiek-en-Beleid-Kerndoel-1-tm-5-leertekst.pdf", "thumb": "/wp-content/uploads/2018/04/Politiek-en-Beleid-Kerndoel-1-tm-5-leertekst-pdf-212x300.jpg"},
-    {"title": "Leertekst Criminaliteit en Rechtsstaat", "kind": "Leertekst", "theme": "Criminaliteit en Rechtsstaat", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2017/06/Criminaliteit-en-Rechtsstaat-Kerndoel-1-tm-5-leertekst.pdf", "thumb": "/wp-content/uploads/2017/06/Criminaliteit-en-Rechtsstaat-Kerndoel-1-tm-5-leertekst-pdf-212x300.jpg"},
-    {"title": "Leertekst Analyse Maatschappelijk Vraagstuk", "kind": "Leertekst", "theme": "Analyse Maatschappelijk Vraagstuk", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2016/12/Analyse-Maatschappelijk-Vraagstuk-AMV-Kerndoel-1-tm-3.pdf", "thumb": "/wp-content/uploads/2016/12/Analyse-Maatschappelijk-Vraagstuk-212x300.png"},
     {"title": "Schema Parlementaire Democratie", "kind": "Schema", "theme": "Politiek en Beleid", "subject": "Maatschappijkunde", "file_type": "JPG", "url": "/wp-content/uploads/2016/02/Nederlandse-Parlementaire-Democratie-A3.jpg", "thumb": "/wp-content/uploads/2016/02/Nederlandse-Parlementaire-Democratie-A3-300x212.jpg"},
     {"title": "Checklist CSE Maatschappijkunde 2018", "kind": "Checklist", "theme": "Centraal examen", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2019/04/Checklist-CSE-Maatschappijkunde-2018.pdf", "thumb": "/wp-content/uploads/2015/12/Maatschappijkunde-download-slider-600x200_c.jpg"},
     {"title": "Check CSE Maatschappijkunde 2017", "kind": "Checklist", "theme": "Centraal examen", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2017/04/Check-CSE-Maatschappijleer-2-2017.pdf", "thumb": "/wp-content/uploads/2017/04/Check-CSE-Maatschappijleer-2-2017-pdf-212x300.jpg"},
-    {"title": "Leertekst Massamedia 2020", "kind": "Leertekst", "theme": "Massamedia", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2020/03/3_Massamedia.pdf", "thumb": "/wp-content/uploads/2020/03/Massamedia-leertekst-211x300.png"},
-    {"title": "Leertekst Multiculturele Samenleving 2018", "kind": "Leertekst", "theme": "Multiculturele Samenleving", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2018/12/Multiculturele-Samenleving-Kerndoel-1-tm-5-leertekst.pdf", "thumb": "/wp-content/uploads/2016/12/Multiculturele-Samenleving-leertekst-212x300.jpg"},
-    {"title": "Leertekst Mens en Werk 2018", "kind": "Leertekst", "theme": "Mens en Werk", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2018/12/Mens-en-Werk-Kerndoel-1-tm-6-leertekst.pdf", "thumb": "/wp-content/uploads/2016/12/Mens-en-Werk-212x300.png"},
-    {"title": "Leertekst Analyse Maatschappelijk Vraagstuk 2016", "kind": "Leertekst", "theme": "Analyse Maatschappelijk Vraagstuk", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2016/03/Analyse-Maatschappelijk-Vraagstuk-AMV-Kerndoel-1-tm-3-leertekst.pdf", "thumb": "/wp-content/uploads/2016/12/Analyse-Maatschappelijk-Vraagstuk-212x300.png"},
-    {"title": "Leertekst Criminaliteit en Rechtsstaat 2016", "kind": "Leertekst", "theme": "Criminaliteit en Rechtsstaat", "subject": "Maatschappijkunde", "file_type": "PDF", "url": "/wp-content/uploads/2016/02/Criminaliteit-en-Rechtsstaat-Leertekst-Maatschappijkunde.nl_.pdf", "thumb": "/wp-content/uploads/2016/12/Criminaliteit-en-Rechtsstaat-212x300.png"},
 ]
 EXAMENSTOF_GROUPS = [
     ("Maatschappijkunde", [
@@ -731,7 +720,7 @@ def build_downloads_page():
     if missing:
         raise FileNotFoundError("Downloadbestand ontbreekt in public: " + ", ".join(missing))
     return (
-        '<p>Download gratis leerteksten, schema’s en checklists voor maatschappijkunde. De bestanden zijn geschikt voor herhalen, samenvatten en voorbereiden op toetsen of het centraal examen.</p>'
+        '<p>Download gratis schema’s en checklists voor maatschappijkunde. De leerteksten staan niet meer als download op deze pagina: de uitleg op de website is actueler. Kijk bij <a href="/examenstof/">Examenstof</a>.</p>'
         f'<div class="download-grid">{"".join(cards)}</div>'
     )
 
@@ -845,7 +834,7 @@ def build_homepage(kb_overviews, pages_by_url):
         '</section>'
         '<section class="home-section answer-section">'
         '<h2>Wat vind je op Maatschappijkunde.nl?</h2>'
-        '<p>Maatschappijkunde.nl bundelt examenstof per onderwerp, een begrippenlijst met Schoolwoorden.nl-koppelingen en downloadbare leerteksten voor leerlingen en docenten.</p>'
+        '<p>Maatschappijkunde.nl bundelt examenstof per onderwerp, een begrippenlijst met Schoolwoorden.nl-koppelingen en downloads (schema’s en checklists) voor leerlingen en docenten.</p>'
         '</section>'
         '<section class="home-section">'
         '<div class="section-heading"><div><h2>Verder op de site</h2></div></div>'
